@@ -16,4 +16,8 @@ async_test_tb中书写函数，在@cocotb.test()后为执行代码
 
 ## 注意
 
+验证文件在verify中。
+
 logging模块的debug等级的信息不会输出在命令行，请使用info以上等级的日志信息
+
+
