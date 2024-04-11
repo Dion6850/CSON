@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1710901789" />
+    <testcase name="run_test" classname="async_randon_tb" file="/root/workspace/verilog/randon/test/async_randon_tb.py" lineno="37" time="0.008736371994018555" sim_time_ns="606.001" ratio_time="69365.29264263296" />
+  </testsuite>
+</testsuites>
