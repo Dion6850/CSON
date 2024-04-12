@@ -36,7 +36,7 @@ def verify(A,B,op,shift_cout):
         N = get_sign(F)
         Z = is_zero(F)
         C = is_overflow(F)
-        V = 
+        # V = 
         
     elif op == 3:
         pass
