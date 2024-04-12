@@ -2,7 +2,7 @@
 
 ## 网址
 
-http://fpga.hdu.edu.cn/co/index.html
+http://fpga.hdu.edu.cn/co/
 
 ## 输入Shift_Data
 
@@ -14,10 +14,10 @@ R4按钮按下后写入内部寄存器
 
 SHIFT_OP={T3,U3,T4}
 
-Shift_Num = {W7,Y8,Y7,T1,U1,U2,W1,W2}
+Shift_Num = {W7,Y8,Y7,T1,U1,U2,W1,W2} 左边是低位
 
 AA4按钮按下后写入内部寄存器
 
-## 输入Shift_carry_flag
+## 输入carry_flag
 
-Shift_carry_flag = AB6
+carry_flag = AB6
