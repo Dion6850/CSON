@@ -118,5 +118,5 @@ def verify(shift_op,shift_num,shift_data,carry_flag):
                 
         
 if __name__ == "__main__":
-    a,b = verify(3,32,"11100100111101001111100100110101",0)
-    print(format(a,"b"),b)
+    a,b = verify(4,0,0xffffffff,0)
+    print('0x'+format(a,"08x"),b)
