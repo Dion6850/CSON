@@ -1,9 +1,9 @@
 module ALU (
     input[31:0]A,
     input[31:0]B,
-    input[3:0]ALU_OP;
-    input C;
-    input V;
+    input[3:0]ALU_OP,
+    input C,
+    input V,
     output reg[31:0]F,
     input shiftCout,
     output reg[3:0]NZCV
@@ -24,7 +24,7 @@ module ALU (
             4'h8: F <= A;
             4'hA: {Cout,F} <= A - B + 32'h4;
             4'hC: F <=  A | B;
-            4'hD: F <= B
+            4'hD: F <= B;
             4'hE: F <= A & (~B);
             4'hF: F <= ~B;
         endcase

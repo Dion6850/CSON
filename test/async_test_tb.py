@@ -10,7 +10,7 @@ from cocotb.triggers import RisingEdge, FallingEdge, Timer
 from cocotb.utils import get_sim_steps
 
 import random
-import verify.bucket_shifter as bucket_shifter
+import verify.barrelshifter32 as bucket_shifter
 
 class async_test:
     def __init__(self,dut):
