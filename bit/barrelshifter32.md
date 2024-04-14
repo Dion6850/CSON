@@ -26,13 +26,13 @@ carry_flag = AB6
 
 烧录好bit流之后，首先输入Shift_Data，比如0x80000000，同时点亮R4:
 
-![image-20240414123317652](../picture/barrelshifter32_1.png)
+![image-20240414123317652](../picture/barrelshifter32_md/barrelshifter32_1.png)
 
 点击下传
 
 数吗管会变成输入的数字，然后取消R4，点击下传：
 
-![image-20240414123409915](../picture/barrelshifter32_2.png)
+![image-20240414123409915](../picture/barrelshifter32_md/barrelshifter32_2.png)
 
 这个是因为异步导致的多余操作，为了保证数据正确性。
 
@@ -42,14 +42,14 @@ SHIFT_OP=001
 
 Shift_Num=00000001
 
-![image-20240414123556472](../picture/barrelshifter32_3.png)
+![image-20240414123556472](../picture/barrelshifter32_md/barrelshifter32_3.png)
 
 同时点亮AA4，并下传。
 
-![image-20240414123620608](../picture/barrelshifter32_4.png)
+![image-20240414123620608](../picture/barrelshifter32_md/barrelshifter32_4.png)
 
 可以看到移位后的结果，并且R1被点亮了，R1就是Shift_carry_flag。
 
 到这里就完成了基本的测试，如果需要设置carry_flag，也可以通过AB6来设置。这里不进行赘述。使用完后，可以使用T5来进行清零操作：
 
-![image-20240414123752212](../picture/barrelshifter32_5.png)
+![image-20240414123752212](../picture/barrelshifter32_md/barrelshifter32_5.png)
