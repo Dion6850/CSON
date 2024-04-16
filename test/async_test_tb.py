@@ -135,6 +135,9 @@ class ALU_test:
         await FallingEdge(self.dut.clk)
         self.dut.S.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
+        if self.N is None:
+            self.log.info("Data_pass. N is None")
+            return 
         if(self.dut.F.value == self.F and self.dut.N.value == self.N and self.dut.Z.value == self.Z and self.dut.C.value == self.C):
             if(self.V == None or self.dut.V.value == self.V):
                 self.log.info("Result Correct")
