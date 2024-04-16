@@ -12,7 +12,7 @@ import async_test_tb
 
 @cocotb.test()
 async def run_test(dut):
-    test_tb = async_test_tb.ALU_test(dut)
+    test_tb = async_test_tb.ALU_shift_test(dut)
     await test_tb.test()
 
 

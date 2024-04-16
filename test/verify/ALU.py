@@ -157,5 +157,5 @@ def verify(A,B,op,shift_cout):
         return (F,N,Z,C,V)
     
 if __name__ == "__main__":
-    F,N,Z,C,V = verify(3223212034,0,0,0)
-    print(format(F,"b"))
+    F,N,Z,C,V = verify(2250270494,4294967295,4,1)
+    print(format(F,'b'))
