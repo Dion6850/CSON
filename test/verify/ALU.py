@@ -1,8 +1,8 @@
 def get_sign(number):
-    if number >= 0:
-        return 0
-    else:
+    if number >= 2**31 - 1 or number < 0:
         return 1
+    else:
+        return 0
 
 def is_zero(number):
     if number == 0:
@@ -157,4 +157,5 @@ def verify(A,B,op,shift_cout):
         return (F,N,Z,C,V)
     
 if __name__ == "__main__":
-    F,N,Z,C,V = verify(2418292705,4294966418,6,1)
+    F,N,Z,C,V = verify(2018206408,362,6,1)
+    print(format(F,"b"))
