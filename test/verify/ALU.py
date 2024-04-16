@@ -113,6 +113,8 @@ def verify(A,B,op,shift_cout):
         Z = is_zero(F)
         C = is_overflow(F,False)
         V = is_overflow(F,True)
+        if F < 0:
+            F += 2**32
         return F,N,Z,C,V
     elif op == 11:
         pass
