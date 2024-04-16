@@ -4,13 +4,13 @@ module ALU (
     input[3:0]ALU_OP,
     input C,
     input V,
+    input S,
     output reg[31:0]F,
     input shiftCout,
     output reg[3:0]NZCV
 );
     reg Cout;
     localparam fN = 3,fZ = 2,fC = 1,fV = 0;
-
     always @(A or B or ALU_OP) begin
         case(ALU_OP)
             4'h0: F <= A & B;
@@ -31,7 +31,7 @@ module ALU (
         endcase
     end
 
-    always @(A or B or ALU_OP) begin
+    always @(posedge S) begin
         case(ALU_OP)
             4'h0,4'h1,4'hC,4'hE,4'hF,4'h8,4'hD:
             begin
@@ -50,7 +50,7 @@ module ALU (
         endcase
     end
 
-    always @(A or B or ALU_OP) begin
+    always @(posedge S) begin
         NZCV[fN] <= F[31];
         NZCV[fZ] <= (F == 32'h0)? 1'b1:1'b0;
     end

@@ -100,17 +100,20 @@ class ALU_test:
                 self.log.info("Result Correct")
             else:
                 self.log.error("V Incorrect\n")
-                self.log.error("V = {}".fomate(self.dut.V.value))
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
         else:
             if(self.dut.F.value != res_F):
                 self.log.error("F Incorrecr\n")
-                self.log.error("F = {}".format(self.dut.F.value))
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+
             elif(self.dut.N.value != res_N):
                 self.log.error("N Incorrect\n")
-                self.log.error("N = {}".format(self.dut.N.value))
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+
             elif(self.dut.Z.value != res_Z):
                 self.log.error("Z Incorrect\n")
-                self.log.error("Z = {}".format(self.dut.Z.value))
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+
 
 
 
