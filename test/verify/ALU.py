@@ -106,7 +106,7 @@ def verify(A,B,op,shift_cout):
             A += 2**32
         return (A,None,None,None,None)
     elif op == 9:
-        (None,None,None,None,None)
+        return (None,None,None,None,None)
     elif op == 10:
         F = A - B + 4
         N = get_sign(F)
@@ -117,7 +117,7 @@ def verify(A,B,op,shift_cout):
             F += 2**32
         return (F,N,Z,C,V)
     elif op == 11:
-        (None,None,None,None,None)
+        return (None,None,None,None,None)
     elif op == 12:
         F = A | B
         N = get_sign(F)
