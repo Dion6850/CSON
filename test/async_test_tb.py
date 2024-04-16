@@ -113,6 +113,10 @@ class ALU_test:
             elif(self.dut.Z.value != res_Z):
                 self.log.error("Z Incorrect\n")
                 self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+            elif(self.dut.C.value != res_C):
+                self.log.error("C Incorrect\n")
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+    
     async def scale_test(self):
         self.N = 0
         self.Z = 0
@@ -171,8 +175,8 @@ class ALU_test:
 @cocotb.test()
 async def run_test(dut):
     test_tb = ALU_test(dut)
-    # await test_tb.test()
-    await test_tb.scale_test()
+    await test_tb.test()
+    # await test_tb.scale_test()
     # for i in range(0,1000):
         # await test_tb.scale_test()
         # await RisingEdge(test_tb.dut.clk)
