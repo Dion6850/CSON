@@ -21,14 +21,14 @@ class barrelshifter32_test:
         self.log.info("Starting asynchronous add test...")
         cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
         
-    async def test_barrelshifter32(self,shift_data,shift_num,carry_flag,shift_op,shift_out):
+    async def test(self,shift_data,shift_num,carry_flag,shift_op,shift_out,shift_carry_out):
         await RisingEdge(self.dut.clk)
         self.dut.Shift_Data.setimmediatevalue(shift_data)
         self.dut.Shift_Num.setimmediatevalue(shift_num)
         self.dut.Carry_flag.setimmediatevalue(carry_flag)
         self.dut.SHIFT_OP.setimmediatevalue(shift_op)
         await FallingEdge(self.dut.clk)
-        if(self.dut.Shift_out.value == shift_out):
+        if(self.dut.Shift_out.value == shift_out and self.dut.Shift_carry_out.value == shift_carry_out):
             self.log.info("Result Correct")
         else:
             self.log.error("Result Incorrect")
