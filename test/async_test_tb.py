@@ -168,8 +168,7 @@ class ALU_test:
 @cocotb.test()
 async def run_test(dut):
     test_tb = ALU_test(dut)
-    await test_tb.test()
     # await test_tb.scale_test()
-    # for i in range(0,1000):
-        # await test_tb.scale_test()
-        # await RisingEdge(test_tb.dut.clk)
+    for i in range(0,1000):
+        await test_tb.scale_test()
+        await RisingEdge(test_tb.dut.clk)
