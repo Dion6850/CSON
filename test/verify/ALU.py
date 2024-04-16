@@ -75,6 +75,8 @@ def verify(A,B,op,shift_cout):
             F += 2**32
         return (F,N,Z,C,V)
     elif op == 5:
+        if shift_cout is None:
+            return (None,None,None,None,None)
         F = A + B + shift_cout
         N = get_sign(F)
         Z = is_zero(F)
@@ -84,6 +86,8 @@ def verify(A,B,op,shift_cout):
             F += 2**32
         return (F,N,Z,C,V)
     elif op == 6:
+        if shift_cout is None:
+            return (None,None,None,None,None)
         F = A - B + shift_cout - 1
         N = get_sign(F)
         Z = is_zero(F)
@@ -93,6 +97,8 @@ def verify(A,B,op,shift_cout):
             F += 2**32
         return (F,N,Z,C,V)
     elif op == 7:
+        if shift_cout is None:
+            return (None,None,None,None,None)
         F = B - A + shift_cout - 1
         N = get_sign(F)
         Z = is_zero(F)

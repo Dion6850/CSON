@@ -135,8 +135,6 @@ class ALU_test:
         self.dut.A.setimmediatevalue(rand_a)
         self.dut.ALU_OP.setimmediatevalue(rand_alu_op)
         B,shift_carry_out = barrelshifter32.verify(rand_shift_op,rand_shift_num,rand_shift_data,self.C)
-        self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(format(rand_a,'b'),format(B,'b'),rand_shift_op,shift_carry_out))
-        self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
         self.F,self.N,self.Z,self.C,self.V = ALU.verify(rand_a,B,rand_alu_op,shift_carry_out)
         await FallingEdge(self.dut.clk)
         self.dut.S.setimmediatevalue(1)
@@ -149,24 +147,24 @@ class ALU_test:
                 self.log.info("Result Correct")
             else:
                 self.log.error("V Incorrect\n")
-                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
         else:
             if(self.dut.F.value != self.F):
                 self.log.error("F Incorrecr\n")
-                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
             elif(self.dut.N.value != self.N):
                 self.log.error("N Incorrect\n")
-                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
                 
             elif(self.dut.Z.value != self.Z):
                 self.log.error("Z Incorrect\n")
-                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
 
