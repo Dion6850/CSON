@@ -140,11 +140,12 @@ class ALU_test:
         self.dut.S.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
         if self.N is None:
-            self.log.info("Data_pass. N is None")
+            # self.log.info("Data_pass. N is None")
             return 
         if(self.dut.F.value == self.F and self.dut.N.value == self.N and self.dut.Z.value == self.Z and self.dut.C.value == self.C):
             if(self.V == None or self.dut.V.value == self.V):
-                self.log.info("Result Correct")
+                # self.log.info("Result Correct")
+                pass
             else:
                 self.log.error("V Incorrect\n")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
