@@ -10,9 +10,10 @@ from cocotb.triggers import RisingEdge, FallingEdge, Timer
 from cocotb.utils import get_sim_steps
 
 import random
-import verify.barrelshifter32 as bucket_shifter
+import verify.barrelshifter32 as barrelshifter32
+import verify.ALU as ALU
 
-class async_test:
+class barrelshifter32_test:
     def __init__(self,dut):
         self.dut=dut
         self.log=logging.getLogger("cocotb.tb")
@@ -43,8 +44,7 @@ class async_test:
             self.dut.Shift_Num.setimmediatevalue(rand_shift_num)
             self.dut.Carry_flag.setimmediatevalue(rand_carry_flag)
             self.dut.SHIFT_OP.setimmediatevalue(rand_shift_op)
-            res_shift_out,res_shift_carry_flag = bucket_shifter.verify(rand_shift_op,rand_shift_num,rand_shift_data,rand_carry_flag)
-            # self.log.info("res_shift_out = {}, res_shift_carry_out = {}".format(res_shift_out,res_shift_carry_flag))
+            res_shift_out,res_shift_carry_flag = barrelshifter32.verify(rand_shift_op,rand_shift_num,rand_shift_data,rand_carry_flag)
             await FallingEdge(self.dut.clk)
             if(res_shift_carry_flag != None):
                 if(self.dut.Shift_out.value == res_shift_out and self.dut.Shift_carry_out.value == res_shift_carry_flag):
@@ -52,12 +52,10 @@ class async_test:
                     pass
                 elif (self.dut.Shift_out.value == res_shift_out and self.dut.Shift_carry_out.value != res_shift_carry_flag):
                     self.log.error("Result Carry_out Incorrect\n")
-                    # self.log.error("shift_data = {0},shift_num = {1},shift_carry_flag = {2},shift_op = {3},res_shift_out = {4},res_shift_carry_out = {5}".format(format(rand_shift_data,'b'),rand_shift_num,rand_carry_flag,rand_shift_op,res_shift_out,res_shift_carry_flag))
                     self.log.error("shift_data = {0},shift_num = {1},shift_carry_flag = {2},shift_op = {3},res_shift_out = {4},res_shift_carry_out = {5}".format(format(rand_shift_data,'b'),rand_shift_num,rand_carry_flag,rand_shift_op,format(res_shift_out,'b'),res_shift_carry_flag))
                     self.log.error("shift_out = {},shift_carry_out = {}".format(self.dut.Shift_out.value,self.dut.Shift_carry_out.value))
                 else:
                     self.log.error("Result out Incorrect\n")
-                    # self.log.error("shift_data = {0},shift_num = {1},shift_carry_flag = {2},shift_op = {3},res_shift_out = {4},res_shift_carry_out = {5}".format(format(rand_shift_data,'b'),rand_shift_num,rand_carry_flag,rand_shift_op,res_shift_out,res_shift_carry_flag))
                     self.log.error("shift_data = {0},shift_num = {1},shift_carry_flag = {2},shift_op = {3},res_shift_out = {4},res_shift_carry_out = {5}".format(format(rand_shift_data,'b'),rand_shift_num,rand_carry_flag,rand_shift_op,format(res_shift_out,'b'),res_shift_carry_flag))
                     self.log.error("shift_out = {},shift_carry_out = {}".format(self.dut.Shift_out.value,self.dut.Shift_carry_out.value))
             else :
@@ -66,27 +64,60 @@ class async_test:
                     pass
                 else:
                     self.log.error("Result out Incorrect\n")
-                    # self.log.error("shift_data = {0},shift_num = {1},shift_carry_flag = {2},shift_op = {3},res_shift_out = {4}".format(format(rand_shift_data,'b'),rand_shift_num,rand_carry_flag,rand_shift_op,res_shift_out))
                     self.log.error("shift_data = {0},shift_num = {1},shift_carry_flag = {2},shift_op = {3},res_shift_out = {4}".format(format(rand_shift_data,'b'),rand_shift_num,rand_carry_flag,rand_shift_op,format(res_shift_out,'b')))
                     self.log.error("shift_out = {0},shift_carry_out = {1}".format(self.dut.Shift_out.value,self.dut.Shift_carry_out.value))
 
+
+
+
     
-    # def vertify(shift_op,shift_num,shift_data,carry_flag):
-    #      if(shift_op == 0b000 or shift_op == 0b001):
-    #              if(shift_num == 0):
-    #                   res_shift_out = shift_data
-    #                   res_shift_carry_out = None
-    #              elif (shift_num >= 1 or shift_num <= 32):
-    #                   res_shift_out = (shift_data << shift_num) % 2**32
-    #                   res_shift_carry_out = shift_data >> (32 - shift_num)
+
+class ALU_test:
+    def __init__(self,dut):
+        self.dut=dut
+        self.log=logging.getLogger("cocotb.tb")
+        self.log.setLevel(logging.INFO)
+        self.log.info("Starting asynchronous add test...")
+        cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
+    async  def  test(self):
+        await RisingEdge(self.dut.clk)
+        self.dut.S.setimmediatevalue(0)
+        self.dut.ALU_OP.setimmediatevalue(0)
+        self.dut.Shift_Data.setimmediatevalue(0x01234567)
+        self.dut.Shift_Num.setimmediatevalue(0)
+        self.dut.SHIFT_OP.setimmediatevalue(0)
+        self.dut.A.setimmediatevalue(0x00000567)
+        res_F = 0x00000567
+        res_N = 0
+        res_Z = 0
+        res_C = 0
+        res_V = None
+        await FallingEdge(self.dut.clk)
+        self.dut.S.setimmediatevalue(1)
+        await RisingEdge(self.dut.clk)
+        if(self.dut.F.value == res_F and self.dut.N.value == res_N and self.dut.Z.value == res_Z and self.dut.C.value == res_C):
+            if(res_V == None or self.dut.V.value == res_V):
+                self.log.info("Result Correct")
+            else:
+                self.log.error("V Incorrect\n")
+                self.log.error("V = {}".fomate(self.dut.V.value))
+        else:
+            if(self.dut.F.value != res_F):
+                self.log.error("F Incorrecr\n")
+                self.log.error("F = {}".format(self.dut.F.value))
+            elif(self.dut.N.value != res_N):
+                self.log.error("N Incorrect\n")
+                self.log.error("N = {}".format(self.dut.N.value))
+            elif(self.dut.Z.value != res_Z):
+                self.log.error("Z Incorrect\n")
+                self.log.error("Z = {}".format(self.dut.Z.value))
 
 
 
 @cocotb.test()
 async def run_test(dut):
-    test_tb = async_test(dut)
-    # await async_barrelshifter32_tb.test()
-    # await async_barrelshifter32_tb.scale_test()
-    for i in range(0,1000):
-        await test_tb.scale_test_barrelshifter32()
-        await RisingEdge(test_tb.dut.clk)
+    test_tb = ALU_test(dut)
+    await test_tb.test()
+    # for i in range(0,1000):
+        # await test_tb.scale_test_barrelshifter32()
+        # await RisingEdge(test_tb.dut.clk)
