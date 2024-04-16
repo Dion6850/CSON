@@ -139,7 +139,7 @@ class ALU_test:
         await FallingEdge(self.dut.clk)
         self.dut.S.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
-        self.log.info("rand_shift_op:{}",rand_shift_op)
+        self.log.info("rand_shift_op:{}".format(rand_shift_op))
         if self.N is None:
             self.log.info("Data_pass. N is None")
             return 
