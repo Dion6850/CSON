@@ -140,21 +140,25 @@ class ALU_test:
                 self.log.info("Result Correct")
             else:
                 self.log.error("V Incorrect\n")
+                self.log.error("A = {},B = {},rand_alu_op = {},shift_carry_out={}".format(format(rand_a,'b'),format(B,'b'),rand_alu_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python: F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
         else:
             if(self.dut.F.value != self.F):
                 self.log.error("F Incorrecr\n")
+                self.log.error("A = {},B = {},rand_alu_op = {},shift_carry_out={}".format(format(rand_a,'b'),format(B,'b'),rand_alu_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python: F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
 
             elif(self.dut.N.value != self.N):
                 self.log.error("N Incorrect\n")
+                self.log.error("A = {},B = {},rand_alu_op = {},shift_carry_out={}".format(format(rand_a,'b'),format(B,'b'),rand_alu_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python: F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
 
             elif(self.dut.Z.value != self.Z):
                 self.log.error("Z Incorrect\n")
+                self.log.error("A = {},B = {},rand_alu_op = {},shift_carry_out={}".format(format(rand_a,'b'),format(B,'b'),rand_alu_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python: F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
     
