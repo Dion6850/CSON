@@ -83,14 +83,14 @@ class ALU_test:
         self.dut.S.setimmediatevalue(0)
         await RisingEdge(self.dut.clk)
         self.dut.ALU_OP.setimmediatevalue(0)
-        self.dut.Shift_Data.setimmediatevalue(0x01234567)
+        self.dut.Shift_Data.setimmediatevalue(0xffffffff)
         self.dut.Shift_Num.setimmediatevalue(0)
         self.dut.SHIFT_OP.setimmediatevalue(0)
-        self.dut.A.setimmediatevalue(0x00000567)
-        res_F = 0x00000567
+        self.dut.A.setimmediatevalue(0x00000001)
+        res_F = 0x00000000
         res_N = 0
         res_Z = 0
-        res_C = 0
+        res_C = 1
         res_V = None
         await FallingEdge(self.dut.clk)
         self.dut.S.setimmediatevalue(1)
@@ -113,6 +113,10 @@ class ALU_test:
             elif(self.dut.Z.value != res_Z):
                 self.log.error("Z Incorrect\n")
                 self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+            elif(self.dut.C.value != res_C):
+                self.log.error("C Incorrect\n")
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+    
     async def scale_test(self):
         self.N = 0
         self.Z = 0
@@ -140,27 +144,19 @@ class ALU_test:
                 self.log.info("Result Correct")
             else:
                 self.log.error("V Incorrect\n")
-                self.log.error("A = {},B = {},rand_alu_op = {},shift_carry_out={}".format(format(rand_a,'b'),format(B,'b'),rand_alu_op,shift_carry_out))
-                self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-                self.log.error("Python: F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
         else:
             if(self.dut.F.value != self.F):
                 self.log.error("F Incorrecr\n")
-                self.log.error("A = {},B = {},rand_alu_op = {},shift_carry_out={}".format(format(rand_a,'b'),format(B,'b'),rand_alu_op,shift_carry_out))
-                self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-                self.log.error("Python: F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
 
             elif(self.dut.N.value != self.N):
                 self.log.error("N Incorrect\n")
-                self.log.error("A = {},B = {},rand_alu_op = {},shift_carry_out={}".format(format(rand_a,'b'),format(B,'b'),rand_alu_op,shift_carry_out))
-                self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-                self.log.error("Python: F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
 
             elif(self.dut.Z.value != self.Z):
                 self.log.error("Z Incorrect\n")
-                self.log.error("A = {},B = {},rand_alu_op = {},shift_carry_out={}".format(format(rand_a,'b'),format(B,'b'),rand_alu_op,shift_carry_out))
-                self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-                self.log.error("Python: F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
     
 
 
@@ -168,8 +164,8 @@ class ALU_test:
 @cocotb.test()
 async def run_test(dut):
     test_tb = ALU_test(dut)
-    # await test_tb.test()
-    await test_tb.scale_test()
+    await test_tb.test()
+    # await test_tb.scale_test()
     # for i in range(0,1000):
         # await test_tb.scale_test()
         # await RisingEdge(test_tb.dut.clk)
