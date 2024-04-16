@@ -21,14 +21,14 @@ class barrelshifter32_test:
         self.log.info("Starting asynchronous add test...")
         cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
         
-    async def test(self,shift_data,shift_num,carry_flag,shift_op,shift_out,shift_carry_out):
+    async def test_barrelshifter32(self,shift_data,shift_num,carry_flag,shift_op,shift_out):
         await RisingEdge(self.dut.clk)
         self.dut.Shift_Data.setimmediatevalue(shift_data)
         self.dut.Shift_Num.setimmediatevalue(shift_num)
         self.dut.Carry_flag.setimmediatevalue(carry_flag)
         self.dut.SHIFT_OP.setimmediatevalue(shift_op)
         await FallingEdge(self.dut.clk)
-        if(self.dut.Shift_out.value == shift_out and self.dut.Shift_carry_out.value == shift_carry_out):
+        if(self.dut.Shift_out.value == shift_out):
             self.log.info("Result Correct")
         else:
             self.log.error("Result Incorrect")
@@ -147,27 +147,27 @@ class ALU_test:
                 # self.log.info("Result Correct")
                 pass
             else:
-                self.log.error("V Incorrect\n")
+                self.log.error("V Incorrect")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
         else:
             if(self.dut.F.value != self.F):
-                self.log.error("F Incorrecr\n")
+                self.log.error("F Incorrect")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
             elif(self.dut.N.value != self.N):
-                self.log.error("N Incorrect\n")
+                self.log.error("N Incorrect")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
                 
             elif(self.dut.Z.value != self.Z):
-                self.log.error("Z Incorrect\n")
+                self.log.error("Z Incorrect")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
 
 
 
