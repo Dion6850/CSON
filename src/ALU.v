@@ -7,7 +7,7 @@ module ALU (
     input S,
     output reg[31:0]F,
     input shiftCout,
-    output reg[3:0]NZCV
+    output reg[3:0]NZCV = 0
 );
     reg Cout;
     localparam fN = 3,fZ = 2,fC = 1,fV = 0;
@@ -31,27 +31,26 @@ module ALU (
         endcase
     end
 
-    always @(posedge S) begin
-        case(ALU_OP)
-            4'h0,4'h1,4'hC,4'hE,4'hF,4'h8,4'hD:
-            begin
-                NZCV[fC] <= shiftCout;
-                NZCV[fV] <= V;
-            end
-            4'h2,4'h3,4'h4,4'h5,4'h6,4'h7,4'hA:
-            begin
-                NZCV[fC] <= ALU_OP[1]^Cout;
-                NZCV[fV] <= A[31]^B[31]^F[31]^Cout;
-            end
-            default: begin
-                NZCV[fC] <= 0;
-                NZCV[fV] <= 0;
-            end
-        endcase
-    end
-
-    always @(posedge S) begin
+    always @(S) begin
+        if(S == 1)begin
+            case(ALU_OP)
+                4'h0,4'h1,4'hC,4'hE,4'hF,4'h8,4'hD:
+                begin
+                    NZCV[fC] <= shiftCout;
+                    NZCV[fV] <= V;
+                end
+                4'h2,4'h3,4'h4,4'h5,4'h6,4'h7,4'hA:
+                begin
+                    NZCV[fC] <= ALU_OP[1]^Cout;
+                    NZCV[fV] <= A[31]^B[31]^F[31]^Cout;
+                end
+                default: begin
+                    NZCV[fC] <= 0;
+                    NZCV[fV] <= 0;
+                end
+            endcase
         NZCV[fN] <= F[31];
         NZCV[fZ] <= (F == 32'h0)? 1'b1:1'b0;
+        end
     end
 endmodule
