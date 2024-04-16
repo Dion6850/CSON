@@ -24,6 +24,10 @@ def is_overflow(number,is_signed):
 
     
 def verify(A,B,op,shift_cout):
+    if A > 2**31 - 1:
+        A -= 2**32
+    if B > 2**31 - 1:
+        B -= 2**32
     if op == 0:
         F = A & B
         N = get_sign(F)
@@ -101,7 +105,7 @@ def verify(A,B,op,shift_cout):
         V = None
         return F,N,Z,C,V
     elif op == 13:
-        return B,None,None,None
+        return B,None,None,None,None
     elif op == 14:
         F = A & (~B)
         N = get_sign(F)
