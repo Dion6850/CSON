@@ -106,7 +106,7 @@ def verify(A,B,op,shift_cout):
             A += 2**32
         return (A,None,None,None,None)
     elif op == 9:
-        pass
+        (None,None,None,None,None)
     elif op == 10:
         F = A - B + 4
         N = get_sign(F)
@@ -117,7 +117,7 @@ def verify(A,B,op,shift_cout):
             F += 2**32
         return (F,N,Z,C,V)
     elif op == 11:
-        pass
+        (None,None,None,None,None)
     elif op == 12:
         F = A | B
         N = get_sign(F)
@@ -151,4 +151,4 @@ def verify(A,B,op,shift_cout):
         return (F,N,Z,C,V)
     
 if __name__ == "__main__":
-    F,N,Z,C,V = verify(952419882,244746081,7,0)
+    F,N,Z,C,V = verify(2418292705,4294966418,6,1)
