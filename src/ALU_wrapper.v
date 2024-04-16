@@ -36,6 +36,9 @@ module ALU_wrapper(
 	);
 
 
-
+initial begin
+    $dumpfile("../vcd/async_ALU.vcd");
+    $dumpvars();
+end
 
 endmodule

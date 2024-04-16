@@ -21,14 +21,14 @@ class barrelshifter32_test:
         self.log.info("Starting asynchronous add test...")
         cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
         
-    async def test_barrelshifter32(self):
+    async def test_barrelshifter32(self,shift_data,shift_num,carry_flag,shift_op,shift_out):
         await RisingEdge(self.dut.clk)
-        self.dut.Shift_Data.setimmediatevalue(0b1110000111110001001001001101111)
-        self.dut.Shift_Num.setimmediatevalue(112)
-        self.dut.Carry_flag.setimmediatevalue(0b1)
-        self.dut.SHIFT_OP.setimmediatevalue(5)
+        self.dut.Shift_Data.setimmediatevalue(shift_data)
+        self.dut.Shift_Num.setimmediatevalue(shift_num)
+        self.dut.Carry_flag.setimmediatevalue(carry_flag)
+        self.dut.SHIFT_OP.setimmediatevalue(shift_op)
         await FallingEdge(self.dut.clk)
-        if(self.dut.Shift_out.value == 0b11111111111111111111111111111111):
+        if(self.dut.Shift_out.value == shift_out):
             self.log.info("Result Correct")
         else:
             self.log.error("Result Incorrect")
@@ -79,19 +79,19 @@ class ALU_test:
         self.log.setLevel(logging.INFO)
         self.log.info("Starting asynchronous add test...")
         cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
-    async  def  test(self):
+    async  def  test(self,alu_op,shift_data,shift_num,shift_op,a,res_f,res_n,res_z,res_c,res_v):
         self.dut.S.setimmediatevalue(0)
         await RisingEdge(self.dut.clk)
-        self.dut.ALU_OP.setimmediatevalue(0)
-        self.dut.Shift_Data.setimmediatevalue(0xffffffff)
-        self.dut.Shift_Num.setimmediatevalue(0)
-        self.dut.SHIFT_OP.setimmediatevalue(0)
-        self.dut.A.setimmediatevalue(0x00000001)
-        res_F = 0x00000000
-        res_N = 0
-        res_Z = 0
-        res_C = 1
-        res_V = None
+        self.dut.ALU_OP.setimmediatevalue(alu_op)
+        self.dut.Shift_Data.setimmediatevalue(shift_data)
+        self.dut.Shift_Num.setimmediatevalue(shift_num)
+        self.dut.SHIFT_OP.setimmediatevalue(shift_op)
+        self.dut.A.setimmediatevalue(a)
+        res_F = res_f
+        res_N = res_n
+        res_Z = res_z
+        res_C = res_c
+        res_V = res_v
         await FallingEdge(self.dut.clk)
         self.dut.S.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
