@@ -118,8 +118,6 @@ class ALU_shift_test:
                 self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
     
     async def scale_test(self):
-        self.dut.S.setimmediatevalue(0)
-        await RisingEdge(self.dut.clk)
         rand_shift_data = random.randint(0,2**32 - 1)
         rand_shift_num = random.randint(0,2**8 - 1)
         rand_shift_op = random.randint(0,2**3 - 1)
@@ -127,6 +125,8 @@ class ALU_shift_test:
         rand_a = random.randint(0,2**32 - 1)
         if self.C is None and (rand_shift_op in [5,6,7]):
             return 
+        self.dut.S.setimmediatevalue(0)
+        await RisingEdge(self.dut.clk)
         self.dut.Shift_Data.setimmediatevalue(rand_shift_data)
         self.dut.Shift_Num.setimmediatevalue(rand_shift_num)
         self.dut.SHIFT_OP.setimmediatevalue(rand_shift_op)
