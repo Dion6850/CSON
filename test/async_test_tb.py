@@ -123,7 +123,7 @@ class ALU_shift_test:
         rand_shift_op = random.randint(0,2**3 - 1)
         rand_alu_op = random.randint(0,2**4 - 1)
         rand_a = random.randint(0,2**32 - 1)
-        if self.C is None and (rand_shift_op in [5,6,7]):
+        if self.C is None and (rand_alu_op in [5,6,7]):
             return 
         self.dut.S.setimmediatevalue(0)
         await RisingEdge(self.dut.clk)
