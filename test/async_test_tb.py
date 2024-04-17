@@ -216,8 +216,8 @@ class ALU_test:
         self.V = random.randint(0,1)
         self.C = random.randint(0,1)
         self.F,self.N,self.Z,self.C,self.V = ALU.verify(self.A,self.B,self.ALU_OP,self.shiftCout,self.C)
-        if self.N is None:
-            self.log.info("N is None")
+        if self.N is None or self.V is None:
+            self.log.info("N or V is None")
             return
         await self.test(self.A,self.B,self.ALU_OP,self.shiftCout,self.C,self.F,self.V,self.N * 8 + self.Z * 4 + self.C *2 + self.V)
         
