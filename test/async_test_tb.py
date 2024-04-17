@@ -118,10 +118,6 @@ class ALU_shift_test:
                 self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
     
     async def scale_test(self):
-        self.N = 0
-        self.Z = 0
-        self.C = 0
-        self.V = 0
         self.dut.S.setimmediatevalue(0)
         await RisingEdge(self.dut.clk)
         rand_shift_data = random.randint(0,2**32 - 1)
@@ -148,33 +144,33 @@ class ALU_shift_test:
                 pass
             else:
                 self.log.error("V Incorrect")
-                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
                 self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
         else:
             if(self.dut.F.value != self.F):
                 self.log.error("F Incorrect")
-                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
                 self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
             elif(self.dut.N.value != self.N):
                 self.log.error("N Incorrect")
-                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
                 self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
                 
             elif(self.dut.Z.value != self.Z):
                 self.log.error("Z Incorrect")
-                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
                 self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
             elif(self.dut.C.value != self.C):
                 self.log.error("C Incorrect")
-                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
                 self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
@@ -183,7 +179,11 @@ class ALU_shift_test:
 @cocotb.test()
 async def run_test(dut):
     test_tb = ALU_shift_test(dut)
-    await test_tb.scale_test()
-    # for i in range(0,1000):
-        # await test_tb.scale_test()
-        # await RisingEdge(test_tb.dut.clk)
+    # await test_tb.scale_test()
+    test_tb.N = 0
+    test_tb.Z = 0
+    test_tb.C = 0
+    test_tb.V = 0
+    for i in range(0,1000):
+        await test_tb.scale_test()
+        await RisingEdge(test_tb.dut.clk)
