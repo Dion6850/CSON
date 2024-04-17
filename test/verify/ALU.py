@@ -12,7 +12,7 @@ def is_zero(number):
 
 def is_overflow(number,is_signed):
     if is_signed:
-        if number > 2**31 - 1 or number < - 2**31:
+        if number > 2**31 - 1 or number < -(2**31):
             return 1
         else:
             return 0
@@ -23,7 +23,7 @@ def is_overflow(number,is_signed):
             return 0
 
     
-def verify(A,B,op,shift_cout):
+def verify(A,B,op,shift_cout,alu_carry_flag):
     if A > 2**31 - 1:
         A -= 2**32
     if B > 2**31 - 1:
@@ -75,9 +75,7 @@ def verify(A,B,op,shift_cout):
             F += 2**32
         return (F,N,Z,C,V)
     elif op == 5:
-        if shift_cout is None:
-            return (None,None,None,None,None)
-        F = A + B + shift_cout
+        F = A + B + alu_carry_flag
         N = get_sign(F)
         Z = is_zero(F)
         C = is_overflow(F,False)
@@ -86,9 +84,7 @@ def verify(A,B,op,shift_cout):
             F += 2**32
         return (F,N,Z,C,V)
     elif op == 6:
-        if shift_cout is None:
-            return (None,None,None,None,None)
-        F = A - B + shift_cout - 1
+        F = A - B + alu_carry_flag - 1
         N = get_sign(F)
         Z = is_zero(F)
         C = is_overflow(F,False)
@@ -97,9 +93,7 @@ def verify(A,B,op,shift_cout):
             F += 2**32
         return (F,N,Z,C,V)
     elif op == 7:
-        if shift_cout is None:
-            return (None,None,None,None,None)
-        F = B - A + shift_cout - 1
+        F = B - A + alu_carry_flag - 1
         N = get_sign(F)
         Z = is_zero(F)
         C = is_overflow(F,False)
@@ -157,5 +151,5 @@ def verify(A,B,op,shift_cout):
         return (F,N,Z,C,V)
     
 if __name__ == "__main__":
-    F,N,Z,C,V = verify(3223212034,0,0,0)
+    F,N,Z,C,V = verify(2802566171,0,4,0)
     print(format(F,"b"))
