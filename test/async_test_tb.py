@@ -21,18 +21,18 @@ class barrelshifter32_test:
         self.log.info("Starting asynchronous add test...")
         cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
         
-    async def test_barrelshifter32(self,shift_data,shift_num,carry_flag,shift_op,shift_out):
+    async def test(self,shift_data,shift_num,carry_flag,shift_op,shift_out,shift_carry_out):
         await RisingEdge(self.dut.clk)
         self.dut.Shift_Data.setimmediatevalue(shift_data)
         self.dut.Shift_Num.setimmediatevalue(shift_num)
         self.dut.Carry_flag.setimmediatevalue(carry_flag)
         self.dut.SHIFT_OP.setimmediatevalue(shift_op)
         await FallingEdge(self.dut.clk)
-        if(self.dut.Shift_out.value == shift_out):
+        if(self.dut.Shift_out.value == shift_out and self.dut.Shift_carry_out.value == shift_carry_out):
             self.log.info("Result Correct")
         else:
             self.log.error("Result Incorrect")
-            self.log.error("Result = {0}".format(self.dut.Shift_out.value))
+            self.log.error("out = {0},carry_out = {1}".format(self.dut.Shift_out.value,self.dut.Shift_carry_out.value))
         
     async def scale_test(self):
             await RisingEdge(self.dut.clk)
@@ -72,7 +72,7 @@ class barrelshifter32_test:
 
     
 
-class ALU_test:
+class ALU_shift_test:
     def __init__(self,dut):
         self.dut=dut
         self.log=logging.getLogger("cocotb.tb")
@@ -134,47 +134,56 @@ class ALU_test:
         self.dut.SHIFT_OP.setimmediatevalue(rand_shift_op)
         self.dut.A.setimmediatevalue(rand_a)
         self.dut.ALU_OP.setimmediatevalue(rand_alu_op)
-        B,shift_carry_out = barrelshifter32.verify(rand_shift_op,rand_shift_num,rand_shift_data,self.C)
+        B,shift_carry_out = barrelshifter32.verify(rand_shift_op,rand_shift_num,rand_shift_data,self.dut.C.value)
         self.F,self.N,self.Z,self.C,self.V = ALU.verify(rand_a,B,rand_alu_op,shift_carry_out)
         await FallingEdge(self.dut.clk)
         self.dut.S.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
         if self.N is None:
-            # self.log.info("Data_pass. N is None")
+            self.log.info("Data_pass. N is None")
             return 
         if(self.dut.F.value == self.F and self.dut.N.value == self.N and self.dut.Z.value == self.Z and self.dut.C.value == self.C):
             if(self.V == None or self.dut.V.value == self.V):
-                # self.log.info("Result Correct")
+                self.log.info("Result Correct")
                 pass
             else:
                 self.log.error("V Incorrect")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
         else:
             if(self.dut.F.value != self.F):
                 self.log.error("F Incorrect")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
             elif(self.dut.N.value != self.N):
                 self.log.error("N Incorrect")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
                 
             elif(self.dut.Z.value != self.Z):
                 self.log.error("Z Incorrect")
                 self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
                 self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
-
+                self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
+            elif(self.dut.C.value != self.C):
+                self.log.error("C Incorrect")
+                self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,shift_carry_out))
+                self.log.error("Verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+                self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
 
 
 @cocotb.test()
 async def run_test(dut):
-    test_tb = ALU_test(dut)
-    # await test_tb.scale_test()
-    for i in range(0,1000):
-        await test_tb.scale_test()
-        await RisingEdge(test_tb.dut.clk)
+    test_tb = ALU_shift_test(dut)
+    await test_tb.scale_test()
+    # for i in range(0,1000):
+        # await test_tb.scale_test()
+        # await RisingEdge(test_tb.dut.clk)

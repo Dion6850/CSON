@@ -151,5 +151,5 @@ def verify(A,B,op,shift_cout,alu_carry_flag):
         return (F,N,Z,C,V)
     
 if __name__ == "__main__":
-    F,N,Z,C,V = verify(2802566171,0,4,0)
+    F,N,Z,C,V = verify(3223212034,0,0,0)
     print(format(F,"b"))

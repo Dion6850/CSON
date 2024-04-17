@@ -2,11 +2,11 @@ module ALU (
     input[31:0]A,
     input[31:0]B,
     input[3:0]ALU_OP,
+    input shiftCout,
     input C,
     input V,
     input S,
     output reg[31:0]F,
-    input shiftCout,
     output reg[3:0]NZCV = 0
 );
     reg Cout;

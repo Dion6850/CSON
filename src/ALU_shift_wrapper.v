@@ -1,4 +1,4 @@
-module ALU_wrapper(
+module ALU_shift_wrapper(
 	input clk,
 	input S,
 	input [31:0] Shift_Data,
