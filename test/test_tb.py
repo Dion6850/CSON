@@ -12,7 +12,7 @@ import async_test_tb
 
 @cocotb.test()
 async def run_test(dut):
-    test_tb = async_test_tb.ALU_shift_test(dut)
-    await test_tb.test()
+    test_tb = async_test_tb.barrelshifter32_test(dut)
+    await test_tb.test(0b10110000100011110110001000011010,0b1110001,0,0b110,4294957127,0)
 
 
