@@ -179,14 +179,58 @@ class ALU_shift_test:
                 self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
 
 
+
+class ALU_test:
+    def __init__(self,dut):
+        self.dut=dut
+        self.log=logging.getLogger("cocotb.tb")
+        self.log.setLevel(logging.INFO)
+        self.log.info("Starting asynchronous add test...")
+        cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
+    async def test(self,A,B,ALU_OP,shiftCout,C,F,V,NZCV):
+        self.dut.S.setimmediatevalue(0)
+        await RisingEdge(self.dut.clk)
+        self.dut.A.setimmediatevalue(A)
+        self.dut.B.setimmediatevalue(B)
+        self.dut.ALU_OP.setimmediatevalue(ALU_OP)
+        self.dut.shiftCout.setimmediatevalue(shiftCout)
+        self.dut.C.setimmediatevalue(C)
+        self.dut.V.setimmediatevalue(V)
+        await FallingEdge(self.dut.clk)
+        self.dut.S.setimmediatevalue(1)
+        await RisingEdge(self.dut.clk)
+        if(self.dut.F.value == F and self.dut.NZCV.value == NZCV):
+            self.log.info("Result Correct")
+        else:
+            self.log.error("Result Incorrect")
+            self.log.error("Verilog: F = {},NZCV = {}".format(self.dut.F.value,self.dut.NZCV.value))
+            self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+            self.log.error("input: A = {}, B = {}, ALU_OP = {},shiftCout = {},C = {}".format(format(A,'b'),format(B,'b'),format(ALU_OP,'b'),shiftCout,C))
+                
+
+    async def scale_test(self):
+        self.A = random.randint(0,2**32 - 1)
+        self.B = random.randint(0,2**32 - 1)
+        self.ALU_OP = random.randint(0,2**4 - 1)
+        self.shiftCout = random.randint(0,1)
+        self.V = random.randint(0,1)
+        self.C = random.randint(0,1)
+        self.F,self.N,self.Z,self.C,self.V = ALU.verify(self.A,self.B,self.ALU_OP,self.shiftCout,self.C)
+        if self.N is None or self.V is None:
+            self.log.info("N or V is None")
+            return
+        await self.test(self.A,self.B,self.ALU_OP,self.shiftCout,self.C,self.F,self.V,self.N * 8 + self.Z * 4 + self.C *2 + self.V)
+        
+
+
 @cocotb.test()
 async def run_test(dut):
-    test_tb = ALU_shift_test(dut)
-    # await test_tb.scale_test()
-    test_tb.N = 0
-    test_tb.Z = 0
-    test_tb.C = 0
-    test_tb.V = 0
-    for i in range(0,1000):
-        await test_tb.scale_test()
-        await RisingEdge(test_tb.dut.clk)
+    test_tb = ALU_test(dut)
+    await test_tb.scale_test()
+    # test_tb.N = 0
+    # test_tb.Z = 0
+    # test_tb.C = 0
+    # test_tb.V = 0
+    # for i in range(0,1000):
+        # await test_tb.scale_test()
+        # await RisingEdge(test_tb.dut.clk)

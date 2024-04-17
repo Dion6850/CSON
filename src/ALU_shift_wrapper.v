@@ -37,7 +37,7 @@ module ALU_shift_wrapper(
 
 
 initial begin
-    $dumpfile("../vcd/async_ALU.vcd");
+    $dumpfile("../vcd/async_ALU_shift.vcd");
     $dumpvars();
 end
 
