@@ -135,7 +135,7 @@ class ALU_shift_test:
         self.dut.A.setimmediatevalue(rand_a)
         self.dut.ALU_OP.setimmediatevalue(rand_alu_op)
         B,shift_carry_out = barrelshifter32.verify(rand_shift_op,rand_shift_num,rand_shift_data,self.dut.C.value)
-        self.F,self.N,self.Z,self.C,self.V = ALU.verify(rand_a,B,rand_alu_op,shift_carry_out)
+        self.F,self.N,self.Z,self.C,self.V = ALU.verify(rand_a,B,rand_alu_op,shift_carry_out,self.C)
         await FallingEdge(self.dut.clk)
         self.dut.S.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
