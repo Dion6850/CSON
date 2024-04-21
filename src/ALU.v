@@ -41,7 +41,7 @@ module ALU (
                 end
                 4'h2,4'h3,4'h4,4'h5,4'h6,4'h7,4'hA:
                 begin
-                    NZCV[fC] <= ALU_OP[1]^Cout;
+                    NZCV[fC] <= Cout;
                     NZCV[fV] <= A[31]^B[31]^F[31]^Cout;
                 end
                 default: begin

@@ -194,7 +194,6 @@ class ALU_test:
         self.dut.shiftCout.setimmediatevalue(shiftCout)
         self.dut.C.setimmediatevalue(C)
         self.dut.V.setimmediatevalue(V)
-        self.F,self.N,self.Z,self.C,self.V = ALU.verify(A,B,ALU_OP,shiftCout,C)
         await FallingEdge(self.dut.clk)
         self.dut.S.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
@@ -203,7 +202,7 @@ class ALU_test:
         else:
             self.log.error("Result Incorrect")
             self.log.error("Verilog: F = {},NZCV = {}".format(self.dut.F.value,self.dut.NZCV.value))
-            self.log.error("Python:  F = {},N = {},Z = {},C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
+            self.log.error("Result:  F = {},NZCV = {}\n".format(format(F,'b'),format(NZCV,'b')))
             self.log.error("input: A = {}, B = {}, ALU_OP = {},shiftCout = {},C = {},V = {}".format(A,B,format(ALU_OP,'b'),shiftCout,C,V))
                 
 
@@ -214,9 +213,9 @@ class ALU_test:
         self.shiftCout = random.randint(0,1)
         self.V = random.randint(0,1)
         self.C = random.randint(0,1)
-        self.F,self.N,self.Z,self.C,self.V = ALU.verify(self.A,self.B,self.ALU_OP,self.shiftCout,self.C)
-        if self.N is None or self.V is None:
+        self.F,self.resN,self.resZ,self.resC,self.resV = ALU.verify(self.A,self.B,self.ALU_OP,self.shiftCout,self.C)
+        if self.resN is None or self.resV is None:
             self.log.info("N or V is None")
             return
-        await self.test(self.A,self.B,self.ALU_OP,self.shiftCout,self.C,self.V,self.F,self.N * 8 + self.Z * 4 + self.C *2 + self.V)
+        await self.test(self.A,self.B,self.ALU_OP,self.shiftCout,self.C,self.V,self.F,self.resN * 8 + self.resZ * 4 + self.resC *2 + self.resV)
         

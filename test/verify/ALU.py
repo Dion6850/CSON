@@ -1,5 +1,6 @@
 def get_sign(number):
-    if number >= 2**31 - 1 or number < 0:
+    number = (2**32 + number%(2**32))%(2**32)
+    if number >= 2**31:
         return 1
     else:
         return 0
@@ -156,5 +157,5 @@ def verify(UA,UB,op,shift_cout,alu_carry_flag):
     
 if __name__ == "__main__":
     
-    F,N,Z,C,V = verify(3223212034,0,0,0)
+    F,N,Z,C,V = verify(3825042491,3887533185,6,1)
     print(format(F,"b"))
