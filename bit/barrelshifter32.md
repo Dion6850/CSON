@@ -30,7 +30,7 @@ carry_flag = AB6
 
 点击下传
 
-数吗管会变成输入的数字，然后取消R4，点击下传：
+数码管会变成输入的数字，然后取消R4，点击下传：
 
 ![image-20240414123409915](../picture/barrelshifter32_md/barrelshifter32_2.png)
 
