@@ -112,27 +112,27 @@ class ALU_shift_test:
         else:
             if(self.dut.F.value != res_F):
                 self.log.error("F Incorrecr\n")
-                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.error("verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
                 self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
         
 
             elif(self.dut.N.value != res_N):
                 self.log.error("N Incorrect\n")
-                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.error("verilog F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
                 self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
         
             elif(self.dut.Z.value != res_Z):
                 self.log.error("Z Incorrect\n")
-                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.error("verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
                 self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
         
 
             elif(self.dut.C.value != res_C):
                 self.log.error("C Incorrect\n")
-                self.log.error("F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
+                self.log.error("verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
                 self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
     
@@ -149,46 +149,6 @@ class ALU_shift_test:
         self.Z = self.dut.Z.value
         self.C = self.dut.C.value
         self.V = self.dut.V.value
-        # if self.N is None:
-        #     self.log.info("Data_pass. N is None")
-        #     return 
-        # if(self.dut.F.value == self.F and self.dut.N.value == self.N and self.dut.Z.value == self.Z and self.dut.C.value == self.C):
-        #     if(self.V == None or self.dut.V.value == self.V):
-        #         self.log.info("Result Correct")
-        #         pass
-        #     else:
-        #         self.log.error("V Incorrect")
-        #         self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
-        #         self.log.error("Verilog: F = {},N = {},Z = {},output_C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-        #         self.log.error("Python:  F = {},N = {},Z = {},output_C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
-        #         self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
-        # else:
-        #     if(self.dut.F.value != self.F):
-        #         self.log.error("F Incorrect")
-        #         self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
-        #         self.log.error("Verilog: F = {},N = {},Z = {},output_C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-        #         self.log.error("Python:  F = {},N = {},Z = {},output_C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
-        #         self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
-        #     elif(self.dut.N.value != self.N):
-        #         self.log.error("N Incorrect")
-        #         self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
-        #         self.log.error("Verilog: F = {},N = {},Z = {},output_C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-        #         self.log.error("Python:  F = {},N = {},Z = {},output_C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
-        #         self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
-                
-        #     elif(self.dut.Z.value != self.Z):
-        #         self.log.error("Z Incorrect")
-        #         self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
-        #         self.log.error("Verilog: F = {},N = {},Z = {},output_C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-        #         self.log.error("Python:  F = {},N = {},Z = {},output_C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
-        #         self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
-        #     elif(self.dut.C.value != self.C):
-        #         self.log.error("C Incorrect")
-        #         self.log.info("A:{},B:{},rand_shift_op:{},C:{}".format(rand_a,B,rand_shift_op,self.C))
-        #         self.log.error("Verilog: F = {},N = {},Z = {},output_C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
-        #         self.log.error("Python:  F = {},N = {},Z = {},output_C = {},V = {}\n".format(format(self.F,'b'),format(self.N,'b'),format(self.Z,'b'),format(self.C,'b'),format(self.V,'b')))
-        #         self.log.error("input: rand_shift_data = {},rand_shift_num = {},rand_shift_op = {},rand_a = {},rand_alu_op = {}".format(format(rand_shift_data,'b'),format(rand_shift_num,'b'),format(rand_shift_op,'b'),format(rand_a,'b'),format(rand_alu_op,'b')))
-
 
 
 class ALU_test:
