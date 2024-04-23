@@ -99,42 +99,42 @@ class ALU_shift_test:
         await RisingEdge(self.dut.clk)
         if res_N is None:
             # self.log.info("N is None")
-            self.log.info("Result Correct")
+            # self.log.info("Result Correct")
             return
         if(self.dut.F.value == res_F and self.dut.N.value == res_N and self.dut.Z.value == res_Z and self.dut.C.value == res_C):
             if(res_V == None or self.dut.V.value == res_V):
-                self.log.info("Result Correct")
+                # self.log.info("Result Correct")
+                pass
             else:
                 self.log.error("V Incorrect\n")
                 self.log.error("verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
-                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
+                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {},N = {},Z = {},C = {},V = {}".format(alu_op,shift_data,shift_num,shift_op,a,self.N,self.Z,self.C,self.V))
         else:
             if(self.dut.F.value != res_F):
                 self.log.error("F Incorrecr\n")
                 self.log.error("verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
-                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
-        
+                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {},N = {},Z = {},C = {},V = {}".format(alu_op,shift_data,shift_num,shift_op,a,self.N,self.Z,self.C,self.V))
 
             elif(self.dut.N.value != res_N):
                 self.log.error("N Incorrect\n")
                 self.log.error("verilog F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
-                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
+                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {},N = {},Z = {},C = {},V = {}".format(alu_op,shift_data,shift_num,shift_op,a,self.N,self.Z,self.C,self.V))
+                
         
             elif(self.dut.Z.value != res_Z):
                 self.log.error("Z Incorrect\n")
                 self.log.error("verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
-                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
-        
+                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {},N = {},Z = {},C = {},V = {}".format(alu_op,shift_data,shift_num,shift_op,a,self.N,self.Z,self.C,self.V))
 
             elif(self.dut.C.value != res_C):
                 self.log.error("C Incorrect\n")
                 self.log.error("verilog: F = {},N = {},Z = {},C = {},V = {}".format(self.dut.F.value,self.dut.N.value,self.dut.Z.value,self.dut.C.value,self.dut.V.value))
                 self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_F,'b'),res_n,res_z,res_c,res_v))
-                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {}".format(alu_op,shift_data,shift_num,shift_op,a))
+                self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {},N = {},Z = {},C = {},V = {}".format(alu_op,shift_data,shift_num,shift_op,a,self.N,self.Z,self.C,self.V))
     
     async def scale_test(self):
         rand_shift_data = random.randint(0,2**32 - 1)
@@ -143,6 +143,8 @@ class ALU_shift_test:
         rand_alu_op = random.randint(0,2**4 - 1)
         rand_a = random.randint(0,2**32 - 1)
         B,shift_carry_out = barrelshifter32.verify(rand_shift_op,rand_shift_num,rand_shift_data,self.dut.C.value)
+        if(shift_carry_out is None and rand_alu_op in [0,1,12,14,15]):
+            self.log.info("shift_carry_out is None, result is correct")
         res_F,res_N,res_Z,res_C,res_V = ALU.verify(rand_a,B,rand_alu_op,shift_carry_out,self.C)
         await self.test(rand_alu_op,rand_shift_data,rand_shift_num,rand_shift_op,rand_a,res_F,res_N,res_Z,res_C,res_V)
         self.N = self.dut.N.value
