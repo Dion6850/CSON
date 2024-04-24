@@ -38,32 +38,27 @@ module register(
             r_pc <= 32'b0;
         end
         else begin
+            if(write_pc)
+                r_pc <= pc_data;
             if(M[4] == 0 || (write_reg && w_addr == 15))
                 error_w = 1;
             else begin
                 error_w = 0;
-                case (M[3:0]) // warn there are some cases should not exist 
-                //no : 0100,0101,1000,1001,1100,1101,1110
-                    4'b0000: begin
-                        if(write_reg)
+                if(write_reg)begin
+                    case (M[3:0]) // warn there are some cases should not exist 
+                    //no : 0100,0101,1000,1001,1100,1101,1110
+                        4'b0000: begin
                             r_base[w_addr] <= w_data;
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
+                        end
 
-                    4'b0001: begin
-                        if(write_reg)begin
+                        4'b0001: begin
                             if(w_addr < 8) 
                                 r_base[w_addr] <= w_data;
                             else 
                                 r_fiq[w_addr] <= w_data;
                         end
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
 
-                    4'b0010: begin
-                        if(write_reg)begin
+                        4'b0010: begin
                             if(w_addr < 13)
                                 r_base <= w_data;
                             else if(w_addr == 13)
@@ -71,12 +66,8 @@ module register(
                             else if(w_addr == 14)
                                 r14_irq <= w_data;
                         end
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
 
-                    4'b0011: begin
-                        if(write_reg)begin
+                        4'b0011: begin
                             if(w_addr < 13)
                                 r_base <= w_data;
                             else if(w_addr == 13)
@@ -84,12 +75,8 @@ module register(
                             else if(w_addr == 14)
                                 r14_svc <= w_data;
                         end
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
 
-                    4'b0110: begin
-                        if(write_reg)begin
+                        4'b0110: begin
                             if(w_addr < 13)
                                 r_base <= w_data;
                             else if(w_addr == 13)
@@ -97,12 +84,8 @@ module register(
                             else if(w_addr == 14)
                                 r14_mon <= w_data;
                         end
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
 
-                    4'b0111: begin
-                        if(write_reg)begin
+                        4'b0111: begin
                             if(w_addr < 13)
                                 r_base <= w_data;
                             else if(w_addr == 13)
@@ -110,12 +93,8 @@ module register(
                             else if(w_addr == 14)
                                 r14_abt <= w_data;
                         end
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
 
-                    4'b1010: begin
-                        if(write_reg)begin
+                        4'b1010: begin
                             if(w_addr < 13)
                                 r_base <= w_data;
                             else if(w_addr == 13)
@@ -123,12 +102,8 @@ module register(
                             else if(w_addr == 14)
                                 error_w <= 1;
                         end
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
 
-                    4'b1011: begin
-                        if(write_reg)begin
+                        4'b1011: begin
                             if(w_addr < 13)
                                 r_base <= w_data;
                             else if(w_addr == 13)
@@ -136,18 +111,13 @@ module register(
                             else if(w_addr == 14)
                                 r14_und <= w_data;
                         end
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
 
-                    4'b1111: begin
-                        if(write_reg)
+                        4'b1111: begin
                             r_base[w_addr] <= w_data;
-                        if(write_pc)
-                            r_pc <= pc_data;
-                    end
-                    default: error_w = 1; 
-                endcase
+                        end
+                        default: error_w = 1; 
+                    endcase
+                end
             end
         end
     end
