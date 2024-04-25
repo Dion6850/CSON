@@ -1,28 +1,27 @@
 module register(
-    input r_addr_a[3:0],
-    input r_addr_b[3:0],
-    input r_addr_c[3:0],
-    input w_addr[3:0],
-    input w_data[31:0],
+    input [3:0]r_addr_a,
+    input [3:0]r_addr_b,
+    input [3:0]r_addr_c,
+    input [3:0]w_addr,
+    input [31:0]w_data,
     input write_reg,
     input write_pc,
-    input pc_data[31:0],
-    input M[4:0],
+    input [31:0]pc_data,
+    input [4:0]M,
     input clk,
     input rst,
 
-    output r_data_a[31:0],
-    output r_data_b[31:0],
-    output r_data_c[31:0]
+    output [31:0]r_data_a,
+    output [31:0]r_data_b,
+    output [31:0]r_data_c
 );
     reg error_w,error_r;
 
-    reg [14:0] r_base[31:0];
-    reg [14:8] r_fiq[31:0];
-    reg r13_irq[31:0],r13_svc[31:0],r13_mon[31:0],r13_abt[31:0],r13_hyp[31:0],r13_und[31:0];
-    reg r14_irq[31:0],r14_svc[31:0],r14_mon[31:0],r14_abt[31:0],r14_und[31:0];
-    reg r_pc[31:0];
-
+    reg [31:0]r_base [14:0];
+    reg [31:0]r_fiq [14:8];
+    reg [31:0]r13_irq,[31:0]r13_svc,[31:0]r13_mon,[31:0]r13_abt,[31:0]r13_hyp,[31:0]r13_und;
+    reg [31:0]r14_irq,[31:0]r14_svc,[31:0]r14_mon,[31:0]r14_abt,[31:0]r14_und;
+    reg [31:0]r_pc;
 
     always @(negedge clk or posedge rst) begin //write
         integer i;
