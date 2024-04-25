@@ -13,7 +13,7 @@ module register(
 
     output r_data_a[31:0],
     output r_data_b[31:0],
-    output r_data_c[31:0],
+    output r_data_c[31:0]
 );
     reg error_w,error_r;
 
@@ -23,14 +23,14 @@ module register(
     reg r14_irq[31:0],r14_svc[31:0],r14_mon[31:0],r14_abt[31:0],r14_und[31:0];
     reg r_pc[31:0];
 
-    integer i;
 
     always @(negedge clk or posedge rst) begin //write
+        integer i;
         if(rst == 1) begin
-            for(i = 0;i <= 14;i++) begin
+            for(i = 0;i <= 14;i = i + 1) begin
                 r_base[i] <= 32'b0;
             end
-            for(i = 8;i <= 12;i++) begin
+            for(i = 8;i <= 12;i = i + 1) begin
                 r_fiq[i] <= 32'b0;
             end
             r13_irq <= 32'b0;r13_svc <= 32'b0;r13_mon <= 32'b0;r13_abt <= 32'b0;r13_hyp <= 32'b0;r13_und <= 32'b0;

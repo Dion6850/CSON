@@ -194,3 +194,32 @@ class ALU_test:
             return
         await self.test(self.A,self.B,self.ALU_OP,self.shiftCout,self.C,self.V,self.F,self.resN * 8 + self.resZ * 4 + self.resC *2 + self.resV)
         
+class register_test:
+    def __init__(self,dut):
+        self.dut=dut
+        self.log=logging.getLogger("cocotb.tb")
+        self.log.setLevel(logging.INFO)
+        self.log.info("Starting asynchronous add test...")
+        cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
+        self.dut.rst.setimmediatevalue(0)
+
+    async def rst(self):
+        await RisingEdge(self.dut.clk)
+        self.dut.rst.setimmediatevalue(1)
+        await FallingEdge(self.dut.clk)
+        self.dut.rst.setimmediatevalue(0)
+        self.M = 0b11111
+        self.dut.M.setimmediatevalue(self.M) # 默认为系统模式
+
+    async def write(self,Reg,value,M = 0b11111,w_addr = 0,w_data = 1):
+        await RisingEdge(self.dut.clk)
+        if Reg == 'pc':
+            self.dut.write_pc.setimmediatevalue(1)
+            self.dut.pc_data.setimmediatevalue(value)
+        elif Reg == 'base':
+            self.dut.M.setimmediatevalue(M)
+            self.dut.w_addr.setimmediatevalue(w_addr)
+            self.dut.w_data.setimmediatevalue(w_data)
+            
+
+        
