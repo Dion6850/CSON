@@ -66,12 +66,8 @@ module barrelshifter32(
                 else if(SHIFT_OP[0] == 1 && Shift_Num[7:0] == 0) begin
                     temp[31:0] <= Shift_Data[31:0];
                 end
-                else if(Shift_Num[7:0] >= 1 && Shift_Num[7:0] <= 32) begin
-                    temp[63:0] <= {Shift_Data[31:0],Shift_Data[31:0]} >> Shift_Num[7:0];
-                    Shift_carry_out <= Shift_Data[Shift_Num[7:0] - 1];
-                end
-                else if(Shift_Num[7:0] > 32) begin
-                    temp[63:0] <= {{32{Shift_Data[31]}},Shift_Data[31:0]} >> Shift_Num[4:0];
+                else if(Shift_Num[7:0] >= 1) begin
+                    temp[63:0] <= {Shift_Data[31:0],Shift_Data[31:0]} >> Shift_Num[4:0];
                     Shift_carry_out <= Shift_Data[Shift_Num[4:0] - 1];
                 end
             end

@@ -100,21 +100,24 @@ def verify(shift_op,shift_num,shift_data,carry_flag):
             else:
                 return conver_string_to_integer(s_shift_data,32), None
         else:
-            if i_shift_num > 32:
-                sign = s_shift_data[0]
-                if i_shift_num % 32 == 0:
-                    out = s_shift_data[0]
-                else:
-                    out = s_shift_data[32 - (i_shift_num % 32)]
-                for i in range(i_shift_num % 32):
-                    s_shift_data = shift_right(s_shift_data)
-                    s_shift_data = sign + s_shift_data[1:]
-                return conver_string_to_integer(s_shift_data,32), conver_string_to_integer(out,1)
+#            if i_shift_num > 32:
+#                sign = s_shift_data[0]
+#                if i_shift_num % 32 == 0:
+#                    out = s_shift_data[0]
+#                else:
+#                    out = s_shift_data[32 - (i_shift_num % 32)]
+#                for i in range(i_shift_num % 32):
+#                    s_shift_data = shift_right(s_shift_data)
+#                    s_shift_data = sign + s_shift_data[1:]
+#                return conver_string_to_integer(s_shift_data,32), conver_string_to_integer(out,1)
+#            else:
+            if(i_shift_num % 32 == 0):
+                out = s_shift_data[0]
             else:
-                out = s_shift_data[32 - i_shift_num]
-                for i in range(i_shift_num % 32):
-                    s_shift_data = loop_shift_right(s_shift_data)
-                return conver_string_to_integer(s_shift_data,32), conver_string_to_integer(out,1)
+                out = s_shift_data[32 - (i_shift_num % 32)]
+            for i in range(i_shift_num % 32):
+                s_shift_data = loop_shift_right(s_shift_data)
+            return conver_string_to_integer(s_shift_data,32), conver_string_to_integer(out,1)
                 
         
 if __name__ == "__main__":
