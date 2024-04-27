@@ -1,6 +1,5 @@
 module ALU_shift_wrapper(
 	input clk,
-	input S,
 	input [31:0] Shift_Data,
 	input [7:0] Shift_Num,
 	input [2:0] SHIFT_OP,
@@ -26,7 +25,6 @@ module ALU_shift_wrapper(
 	ALU A1(
 		.A(A),
 		.B(B),
-		.S(S),
 		.C(C),
 		.ALU_OP(ALU_OP),
 		.V(V),

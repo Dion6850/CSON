@@ -5,7 +5,6 @@ module ALU_wrapper(
     input[3:0]ALU_OP,
     input shiftCout,
     input C,
-	input S,
 	input V,
 	output [31:0]F,
 	output [3:0] NZCV
@@ -13,7 +12,6 @@ module ALU_wrapper(
 	ALU A1(
 		.A(A),
 		.B(B),
-		.S(S),
 		.C(C),
 		.ALU_OP(ALU_OP),
 		.V(V),

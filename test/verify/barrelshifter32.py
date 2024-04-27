@@ -83,7 +83,7 @@ def verify(shift_op,shift_num,shift_data,carry_flag):
     elif s_shift_op[:2] == "11":
         if i_shift_num == 0:
             if s_shift_op[2] == "0":
-                return conver_string_to_integer(s_carry_flag + s_shift_data[:31],32), conver_string_to_integer((s_shift_data[0]),1)
+                return conver_string_to_integer(s_carry_flag + s_shift_data[:31],32), conver_string_to_integer((s_shift_data[31]),1)
             else:
                 return conver_string_to_integer(s_shift_data,32), None
         else:

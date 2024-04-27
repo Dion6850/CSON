@@ -16,6 +16,6 @@ import source
 async def run_test(dut):
     test_tb = source.ALU_shift_test(dut)
     # await test_tb.scale_test()
-    for i in range(0,1000):
+    for i in range(0,10000):
         await test_tb.scale_test()
         await RisingEdge(test_tb.dut.clk)

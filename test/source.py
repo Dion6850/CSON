@@ -82,8 +82,7 @@ class ALU_shift_test:
         self.C = 0
         self.V = 0
     async  def  test(self,alu_op,shift_data,shift_num,shift_op,a,res_f,res_n,res_z,res_c,res_v):
-        self.dut.S.setimmediatevalue(0)
-        await RisingEdge(self.dut.clk)
+        await FallingEdge(self.dut.clk)
         self.dut.ALU_OP.setimmediatevalue(alu_op)
         self.dut.Shift_Data.setimmediatevalue(shift_data)
         self.dut.Shift_Num.setimmediatevalue(shift_num)
@@ -94,8 +93,6 @@ class ALU_shift_test:
         res_Z = res_z
         res_C = res_c
         res_V = res_v
-        await FallingEdge(self.dut.clk)
-        self.dut.S.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
         if res_N is None:
             # self.log.info("N is None")
@@ -161,7 +158,6 @@ class ALU_test:
         self.log.info("Starting asynchronous add test...")
         cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
     async def test(self,A,B,ALU_OP,shiftCout,C,V,F,NZCV):
-        self.dut.S.setimmediatevalue(0)
         await RisingEdge(self.dut.clk)
         self.dut.A.setimmediatevalue(A)
         self.dut.B.setimmediatevalue(B)
@@ -170,8 +166,6 @@ class ALU_test:
         self.dut.C.setimmediatevalue(C)
         self.dut.V.setimmediatevalue(V)
         await FallingEdge(self.dut.clk)
-        self.dut.S.setimmediatevalue(1)
-        await RisingEdge(self.dut.clk)
         if(self.dut.F.value == F and self.dut.NZCV.value == NZCV):
             self.log.info("Result Correct")
         else:

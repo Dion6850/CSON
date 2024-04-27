@@ -13,6 +13,6 @@ import source
 @cocotb.test()
 async def run_test(dut):
     test_tb = source.ALU_shift_test(dut)
-    await test_tb.test()
+    await test_tb.test(6,2112980288,0,6,3836828718,0,0,0,0,0)
 
 
