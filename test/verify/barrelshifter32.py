@@ -30,8 +30,8 @@ def loop_shift_right(s) -> str:
 def verify(shift_op,shift_num,shift_data,carry_flag):
     s_shift_op = conver_integer_to_string(shift_op,3)
     s_shift_data = conver_integer_to_string(shift_data,32)
-    i_shift_num = conver_string_to_integer(shift_num,8)
     s_carry_flag = str(carry_flag)
+    i_shift_num = shift_num
         
     if s_shift_op[:2] == "00":
         if i_shift_num == 0:
