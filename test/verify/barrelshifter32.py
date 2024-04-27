@@ -28,23 +28,10 @@ def loop_shift_right(s) -> str:
     return s[len(s)-1] + s[:len(s)-1]
 
 def verify(shift_op,shift_num,shift_data,carry_flag):
-    if type(shift_op) is int:
-        s_shift_op = conver_integer_to_string(shift_op,3)
-    else:
-        s_shift_op = shift_op
-    if type(shift_data) is int:
-        s_shift_data = conver_integer_to_string(shift_data,32)
-    else:
-        s_shift_data = shift_data
-    if type(carry_flag) is int:
-        s_carry_flag = str(carry_flag)
-    else:
-        s_carry_flag = carry_flag
-        
-    if type(shift_num) is str:
-        i_shift_num = conver_string_to_integer(shift_num,8)
-    else:
-        i_shift_num = shift_num
+    s_shift_op = conver_integer_to_string(shift_op,3)
+    s_shift_data = conver_integer_to_string(shift_data,32)
+    i_shift_num = conver_string_to_integer(shift_num,8)
+    s_carry_flag = str(carry_flag)
         
     if s_shift_op[:2] == "00":
         if i_shift_num == 0:
