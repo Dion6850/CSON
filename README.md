@@ -15,6 +15,7 @@ async_test_tb中书写函数，在@cocotb.test()后为执行代码
 命令行运行build.sh即可
 
 ## 注意
+### 关于验证文件
 
 验证文件在verify中。
 
@@ -22,3 +23,15 @@ logging模块的debug等级的信息不会输出在命令行，请使用info以�
 
 FPGA在线平台地址:http://fpga.hdu.edu.cn/co/
 
+### NZCV C 进位与教材不同步问题
+
+在文件 [ALU.v](src/ALU.v) 中38行（cf9172959b1d878a9d949853ac9b30329e173787）
+
+```bash
+#切换到问题版本
+git checkout cf9172959b1d878a9d949853ac9b30329e173787
+```
+
+![C未取反问题](picture/ALU_md/image-20240428113615880.png)
+
+我们的C进位并没有像教材那样取反，助教说这个位置其实是有争议的，所以在板机出现C与教材不符的情况请不要在意。保持内部统一就可以了。
