@@ -102,7 +102,7 @@ class ALU_shift_test:
                     # self.log.info("Result Correct")
                     pass
                 else:
-                    self.log.error("V Incorrect\n")
+                    self.log.error("V Incorrect")
                     self.log.error("verilog: F = {},NZCV = {}".format(self.dut.F.value,self.dut.ALU_NZCV.value))
                     self.log.error("result: F = {},N = {},Z = {},C = {},V = {}".format(format(res_f,'b'),res_n,res_z,res_c,res_v))
                     self.log.error("input : ALU_OP = {},Shift_Data = {},Shift_Num = {},SHIFT_OP = {},A = {},N = {},Z = {},C = {},V = {}".format(alu_op,shift_data,shift_num,shift_op,a,user_N,user_Z,user_C,user_V))
