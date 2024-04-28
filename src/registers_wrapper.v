@@ -1,20 +1,20 @@
 `timescale 1ns/1ps
 module register_wrapper(
-    input r_addr_a[3:0],
-    input r_addr_b[3:0],
-    input r_addr_c[3:0],
-    input w_addr[3:0],
-    input w_data[31:0],
+    input [3:0]r_addr_a,
+    input [3:0]r_addr_b,
+    input [3:0]r_addr_c,
+    input [3:0]w_addr,
+    input [31:0]w_data,
     input write_reg,
     input write_pc,
-    input pc_data[31:0],
-    input M[4:0],
+    input [31:0]pc_data,
+    input [4:0]M,
     input clk,
     input rst,
 
-    output r_data_a[31:0],
-    output r_data_b[31:0],
-    output r_data_c[31:0]
+    output [31:0]r_data_a,
+    output [31:0]r_data_b,
+    output [31:0]r_data_c
 );
 
 registers R1(
