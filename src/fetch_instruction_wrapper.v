@@ -14,7 +14,7 @@ registers R1(
     .rst(rst),
     .write_ir(write_ir),
     .write_pc(write_pc),
-    .NZCV(NZCV)
+    .NZCV(NZCV),
     .IR(IR),
     .W_IR_valid(W_IR_valid)
 );
