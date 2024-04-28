@@ -19,8 +19,8 @@ module register(
 
     reg [31:0]r_base [14:0];
     reg [31:0]r_fiq [14:8];
-    reg [31:0]r13_irq,[31:0]r13_svc,[31:0]r13_mon,[31:0]r13_abt,[31:0]r13_hyp,[31:0]r13_und;
-    reg [31:0]r14_irq,[31:0]r14_svc,[31:0]r14_mon,[31:0]r14_abt,[31:0]r14_und;
+    reg [31:0]r13_irq;reg [31:0]r13_svc;reg [31:0]r13_mon;reg [31:0]r13_abt;reg [31:0]r13_hyp;reg [31:0]r13_und;
+    reg [31:0]r14_irq;reg [31:0]r14_svc;reg [31:0]r14_mon;reg [31:0]r14_abt;reg [31:0]r14_und;
     reg [31:0]r_pc;
 
     always @(negedge clk or posedge rst) begin //write
@@ -133,11 +133,13 @@ module register(
                M[3:0] != 4'b1001 &&
                M[3:0] != 4'b1100 &&
                M[3:0] != 4'b1101 &&
-               M[3:0] != 4'b1110 &&) begin
-                if(M[3:0] == 4'b0001)
+               M[3:0] != 4'b1110) begin
+                if(M[3:0] == 4'b0001)begin
                     r_data_a <= r_fiq[r_addr_a];
-                else
+                end
+                else begin
                     r_data_a <= r_base[r_addr_a];
+                end
                end
             else
                 error_r = 1;
@@ -169,8 +171,9 @@ module register(
                 default: error_r = 1; 
             endcase
         end
-        else
+        else begin
             r_data_a <= r_pc;
+        end
     end
 
     always @(r_addr_b or M or negedge clk)begin // read data b
@@ -185,14 +188,17 @@ module register(
                M[3:0] != 4'b1001 &&
                M[3:0] != 4'b1100 &&
                M[3:0] != 4'b1101 &&
-               M[3:0] != 4'b1110 &&) begin
-                if(M[3:0] == 4'b0001)
+               M[3:0] != 4'b1110) begin
+                if(M[3:0] == 4'b0001)begin
                     r_data_b <= r_fiq[r_addr_b];
-                else
+                end
+                else begin
                     r_data_b <= r_base[r_addr_b];
+                end
                end
-            else
+            else begin
                 error_r = 1;
+            end
         end
         else if(r_addr_b == 13)begin
             case (M[3:0])
@@ -221,8 +227,9 @@ module register(
                 default: error_r = 1; 
             endcase
         end
-        else
+        else begin
             r_data_b <= r_pc;
+        end
     end
 
     always @(r_addr_c or M or negedge clk)begin // read data c
@@ -237,11 +244,13 @@ module register(
                M[3:0] != 4'b1001 &&
                M[3:0] != 4'b1100 &&
                M[3:0] != 4'b1101 &&
-               M[3:0] != 4'b1110 &&) begin
-                if(M[3:0] == 4'b0001)
+               M[3:0] != 4'b1110) begin
+                if(M[3:0] == 4'b0001)begin
                     r_data_c <= r_fiq[r_addr_c];
-                else
+                end
+                else begin
                     r_data_c <= r_base[r_addr_c];
+                end
                end
             else
                 error_r = 1;
@@ -273,7 +282,8 @@ module register(
                 default: error_r = 1; 
             endcase
         end
-        else
+        else begin
             r_data_c <= r_pc;
+        end
     end
 endmodule
