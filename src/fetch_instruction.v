@@ -54,9 +54,9 @@ module fetch_instruction(
     
     assign W_IR_valid = cond & write_ir;
     
-    fetch_instruction_ROM instROMInst (
-      .clka(clk),    // input wire clka
+    fetch_instruction_ROM ROM1(
+      .clk(clk),    // input wire clka
       .addra(PC[7:2]),  // input wire [5 : 0] addra
-      .douta(IR_buf)  // output wire [31 : 0] douta
+      .data(IR_buf)  // output wire [31 : 0] douta
     );
 endmodule
