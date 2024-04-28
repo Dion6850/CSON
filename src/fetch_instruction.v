@@ -6,7 +6,7 @@ module fetch_instruction(
     input [3:0] NZCV,
     output reg [31:0] IR,
     output W_IR_valid
-    );
+);
     
     reg [31:0] PC;
     
