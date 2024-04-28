@@ -6,7 +6,7 @@ module ALU (
     input C,
     input V,
     output reg[31:0] F,
-    output [3:0] NZCV
+    output reg [3:0] NZCV
 );
     reg Cout;
     localparam fN = 3,fZ = 2,fC = 1,fV = 0;
