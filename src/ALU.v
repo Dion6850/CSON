@@ -5,8 +5,8 @@ module ALU (
     input shiftCout,
     input C,
     input V,
-    output reg[31:0]F,
-    output reg[3:0]NZCV = 0
+    output reg[31:0] F,
+    output [3:0] NZCV
 );
     reg Cout;
     localparam fN = 3,fZ = 2,fC = 1,fV = 0;
@@ -18,8 +18,8 @@ module ALU (
             4'h3: {Cout,F} <= B - A;
             4'h4: {Cout,F} <= A + B;
             4'h5: {Cout,F} <= A + B + {31'b0,C};
-            4'h6: {Cout,F} <= A - B + {31'b0,C} - 1;
-            4'h7: {Cout,F} <= B - A + {31'b0,C} - 1;
+            4'h6: {Cout,F} <= A - B + {31'b0,C} - 32'b1;
+            4'h7: {Cout,F} <= B - A + {31'b0,C} - 32'b1;
             4'h8: F <= A;
             4'hA: {Cout,F} <= A - B + 32'h4;
             4'hC: F <=  A | B;
@@ -31,7 +31,7 @@ module ALU (
     end
     
 
-    always @(F or Cout) begin
+    always @(F or Cout or shiftCout or V or A or B) begin
             case(ALU_OP)
                 4'h0,4'h1,4'hC,4'hE,4'hF,4'h8,4'hD:
                 begin

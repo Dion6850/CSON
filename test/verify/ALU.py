@@ -157,5 +157,5 @@ def verify(UA,UB,op,shift_cout,alu_carry_flag):
     
 if __name__ == "__main__":
     
-    F,N,Z,C,V = verify(3825042491,3887533185,6,1)
-    print(format(F,"b"))
+    F,N,Z,C,V = verify(193325633,0xffffffff,14,0,1)
+    print(format(F,"b"),N,Z,C,V)
