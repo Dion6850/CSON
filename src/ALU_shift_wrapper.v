@@ -1,6 +1,7 @@
 module ALU_shift_wrapper(
 	input clk,
 	input S,
+    input WriteNZCV,
 	input ext,
 	input [3:0] user_NZCV,
 	input [31:0] Shift_Data,
@@ -31,6 +32,7 @@ module ALU_shift_wrapper(
 	ALU A1(
 		.A(A),
 		.B(B),
+        .S(WriteNZCV),
 		.C(ext_NZCV[1]),
 		.ALU_OP(ALU_OP),
 		.V(ext_NZCV[0]),

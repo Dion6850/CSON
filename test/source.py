@@ -80,6 +80,7 @@ class ALU_shift_test:
         self.dut.S.setimmediatevalue(0)
 
     async  def  test(self,user_N,user_Z,user_C,user_V,alu_op,shift_data,shift_num,shift_op,a,res_f,res_n,res_z,res_c,res_v):
+        self.dut.WriteNZCV.setimmediatevalue(1)
         await RisingEdge(self.dut.clk)
         self.dut.ext.setimmediatevalue(0)
         self.dut.user_NZCV.setimmediatevalue(user_N*8+user_Z*4+user_C*2+user_V)
@@ -231,15 +232,22 @@ class register_test:
         self.M = 0b11111
         self.dut.M.setimmediatevalue(self.M) # 默认为系统模式
 
-    async def write(self,Reg,value,M = 0b11111,w_addr = 0,w_data = 1):
+    async def write(self,value,M = 0b11111,w_addr = 0,w_data = 1):
         await RisingEdge(self.dut.clk)
-        if Reg == 'pc':
-            self.dut.write_pc.setimmediatevalue(1)
-            self.dut.pc_data.setimmediatevalue(value)
-        elif Reg == 'base':
-            self.dut.M.setimmediatevalue(M)
-            self.dut.w_addr.setimmediatevalue(w_addr)
-            self.dut.w_data.setimmediatevalue(w_data)
+        self.dut.write_pc.setimmediatevalue(1)
+        self.dut.pc_data.setimmediatevalue(value)
+        self.dut.M.setimmediatevalue(M)
+        self.dut.w_addr.setimmediatevalue(w_addr)
+        self.dut.w_data.setimmediatevalue(w_data)
+        await FallingEdge(self.dut.clk)
+
+    async def read(self,r_addr_a,r_addr_b,r_addr_c)
+        await RisingEdge(self.dut.clk)
+        await FallingEdge(self.dut.clk)
+        self.data_a = self.dut.r_data_a.value
+        
+        
+
             
 
         

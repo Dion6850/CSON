@@ -23,7 +23,7 @@ module register(
     reg [31:0]r14_irq;reg [31:0]r14_svc;reg [31:0]r14_mon;reg [31:0]r14_abt;reg [31:0]r14_und;
     reg [31:0]r_pc;
 
-    always @(negedge clk or posedge rst) begin //write
+    always @(negedge clk) begin //write
         integer i;
         if(rst == 1) begin
             for(i = 0;i <= 14;i = i + 1) begin
@@ -121,7 +121,7 @@ module register(
         end
     end
 
-    always @(r_addr_a or M or negedge clk)begin // read data a
+    always @(negedge clk)begin // read data a
         error_r = 0;
         if(r_addr_a < 8)begin
             r_data_a <= r_base[r_addr_a];
@@ -176,7 +176,7 @@ module register(
         end
     end
 
-    always @(r_addr_b or M or negedge clk)begin // read data b
+    always @(negedge clk)begin // read data b
         error_r = 0;
         if(r_addr_b < 8)begin
             r_data_b <= r_base[r_addr_b];

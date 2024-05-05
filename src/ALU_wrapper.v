@@ -9,10 +9,12 @@ module ALU_wrapper(
 	output [31:0]F,
 	output [3:0] NZCV
 );
+    reg S = 1;
 	ALU A1(
 		.A(A),
 		.B(B),
 		.C(C),
+        .S(S),
 		.ALU_OP(ALU_OP),
 		.V(V),
 		.F(F),
