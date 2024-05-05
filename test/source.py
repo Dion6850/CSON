@@ -241,10 +241,16 @@ class register_test:
         self.dut.w_data.setimmediatevalue(w_data)
         await FallingEdge(self.dut.clk)
 
-    async def read(self,r_addr_a,r_addr_b,r_addr_c)
+    async def read(self,r_addr_a,r_addr_b,r_addr_c):
         await RisingEdge(self.dut.clk)
+        self.dut.r_addr_a.setimmediatevalue(r_addr_a)
+        self.dut.r_addr_b.setimmediatevalue(r_addr_b)
+        self.dut.r_addr_c.setimmediatevalue(r_addr_c)
         await FallingEdge(self.dut.clk)
         self.data_a = self.dut.r_data_a.value
+        self.data_b = self.dut.r_data_b.value
+        self.data_c = self.dut.r_data_c.value
+    async def test(self,r_addr_a,r_addr_b,r_addr_c,w_addr,w_data,write_reg,write_pc,pc_data,M):
         
         
 
