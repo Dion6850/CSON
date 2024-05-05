@@ -31,7 +31,7 @@ FPGA在线平台地址:http://fpga.hdu.edu.cn/co/
 #切换到问题版本
 git checkout cf9172959b1d878a9d949853ac9b30329e173787
 ```
+![image-20240428113615880](https://github.com/Dion6850/CSON/assets/112734045/f438d920-b46b-4678-b3fe-160ccb01f7a5)
 
-![C未取反问题](picture/ALU_md/image-20240428113615880.png)
 
 我们的C进位并没有像教材那样取反，助教说这个位置其实是有争议的，所以在板机出现C与教材不符的情况请不要在意。保持内部统一就可以了。
