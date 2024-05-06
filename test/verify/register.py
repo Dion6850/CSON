@@ -67,6 +67,14 @@ class cregister():
             elif w_addr == 14:
                 self.error_w = 1
                 
+        elif M == 0b11011:
+            if w_addr < 13:
+                self.r_base[w_addr] = w_data
+            elif w_addr == 13:
+                self.r13_und = w_data
+            elif w_addr == 14:
+                self.r14_und = w_data
+               
         elif M == 0b11111:
             self.r_base[w_addr] = w_data
     
