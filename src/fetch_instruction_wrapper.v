@@ -9,7 +9,7 @@ module fetch_instruction_wrapper(
     output W_IR_valid
 );
 
-registers R1(
+fetch_instruction R1(
     .clk(clk),
     .rst(rst),
     .write_ir(write_ir),

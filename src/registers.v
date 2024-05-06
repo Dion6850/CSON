@@ -40,9 +40,9 @@ module registers(
             if(write_pc)
                 r_pc <= pc_data;
             if(M[4] == 0 || (write_reg && w_addr == 15))
-                error_w = 1;
+                error_w <= 1;
             else begin
-                error_w = 0;
+                error_w <= 0;
                 if(write_reg)begin
                     case (M[3:0]) // warn there are some cases should not exist 
                     //no : 0100,0101,1000,1001,1100,1101,1110
@@ -114,14 +114,14 @@ module registers(
                         4'b1111: begin
                             r_base[w_addr] <= w_data;
                         end
-                        default: error_w = 1; 
+                        default: error_w <= 1; 
                     endcase
                 end
             end
         end
     end
 
-    always @(*)begin // read data a
+    always @(r_addr_a or M or negedge clk)begin // read data a
         error_r = 0;
         if(r_addr_a < 8)begin
             r_data_a <= r_base[r_addr_a];
@@ -176,7 +176,7 @@ module registers(
         end
     end
 
-    always @(*)begin // read data b
+    always @(r_addr_b or M or negedge clk)begin // read data b
         error_r = 0;
         if(r_addr_b < 8)begin
             r_data_b <= r_base[r_addr_b];

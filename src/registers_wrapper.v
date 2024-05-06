@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module register_wrapper(
+module registers_wrapper(
     input [3:0]r_addr_a,
     input [3:0]r_addr_b,
     input [3:0]r_addr_c,
@@ -22,7 +22,7 @@ registers R1(
     .r_addr_b(r_addr_b),
     .r_addr_c(r_addr_c),
     .w_addr(w_addr),
-    .w_data(w_addr),
+    .w_data(w_data),
     .write_reg(write_reg),
     .write_pc(write_pc),
     .pc_data(pc_data),

@@ -1,7 +1,7 @@
 class cregister():
     def __init__(self) -> None:
-        self.r_base = [0 for _ in range(14)]
-        self.r_fiq = [0 for _ in range(14)] # acces only 14 -> 8
+        self.r_base = [0 for _ in range(15)]
+        self.r_fiq = [0 for _ in range(15)] # acces only 14 -> 8
         self.r13_irq=0;self.r13_svc=0;self.r13_mon=0;self.r13_abt=0;self.r13_hyp=0;self.r13_und=0
         self.r14_irq=0;self.r14_svc=0;self.r14_mon=0;self.r14_abt=0;self.r14_und=0
         self.rpc = 0
@@ -135,5 +135,4 @@ class cregister():
     def read_data(self,addr_a,addr_b,addr_c,M):
         return self.get_buffer(addr_a,M),self.get_buffer(addr_b,M),self.get_buffer(addr_c,M)
             
-if __name__ == "__main__":
-    a = cregister()
+a = cregister()
