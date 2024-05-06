@@ -273,19 +273,27 @@ class register_test:
             wrong2=1
         if(self.data_c!=ans_c):
             wrong3=1
-        if(wrong1 or wrong1 or wrong3):
-            if(wrong1):
-                self.log.error("data_a error!")
-            if(wrong2):
-                self.log.error("data_b error!")
-            if(wrong3):
-                self.log.error("data_c error!")
+        if(ans_a==None or ans_b==None or ans_c == None):
+                # if(ans_a==None):
+                #     self.log.info("Ans_a is None")
+                # if(ans_b==None):
+                #     self.log.info("Ans_b is None")
+                # if(ans_c==None):
+                #     self.log.info("Ans_c is None")
+                return
+        if(wrong1 or wrong1 or wrong3 ):
             local_vars = locals()
             # 遍历并输出变量名和值
             verilog_info = ''
             for var_name in ['r_addr_a', 'r_addr_b', 'r_addr_c', 'w_addr', 'w_data', 'write_reg', 'write_pc', 'pc_data', 'M']:
                 verilog_info=verilog_info+f"{var_name}: {local_vars.get(var_name, 'Not defined')} "
             self.log.info(verilog_info)
+            if(wrong1):
+                self.log.error("data_a error!")
+            if(wrong2):
+                self.log.error("data_b error!")
+            if(wrong3):
+                self.log.error("data_c error!")
             self.log.info(f"Verilog : data_a {self.data_a} data_b {self.data_b} data_c {self.data_c}")
             self.log.info(f"python : data_a {ans_a} data_b {ans_b} data_c {ans_c}")
             self.log.info(f"r_base_data {r_base_data}")
@@ -300,13 +308,21 @@ class register_test:
         rand_write_reg = random.randint(0,1)
         rand_write_pc = random.randint(0,1)
         rand_pc_data = random.randint(0,2**32-1)
-        rand_M = random.randint(0,2**5-1)
+        rand_M = random.randint(2**4,2**5-1)
+        while(rand_M == 0b10100 or
+               rand_M == 0b10101 or
+               rand_M == 0b11000 or
+               rand_M == 0b11001 or
+               rand_M == 0b11100 or
+               rand_M == 0b11101 or
+               rand_M == 0b11110):
+            rand_M = random.randint(2**4,2**5-1)
+            
         await RisingEdge(self.dut.clk)
         self.py_register.write_data(rand_w_addr,rand_w_data,rand_pc_data,rand_write_reg,rand_write_pc,rand_M)
         ans_a,ans_b,ans_c = self.py_register.read_data(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_M)
         r_base = self.py_register.r_base_data()
-        if(ans_a==None or ans_b==None or ans_c == None):
-            return
+
         await self.test(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_w_addr,rand_w_data,rand_write_reg,rand_write_pc,rand_pc_data,rand_M,ans_a,ans_b,ans_c,r_base)
         
         

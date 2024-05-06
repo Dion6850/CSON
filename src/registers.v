@@ -166,7 +166,7 @@ module registers(
                 4'b0011: r_data_a <= r14_svc;
                 4'b0110: r_data_a <= r14_mon;
                 4'b0111: r_data_a <= r14_abt;
-                4'b1011: r_data_a <= r13_und;
+                4'b1011: r_data_a <= r14_und;
                 4'b1111: r_data_a <= r_base[r_addr_a];
                 default: error_r = 1; 
             endcase
@@ -222,7 +222,7 @@ module registers(
                 4'b0011: r_data_b <= r14_svc;
                 4'b0110: r_data_b <= r14_mon;
                 4'b0111: r_data_b <= r14_abt;
-                4'b1011: r_data_b <= r13_und;
+                4'b1011: r_data_b <= r14_und;
                 4'b1111: r_data_b <= r_base[r_addr_b];
                 default: error_r = 1; 
             endcase
@@ -277,7 +277,7 @@ module registers(
                 4'b0011: r_data_c <= r14_svc;
                 4'b0110: r_data_c <= r14_mon;
                 4'b0111: r_data_c <= r14_abt;
-                4'b1011: r_data_c <= r13_und;
+                4'b1011: r_data_c <= r14_und;
                 4'b1111: r_data_c <= r_base[r_addr_c];
                 default: error_r = 1; 
             endcase

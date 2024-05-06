@@ -16,7 +16,7 @@ import source
 async def run_test(dut):
     test_tb = source.register_test(dut)
     # await test_tb.scale_test()
-    for i in range(0,100):
-        print(i)
+    for i in range(0,1000000):
+        # print(i)
         await test_tb.scale_test()
         await RisingEdge(test_tb.dut.clk)

@@ -79,7 +79,7 @@ class cregister():
             self.r_base[w_addr] = w_data
     
     def get_buffer(self,addr,M):
-        if M > 16:
+        if M >= 16:
             M -= 16
         else:
             return None
