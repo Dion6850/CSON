@@ -135,4 +135,4 @@ class cregister():
     def read_data(self,addr_a,addr_b,addr_c,M):
         return self.get_buffer(addr_a,M),self.get_buffer(addr_b,M),self.get_buffer(addr_c,M)
             
-a = cregister()
+# a = cregister()

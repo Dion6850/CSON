@@ -11,7 +11,8 @@ from cocotb.utils import get_sim_steps
 import random
 import verify.barrelshifter32 as barrelshifter32
 import verify.ALU as ALU
-import verify.register as register
+from verify.register import cregister
+
 class barrelshifter32_test:
     def __init__(self,dut):
         self.dut=dut
@@ -218,6 +219,7 @@ class ALU_test:
         
 class register_test:
     def __init__(self,dut):
+        self.py_register = cregister()
         self.dut=dut
         self.log=logging.getLogger("cocotb.tb")
         self.log.setLevel(logging.INFO)
@@ -295,8 +297,8 @@ class register_test:
         rand_pc_data = random.randint(0,2**32-1)
         rand_M = random.randint(0,2**5-1)
         await FallingEdge(self.dut.clk)
-        register.a.write_data(rand_w_addr,rand_w_data,rand_pc_data,rand_write_reg,rand_write_pc,rand_M)
-        ans_a,ans_b,ans_c = register.a.read_data(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_M)
+        self.py_register.write_data(rand_w_addr,rand_w_data,rand_pc_data,rand_write_reg,rand_write_pc,rand_M)
+        ans_a,ans_b,ans_c = self.py_register.read_data(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_M)
         if(ans_a==None):
             ans_a=0
         if(ans_b==None):
