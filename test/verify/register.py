@@ -73,6 +73,8 @@ class cregister():
     def get_buffer(self,addr,M):
         if M > 16:
             M -= 16
+        else:
+            return None
         self.error_r = 0
         if addr < 8:
             return self.r_base[addr]
@@ -90,6 +92,7 @@ class cregister():
                     return self.r_base[addr]
             else:
                 self.error_r = 1
+                return None
         elif addr == 13:
             if M == 0b0000:
                 return self.r_base[addr]
@@ -111,6 +114,7 @@ class cregister():
                 return self.r_base[addr]
             else:
                 self.error_r = 1
+                return None
         elif addr == 14:
             if M == 0b0000:
                 return self.r_base[addr]
@@ -130,9 +134,11 @@ class cregister():
                 return self.r_base[addr]
             else:
                 self.error_r = 1
+                return None
         else:
             return self.rpc
     def read_data(self,addr_a,addr_b,addr_c,M):
         return self.get_buffer(addr_a,M),self.get_buffer(addr_b,M),self.get_buffer(addr_c,M)
-            
+    def r_base_data(self):
+        return [self.r_base,self.r_fiq]
 # a = cregister()

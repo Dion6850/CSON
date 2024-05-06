@@ -242,14 +242,17 @@ class register_test:
         self.dut.w_addr.setimmediatevalue(w_addr)
         self.dut.w_data.setimmediatevalue(w_data)
         self.dut.write_reg.setimmediatevalue(write_reg)
-        await RisingEdge(self.dut.clk)
         await FallingEdge(self.dut.clk)
+        await RisingEdge(self.dut.clk)
+
+        self.dut.write_pc.setimmediatevalue(0)
+        self.dut.write_reg.setimmediatevalue(0)
 
     async def read(self,r_addr_a,r_addr_b,r_addr_c):
+        await RisingEdge(self.dut.clk)
         self.dut.r_addr_a.setimmediatevalue(r_addr_a)
         self.dut.r_addr_b.setimmediatevalue(r_addr_b)
         self.dut.r_addr_c.setimmediatevalue(r_addr_c)
-        await RisingEdge(self.dut.clk)
         await FallingEdge(self.dut.clk)
         await RisingEdge(self.dut.clk)
         await FallingEdge(self.dut.clk)
@@ -258,7 +261,7 @@ class register_test:
         self.data_c = self.dut.r_data_c.value
         # await RisingEdge(self.dut.clk)
         # await FallingEdge(self.dut.clk)
-    async def test(self,r_addr_a,r_addr_b,r_addr_c,w_addr,w_data,write_reg,write_pc,pc_data,M,ans_a,ans_b,ans_c):
+    async def test(self,r_addr_a,r_addr_b,r_addr_c,w_addr,w_data,write_reg,write_pc,pc_data,M,ans_a,ans_b,ans_c,r_base_data):
         await self.write(write_pc,pc_data,M,w_addr,w_data,write_reg)
         await self.read(r_addr_a,r_addr_b,r_addr_c)
         wrong3=0
@@ -279,14 +282,16 @@ class register_test:
                 self.log.error("data_c error!")
             local_vars = locals()
             # 遍历并输出变量名和值
+            verilog_info = ''
             for var_name in ['r_addr_a', 'r_addr_b', 'r_addr_c', 'w_addr', 'w_data', 'write_reg', 'write_pc', 'pc_data', 'M']:
-                self.log.info(f"{var_name}: {local_vars.get(var_name, 'Not defined')}")
+                verilog_info=verilog_info+f"{var_name}: {local_vars.get(var_name, 'Not defined')} "
+            self.log.info(verilog_info)
             self.log.info(f"Verilog : data_a {self.data_a} data_b {self.data_b} data_c {self.data_c}")
             self.log.info(f"python : data_a {ans_a} data_b {ans_b} data_c {ans_c}")
+            self.log.info(f"r_base_data {r_base_data}")
     
             
     async def scale_test(self):
-        await RisingEdge(self.dut.clk)
         rand_r_addr_a = random.randint(0,2**4-1)
         rand_r_addr_b = random.randint(0,2**4-1)
         rand_r_addr_c = random.randint(0,2**4-1)
@@ -296,15 +301,12 @@ class register_test:
         rand_write_pc = random.randint(0,1)
         rand_pc_data = random.randint(0,2**32-1)
         rand_M = random.randint(0,2**5-1)
-        await FallingEdge(self.dut.clk)
+        await RisingEdge(self.dut.clk)
         self.py_register.write_data(rand_w_addr,rand_w_data,rand_pc_data,rand_write_reg,rand_write_pc,rand_M)
         ans_a,ans_b,ans_c = self.py_register.read_data(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_M)
-        if(ans_a==None):
-            ans_a=0
-        if(ans_b==None):
-            ans_b=0
-        if(ans_c==None):
-            ans_c=0
-        await self.test(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_w_addr,rand_w_data,rand_write_reg,rand_write_pc,rand_pc_data,rand_M,ans_a,ans_b,ans_c)
-
+        r_base = self.py_register.r_base_data()
+        if(ans_a==None or ans_b==None or ans_c == None):
+            return
+        await self.test(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_w_addr,rand_w_data,rand_write_reg,rand_write_pc,rand_pc_data,rand_M,ans_a,ans_b,ans_c,r_base)
+        
         
