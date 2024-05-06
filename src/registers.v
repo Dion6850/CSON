@@ -1,4 +1,4 @@
-module register(
+module registers(
     input [3:0]r_addr_a,
     input [3:0]r_addr_b,
     input [3:0]r_addr_c,
@@ -11,9 +11,9 @@ module register(
     input clk,
     input rst,
 
-    output [31:0]r_data_a,
-    output [31:0]r_data_b,
-    output [31:0]r_data_c
+    output reg[31:0]r_data_a,
+    output reg[31:0]r_data_b,
+    output reg[31:0]r_data_c
 );
     reg error_w,error_r;
 
@@ -22,9 +22,9 @@ module register(
     reg [31:0]r13_irq;reg [31:0]r13_svc;reg [31:0]r13_mon;reg [31:0]r13_abt;reg [31:0]r13_hyp;reg [31:0]r13_und;
     reg [31:0]r14_irq;reg [31:0]r14_svc;reg [31:0]r14_mon;reg [31:0]r14_abt;reg [31:0]r14_und;
     reg [31:0]r_pc;
-
+    
+    integer i;
     always @(negedge clk) begin //write
-        integer i;
         if(rst == 1) begin
             for(i = 0;i <= 14;i = i + 1) begin
                 r_base[i] <= 32'b0;
@@ -59,7 +59,7 @@ module register(
 
                         4'b0010: begin
                             if(w_addr < 13)
-                                r_base <= w_data;
+                                r_base[w_addr] <= w_data;
                             else if(w_addr == 13)
                                 r13_irq <= w_data;
                             else if(w_addr == 14)
@@ -68,7 +68,7 @@ module register(
 
                         4'b0011: begin
                             if(w_addr < 13)
-                                r_base <= w_data;
+                                r_base[w_addr] <= w_data;
                             else if(w_addr == 13)
                                 r13_svc <= w_data;
                             else if(w_addr == 14)
@@ -77,7 +77,7 @@ module register(
 
                         4'b0110: begin
                             if(w_addr < 13)
-                                r_base <= w_data;
+                                r_base[w_addr] <= w_data;
                             else if(w_addr == 13)
                                 r13_mon <= w_data;
                             else if(w_addr == 14)
@@ -86,7 +86,7 @@ module register(
 
                         4'b0111: begin
                             if(w_addr < 13)
-                                r_base <= w_data;
+                                r_base[w_addr] <= w_data;
                             else if(w_addr == 13)
                                 r13_abt <= w_data;
                             else if(w_addr == 14)
@@ -95,7 +95,7 @@ module register(
 
                         4'b1010: begin
                             if(w_addr < 13)
-                                r_base <= w_data;
+                                r_base[w_addr] <= w_data;
                             else if(w_addr == 13)
                                 r13_hyp <= w_data;
                             else if(w_addr == 14)
@@ -104,7 +104,7 @@ module register(
 
                         4'b1011: begin
                             if(w_addr < 13)
-                                r_base <= w_data;
+                                r_base[w_addr] <= w_data;
                             else if(w_addr == 13)
                                 r13_und <= w_data;
                             else if(w_addr == 14)
@@ -121,7 +121,7 @@ module register(
         end
     end
 
-    always @(negedge clk)begin // read data a
+    always @(*)begin // read data a
         error_r = 0;
         if(r_addr_a < 8)begin
             r_data_a <= r_base[r_addr_a];
@@ -176,7 +176,7 @@ module register(
         end
     end
 
-    always @(negedge clk)begin // read data b
+    always @(*)begin // read data b
         error_r = 0;
         if(r_addr_b < 8)begin
             r_data_b <= r_base[r_addr_b];

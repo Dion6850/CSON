@@ -11,6 +11,7 @@ from cocotb.utils import get_sim_steps
 import random
 import verify.barrelshifter32 as barrelshifter32
 import verify.ALU as ALU
+import verify.register as register
 class barrelshifter32_test:
     def __init__(self,dut):
         self.dut=dut
@@ -232,13 +233,14 @@ class register_test:
         self.M = 0b11111
         self.dut.M.setimmediatevalue(self.M) # 默认为系统模式
 
-    async def write(self,value,M = 0b11111,w_addr = 0,w_data = 1):
+    async def write(self,write_pc,pc_data,M = 0b11111,w_addr = 0,w_data = 1,write_reg=1):
         await RisingEdge(self.dut.clk)
-        self.dut.write_pc.setimmediatevalue(1)
-        self.dut.pc_data.setimmediatevalue(value)
+        self.dut.write_pc.setimmediatevalue(write_pc)
+        self.dut.pc_data.setimmediatevalue(pc_data)
         self.dut.M.setimmediatevalue(M)
         self.dut.w_addr.setimmediatevalue(w_addr)
         self.dut.w_data.setimmediatevalue(w_data)
+        self.dut.write_reg.setimmediatevalue(write_reg)
         await FallingEdge(self.dut.clk)
 
     async def read(self,r_addr_a,r_addr_b,r_addr_c):
@@ -250,10 +252,30 @@ class register_test:
         self.data_a = self.dut.r_data_a.value
         self.data_b = self.dut.r_data_b.value
         self.data_c = self.dut.r_data_c.value
-    async def test(self,r_addr_a,r_addr_b,r_addr_c,w_addr,w_data,write_reg,write_pc,pc_data,M):
+    async def test(self,r_addr_a,r_addr_b,r_addr_c,w_addr,w_data,write_reg,write_pc,pc_data,M,ans_a,ans_b,ans_c):
+        await self.write(write_pc,pc_data,M,w_addr,w_data,write_reg)
+        await self.read(r_addr_a,r_addr_b,r_addr_c)
+        local_vars = locals()
+        # 遍历并输出变量名和值
+        for var_name in ['r_addr_a', 'r_addr_b', 'r_addr_c', 'w_addr', 'w_data', 'write_reg', 'write_pc', 'pc_data', 'M']:
+            self.log.info(f"{var_name}: {local_vars.get(var_name, 'Not defined')}")
+        self.log.info(f"Verilog : data_a {self.data_a} data_b {self.data_b} data_c {self.data_c}")
+        self.log.info(f"python : data_a {ans_a} data_b {ans_b} data_c {ans_c}")
+    async def scale_test(self):
+        await RisingEdge(self.dut.clk)
+        rand_r_addr_a = random.randint(0,2**4-1)
+        rand_r_addr_b = random.randint(0,2**4-1)
+        rand_r_addr_c = random.randint(0,2**4-1)
+        rand_w_addr = random.randint(0,2**4-1)
+        rand_w_data = random.randint(0,2**32-1)
+        rand_write_reg = random.randint(0,1)
+        rand_write_pc = random.randint(0,1)
+        rand_pc_data = random.randint(0,2**32-1)
+        rand_M = random.randint(0,2**5-1)
+        await FallingEdge(self.dut.clk)
+        register.a.write_data(rand_w_addr,rand_w_data,rand_pc_data,rand_write_reg,rand_write_pc,rand_M)
+        ans_a,ans_b,ans_c = register.a.read_data(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c)
+        self.test(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_w_addr,rand_w_data,rand_write_reg,rand_write_pc,rand_pc_data,rand_M,ans_a,ans_b,ans_c)
         
-        
-
-            
 
         
