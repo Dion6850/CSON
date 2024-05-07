@@ -12,7 +12,13 @@ async_test_tb中书写函数，在@cocotb.test()后为执行代码
 
 ## 运行
 
-命令行运行build.sh即可
+```bash
+docker run -it --name cson zhywyt/cson:latest /bin/bash
+cd /root/workspace/
+git clone git@github.com:Dion6850/CSON.git
+cd CSON/test
+./build
+```
 
 ## 注意
 ### 关于验证文件
