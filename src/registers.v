@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module registers(
     input [3:0]r_addr_a,
     input [3:0]r_addr_b,

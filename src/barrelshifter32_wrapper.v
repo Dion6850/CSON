@@ -1,4 +1,4 @@
-`timescale 1ns/1ns
+`timescale 1ns/1ps
 module barrelshifter32_wrapper(
     input clk,
     input [31:0] Shift_Data,     // 32 位原始输入数据

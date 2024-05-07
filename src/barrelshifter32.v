@@ -1,4 +1,4 @@
-`timescale 1ns/1ns
+`timescale 1ns/1ps
 module barrelshifter32(
     input [31:0] Shift_Data,     // 32 位原始输入数据
     input [7:0] Shift_Num,      // 8 位输入数据，控制移位的位数

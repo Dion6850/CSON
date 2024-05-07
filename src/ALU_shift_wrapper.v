@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module ALU_shift_wrapper(
 	input clk,
 	input S,

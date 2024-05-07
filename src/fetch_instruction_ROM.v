@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module fetch_instruction_ROM(
     input clk,
     input [5:0] addra,

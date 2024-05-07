@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module ALU_wrapper(
 	input clk,
 	input[31:0]A,

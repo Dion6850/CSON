@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module fetch_instruction(
     input clk,
     input rst,
