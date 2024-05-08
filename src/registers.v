@@ -25,7 +25,7 @@ module registers(
     reg [31:0]r_pc;
     
     integer i;
-    always @(negedge clk) begin //write
+    always @(negedge clk or posedge rst) begin //write
         if(rst == 1) begin
             for(i = 0;i <= 14;i = i + 1) begin
                 r_base[i] <= 32'b0;
