@@ -21,7 +21,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/zhywyt/文档/QQdownload/01_Test/01_Test.runs/impl_1'
+HD_PWD='/home/zhywyt/CSON/01_Test/01_Test.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

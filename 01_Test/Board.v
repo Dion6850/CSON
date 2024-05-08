@@ -131,12 +131,11 @@ module Board(sw, swb, led, clk, which, seg, enable);
     reg write_pc;
     reg [31:0]pc_data;
     reg [4:0]M;
-    reg rst;
+    wire rst;
     reg clk_reg;
     wire [31:0]r_data_a;
     wire [31:0]r_data_b;
     wire [31:0]r_data_c;
-    // wire [1:6]key_pulse;
     reg [1:0]swb1_c;
     reg [3:0]swb6_c;
     reg [31:0] datatube;
@@ -144,6 +143,8 @@ module Board(sw, swb, led, clk, which, seg, enable);
     assign led[1:2] = swb1_c;
     assign led[30:32] = swb6_c;
     assign led[9] = clk_reg;
+    assign led[10] = swb[3];
+    assign rst = swb[3];
 
     always@(posedge swb[1])begin
         swb1_c <= swb1_c+1;
@@ -157,7 +158,7 @@ module Board(sw, swb, led, clk, which, seg, enable);
         end
     end
     always @(*) begin
-        if(swb[2]==1'b1)begin
+        if(swb[2]==1)begin
             case(swb1_c)
                 2'b01:begin
                     r_addr_a<=sw[1:4];
@@ -174,7 +175,6 @@ module Board(sw, swb, led, clk, which, seg, enable);
         end
         if(swb[6]==1)begin
             case(swb6_c)
-                3'b000:datatube[31:0]<='h0000_0000;
                 3'b001:datatube[31:0]<=r_data_a[31:0];
                 3'b010:datatube[31:0]<=r_data_b[31:0];
                 3'b011:datatube[31:0]<=r_data_c[31:0];
@@ -182,9 +182,22 @@ module Board(sw, swb, led, clk, which, seg, enable);
                 3'b101:datatube[31:0]<='h8888_8888;
             endcase
         end
-    end
-    always @(posedge swb[3]) begin
-        rst<=swb[3];
+        if(swb[5]==1)begin   //show data of swb[2] set
+           case(swb1_c)
+                2'b01:datatube[31:0]<={r_addr_a,r_addr_b,r_addr_c,3'b000,M,w_addr,6'b000000,write_reg,write_pc};
+                2'b10:datatube[31:0]<=w_data;
+                2'b11:datatube[31:0]<=pc_data;
+           endcase 
+        end
+        if(rst==1)begin
+            r_addr_a<=0;
+            r_addr_b<=0;
+            r_addr_c<=0;
+            M[4:0]<=0;
+            w_addr<=0;
+            write_reg<=0;
+            write_pc<=0;
+        end
     end
     always @(posedge swb[4]) begin
         clk_reg<=~clk_reg;

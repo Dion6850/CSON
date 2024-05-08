@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "/home/zhywyt/文档/QQdownload/01_Test/01_Test.runs/impl_1/Board.tcl"
+  variable script "/home/zhywyt/CSON/01_Test/01_Test.runs/impl_1/Board.tcl"
   variable category "vivado_impl"
 }
 
@@ -131,15 +131,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir /home/zhywyt/文档/QQdownload/01_Test/01_Test.cache/wt [current_project]
-  set_property parent.project_path /home/zhywyt/文档/QQdownload/01_Test/01_Test.xpr [current_project]
-  set_property ip_output_repo /home/zhywyt/文档/QQdownload/01_Test/01_Test.cache/ip [current_project]
+  set_property webtalk.parent_dir /home/zhywyt/CSON/01_Test/01_Test.cache/wt [current_project]
+  set_property parent.project_path /home/zhywyt/CSON/01_Test/01_Test.xpr [current_project]
+  set_property ip_output_repo /home/zhywyt/CSON/01_Test/01_Test.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet /home/zhywyt/文档/QQdownload/01_Test/01_Test.runs/synth_1/Board.dcp
+  add_files -quiet /home/zhywyt/CSON/01_Test/01_Test.runs/synth_1/Board.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc /home/zhywyt/文档/QQdownload/01_Test/Board.xdc
+  read_xdc /home/zhywyt/CSON/01_Test/Board.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }

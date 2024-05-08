@@ -127,7 +127,10 @@ module registers(
 
     always @(r_addr_a or M or clk_reg)begin // read data a
         error_r = 0;
-        if(r_addr_a < 8)begin
+        if (M<16)begin
+            error_r=1;
+        end
+        else if(r_addr_a < 8)begin
             r_data_a <= r_base[r_addr_a];
         end
         else if(r_addr_a < 13)begin
@@ -182,7 +185,10 @@ module registers(
 
     always @(r_addr_b or M or clk_reg)begin // read data b
         error_r = 0;
-        if(r_addr_b < 8)begin
+        if (M<16)begin
+            error_r=1;
+        end
+        else if(r_addr_b < 8)begin
             r_data_b <= r_base[r_addr_b];
         end
         else if(r_addr_b < 13)begin
@@ -238,7 +244,10 @@ module registers(
 
     always @(r_addr_c or M or clk_reg)begin // read data c
         error_r = 0;
-        if(r_addr_c < 8)begin
+        if (M<16)begin
+            error_r=1;
+        end
+        else if(r_addr_c < 8)begin
             r_data_c <= r_base[r_addr_c];
         end
         else if(r_addr_c < 13)begin

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date         : Wed May  8 17:32:52 2024
+| Date         : Wed May  8 21:55:03 2024
 | Host         : zhywyt.hwdomain.io running 64-bit Ubuntu 22.04.4 LTS
 | Command      : report_timing_summary -max_paths 10 -file Board_timing_summary_routed.rpt -pb Board_timing_summary_routed.pb -rpx Board_timing_summary_routed.rpx -warn_on_violation
 | Design       : Board
@@ -44,7 +44,7 @@ Timing Summary Report
 Rule       Severity          Description                     Violations  
 ---------  ----------------  ------------------------------  ----------  
 TIMING-17  Critical Warning  Non-clocked sequential cell     1000        
-TIMING-20  Warning           Non-clocked latch               225         
+TIMING-20  Warning           Non-clocked latch               226         
 LATCH-1    Advisory          Existing latches in the design  1           
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
@@ -55,12 +55,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (2268)
+1. checking no_clock (2558)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (3450)
-5. checking no_input_delay (33)
-6. checking no_output_delay (15)
+4. checking unconstrained_internal_endpoints (3484)
+5. checking no_input_delay (34)
+6. checking no_output_delay (16)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -68,17 +68,17 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (2268)
+1. checking no_clock (2558)
 ---------------------------
  There are 18 register/latch pins with no clock driven by root clock pin: clk (HIGH)
 
  There are 2 register/latch pins with no clock driven by root clock pin: swb[1] (HIGH)
 
- There are 97 register/latch pins with no clock driven by root clock pin: swb[2] (HIGH)
-
- There is 1 register/latch pin with no clock driven by root clock pin: swb[3] (HIGH)
+ There are 98 register/latch pins with no clock driven by root clock pin: swb[2] (HIGH)
 
  There is 1 register/latch pin with no clock driven by root clock pin: swb[4] (HIGH)
+
+ There are 32 register/latch pins with no clock driven by root clock pin: swb[5] (HIGH)
 
  There are 35 register/latch pins with no clock driven by root clock pin: swb[6] (HIGH)
 
@@ -89,6 +89,8 @@ Table of Contents
  There are 96 register/latch pins with no clock driven by root clock pin: M_reg[2]/Q (HIGH)
 
  There are 96 register/latch pins with no clock driven by root clock pin: M_reg[3]/Q (HIGH)
+
+ There are 96 register/latch pins with no clock driven by root clock pin: M_reg[4]/Q (HIGH)
 
  There are 1088 register/latch pins with no clock driven by root clock pin: clk_reg_reg/Q (HIGH)
 
@@ -110,15 +112,21 @@ Table of Contents
 
  There are 32 register/latch pins with no clock driven by root clock pin: r_addr_c_reg[0]/Q (HIGH)
 
+ There are 32 register/latch pins with no clock driven by root clock pin: r_addr_c_reg[0]_rep/Q (HIGH)
+
  There are 32 register/latch pins with no clock driven by root clock pin: r_addr_c_reg[1]/Q (HIGH)
+
+ There are 32 register/latch pins with no clock driven by root clock pin: r_addr_c_reg[1]_rep__0/Q (HIGH)
 
  There are 32 register/latch pins with no clock driven by root clock pin: r_addr_c_reg[2]/Q (HIGH)
 
  There are 32 register/latch pins with no clock driven by root clock pin: r_addr_c_reg[3]/Q (HIGH)
 
- There are 97 register/latch pins with no clock driven by root clock pin: swb1_c_reg[0]/Q (HIGH)
+ There are 130 register/latch pins with no clock driven by root clock pin: swb1_c_reg[0]/Q (HIGH)
 
- There are 97 register/latch pins with no clock driven by root clock pin: swb1_c_reg[1]/Q (HIGH)
+ There are 130 register/latch pins with no clock driven by root clock pin: swb1_c_reg[1]/Q (HIGH)
+
+ There are 32 register/latch pins with no clock driven by root clock pin: swb6_c_reg[0]/Q (HIGH)
 
  There are 32 register/latch pins with no clock driven by root clock pin: swb6_c_reg[1]/Q (HIGH)
 
@@ -135,23 +143,23 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (3450)
+4. checking unconstrained_internal_endpoints (3484)
 ---------------------------------------------------
- There are 3450 pins that are not constrained for maximum delay. (HIGH)
+ There are 3484 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (33)
+5. checking no_input_delay (34)
 -------------------------------
- There are 33 input ports with no input delay specified. (HIGH)
+ There are 34 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (15)
+6. checking no_output_delay (16)
 --------------------------------
- There are 15 ports with no output delay specified. (HIGH)
+ There are 16 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
