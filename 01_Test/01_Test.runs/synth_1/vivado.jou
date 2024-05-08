@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed May  8 17:31:36 2024
+# Process ID: 256937
+# Current directory: /home/zhywyt/文档/QQdownload/01_Test/01_Test.runs/synth_1
+# Command line: vivado -log Board.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Board.tcl
+# Log file: /home/zhywyt/文档/QQdownload/01_Test/01_Test.runs/synth_1/Board.vds
+# Journal file: /home/zhywyt/文档/QQdownload/01_Test/01_Test.runs/synth_1/vivado.jou
+# Running On: zhywyt.hwdomain.io, OS: Linux, CPU Frequency: 3198.968 MHz, CPU Physical cores: 16, Host memory: 14487 MB
+#-----------------------------------------------------------
+source Board.tcl -notrace

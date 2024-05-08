@@ -1,0 +1,386 @@
+
+*** Running vivado
+    with args -log Board.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Board.tcl
+
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source Board.tcl -notrace
+Command: synth_design -top Board -part xc7a100tfgg484-2L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tfgg484-2L
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 257009
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2023.129 ; gain = 402.629 ; free physical = 306 ; free virtual = 5525
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Board' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:2]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/zhywyt/文档/QQdownload/01_Test/Board.v:160]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/zhywyt/文档/QQdownload/01_Test/Board.v:175]
+INFO: [Synth 8-6157] synthesizing module 'registers' [/home/zhywyt/CSON/src/registers.v:2]
+WARNING: [Synth 8-567] referenced signal 'r_base' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r_fiq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r13_irq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r13_svc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r13_mon' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r13_abt' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r13_hyp' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r13_und' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r14_irq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r14_svc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r14_mon' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r14_abt' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r14_und' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r_pc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:130]
+WARNING: [Synth 8-567] referenced signal 'r_base' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r_fiq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r13_irq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r13_svc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r13_mon' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r13_abt' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r13_hyp' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r13_und' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r14_irq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r14_svc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r14_mon' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r14_abt' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r14_und' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r_pc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:185]
+WARNING: [Synth 8-567] referenced signal 'r_base' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r_fiq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r13_irq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r13_svc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r13_mon' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r13_abt' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r13_hyp' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r13_und' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r14_irq' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r14_svc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r14_mon' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r14_abt' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r14_und' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+WARNING: [Synth 8-567] referenced signal 'r_pc' should be on the sensitivity list [/home/zhywyt/CSON/src/registers.v:241]
+INFO: [Synth 8-6155] done synthesizing module 'registers' (0#1) [/home/zhywyt/CSON/src/registers.v:2]
+INFO: [Synth 8-6157] synthesizing module 'Display' [/home/zhywyt/文档/QQdownload/01_Test/Display.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'Display' (0#1) [/home/zhywyt/文档/QQdownload/01_Test/Display.v:3]
+WARNING: [Synth 8-7071] port 'count' of module 'Display' is unconnected for instance 'Display_Instance' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:209]
+WARNING: [Synth 8-7071] port 'digit' of module 'Display' is unconnected for instance 'Display_Instance' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:209]
+WARNING: [Synth 8-7023] instance 'Display_Instance' of module 'Display' has 6 connections declared, but only 4 given [/home/zhywyt/文档/QQdownload/01_Test/Board.v:209]
+INFO: [Synth 8-6155] done synthesizing module 'Board' (0#1) [/home/zhywyt/文档/QQdownload/01_Test/Board.v:2]
+WARNING: [Synth 8-6014] Unused sequential element clk_reg_reg was removed.  [/home/zhywyt/CSON/src/registers.v:42]
+WARNING: [Synth 8-6014] Unused sequential element error_w_reg was removed.  [/home/zhywyt/CSON/src/registers.v:49]
+WARNING: [Synth 8-7137] Register r_fiq_reg[14] in module registers has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/zhywyt/CSON/src/registers.v:37]
+WARNING: [Synth 8-7137] Register r_fiq_reg[13] in module registers has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/zhywyt/CSON/src/registers.v:37]
+WARNING: [Synth 8-3917] design Board has port enable driven by constant 1
+WARNING: [Synth 8-7129] Port led[3] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[4] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[5] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[6] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[7] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[8] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[9] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[10] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[11] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[12] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[13] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[14] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[15] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[16] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[17] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[18] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[19] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[20] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[21] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[22] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[23] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[24] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[25] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[26] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[27] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[28] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[29] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port swb[5] in module Board is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2105.098 ; gain = 484.598 ; free physical = 233 ; free virtual = 5434
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2122.910 ; gain = 502.410 ; free physical = 240 ; free virtual = 5426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2122.910 ; gain = 502.410 ; free physical = 240 ; free virtual = 5426
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2122.910 ; gain = 0.000 ; free physical = 241 ; free virtual = 5426
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc]
+WARNING: [Vivado 12-507] No nets matched 'clk_IBUF'. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:105]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:105]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'swb_IBUF[1]'. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:106]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:106]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'swb_IBUF[2]'. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:107]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:107]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'swb_IBUF[3]'. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:108]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:108]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'swb_IBUF[4]'. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:109]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:109]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'swb_IBUF[5]'. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:110]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:110]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'swb_IBUF[6]'. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:111]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc:111]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/zhywyt/文档/QQdownload/01_Test/Board.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Board_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Board_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2270.660 ; gain = 0.000 ; free physical = 219 ; free virtual = 5410
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2270.695 ; gain = 0.000 ; free physical = 231 ; free virtual = 5411
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 259 ; free virtual = 5419
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tfgg484-2L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 259 ; free virtual = 5419
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 259 ; free virtual = 5420
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-327] inferring latch for variable 'r_data_a_reg' [/home/zhywyt/CSON/src/registers.v:133]
+WARNING: [Synth 8-327] inferring latch for variable 'r_data_b_reg' [/home/zhywyt/CSON/src/registers.v:188]
+WARNING: [Synth 8-327] inferring latch for variable 'r_data_c_reg' [/home/zhywyt/CSON/src/registers.v:244]
+WARNING: [Synth 8-327] inferring latch for variable 'datatube_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:176]
+WARNING: [Synth 8-327] inferring latch for variable 'pc_data_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:171]
+WARNING: [Synth 8-327] inferring latch for variable 'r_addr_a_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:162]
+WARNING: [Synth 8-327] inferring latch for variable 'r_addr_b_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:163]
+WARNING: [Synth 8-327] inferring latch for variable 'r_addr_c_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:164]
+WARNING: [Synth 8-327] inferring latch for variable 'w_addr_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:166]
+WARNING: [Synth 8-327] inferring latch for variable 'w_data_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:170]
+WARNING: [Synth 8-327] inferring latch for variable 'write_reg_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:167]
+WARNING: [Synth 8-327] inferring latch for variable 'write_pc_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:168]
+WARNING: [Synth 8-327] inferring latch for variable 'M_reg' [/home/zhywyt/文档/QQdownload/01_Test/Board.v:165]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 275 ; free virtual = 5429
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    3 Bit       Adders := 2     
+	   2 Input    2 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 34    
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   3 Input   32 Bit        Muxes := 3     
+	   2 Input   32 Bit        Muxes := 12    
+	   2 Input    1 Bit        Muxes := 27    
+	  10 Input    1 Bit        Muxes := 34    
+	   9 Input    1 Bit        Muxes := 1     
+	   3 Input    1 Bit        Muxes := 3     
+	   7 Input    1 Bit        Muxes := 1     
+	   4 Input    1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design Board has port enable driven by constant 1
+WARNING: [Synth 8-7129] Port led[3] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[4] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[5] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[6] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[7] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[8] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[9] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[10] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[11] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[12] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[13] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[14] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[15] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[16] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[17] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[18] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[19] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[20] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[21] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[22] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[23] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[24] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[25] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[26] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[27] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[28] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[29] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port swb[5] in module Board is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 352 ; free virtual = 5381
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 337 ; free virtual = 5382
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 336 ; free virtual = 5382
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 334 ; free virtual = 5381
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 309 ; free virtual = 5372
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 309 ; free virtual = 5372
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 309 ; free virtual = 5371
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 309 ; free virtual = 5372
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 308 ; free virtual = 5372
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 308 ; free virtual = 5372
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |    12|
+|2     |CARRY4 |     4|
+|3     |LUT1   |     4|
+|4     |LUT2   |    14|
+|5     |LUT3   |    46|
+|6     |LUT4   |   237|
+|7     |LUT5   |   119|
+|8     |LUT6   |   926|
+|9     |MUXF7  |    98|
+|10    |FDCE   |  1024|
+|11    |FDRE   |    89|
+|12    |LD     |   225|
+|13    |IBUF   |    38|
+|14    |OBUF   |    17|
+|15    |OBUFT  |    27|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 308 ; free virtual = 5372
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 43 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2270.695 ; gain = 502.410 ; free physical = 307 ; free virtual = 5371
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 2270.695 ; gain = 650.195 ; free physical = 307 ; free virtual = 5371
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2270.695 ; gain = 0.000 ; free physical = 589 ; free virtual = 5652
+INFO: [Netlist 29-17] Analyzing 327 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'Board' is not ideal for floorplanning, since the cellview 'registers' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2270.695 ; gain = 0.000 ; free physical = 590 ; free virtual = 5657
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 225 instances were transformed.
+  LD => LDCE: 225 instances
+
+Synth Design complete | Checksum: 7e41cc1a
+INFO: [Common 17-83] Releasing license: Synthesis
+23 Infos, 129 Warnings, 7 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:24 . Memory (MB): peak = 2270.695 ; gain = 944.297 ; free physical = 589 ; free virtual = 5657
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1846.793; main = 1516.634; forked = 378.752
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3236.945; main = 2270.664; forked = 998.297
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2294.672 ; gain = 0.000 ; free physical = 588 ; free virtual = 5656
+INFO: [Common 17-1381] The checkpoint '/home/zhywyt/文档/QQdownload/01_Test/01_Test.runs/synth_1/Board.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Board_utilization_synth.rpt -pb Board_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed May  8 17:32:07 2024...

@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../Display.v" \
+"../../../../01_Test.srcs/sources_1/new/debounce.v" \
+"../../../../../../../CSON/src/registers.v" \
+"../../../../Board.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

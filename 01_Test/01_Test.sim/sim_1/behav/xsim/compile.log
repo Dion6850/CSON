@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/文档/QQdownload/01_Test/Display.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Display
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/文档/QQdownload/01_Test/01_Test.srcs/sources_1/new/debounce.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module debounce_button
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/CSON/src/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/文档/QQdownload/01_Test/Board.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Board

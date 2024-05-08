@@ -1,0 +1,11 @@
+0.7
+2020.2
+Oct 13 2023
+20:21:30
+/home/zhywyt/CSON/src/registers.v,1715154942,verilog,,/home/zhywyt/文档/QQdownload/01_Test/Board.v,,registers,,,,,,,,
+/home/zhywyt/文档/QQdownload/01_Test/01_Test.sim/sim_1/behav/xsim/glbl.v,1544155482,verilog,,,,glbl,,,,,,,,
+/home/zhywyt/文档/QQdownload/01_Test/01_Test.srcs/sources_1/new/ALU.v,1714269762,verilog,,/home/zhywyt/文档/QQdownload/01_Test/Display.v,,ALU,,,,,,,,
+/home/zhywyt/文档/QQdownload/01_Test/01_Test.srcs/sources_1/new/barrelshifter.v,1714269676,verilog,,/home/zhywyt/文档/QQdownload/01_Test/Board.v,,barrelshifter32,,,,,,,,
+/home/zhywyt/文档/QQdownload/01_Test/01_Test.srcs/sources_1/new/debounce.v,1715155127,verilog,,/home/zhywyt/CSON/src/registers.v,,debounce_button,,,,,,,,
+/home/zhywyt/文档/QQdownload/01_Test/Board.v,1715154812,verilog,,,,Board,,,,,,,,
+/home/zhywyt/文档/QQdownload/01_Test/Display.v,1712804924,verilog,,/home/zhywyt/文档/QQdownload/01_Test/01_Test.srcs/sources_1/new/debounce.v,,Display,,,,,,,,
