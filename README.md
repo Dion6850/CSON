@@ -5,6 +5,8 @@
  - cocotb-test
  - 其他python包
 
+本地配置环境可以参照[本地环境配置](test/README.md)
+
 ## 关于build.py和async_test_tb.py的更改
 
 build.py中只需改变顶层模块名称
