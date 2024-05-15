@@ -10,7 +10,9 @@ module fetch_instruction(
 );
     
     reg [31:0] PC;
-    
+    wire [7:0]IR_addr;
+    wire [3:0]CondBits;
+
     always @(negedge clk or posedge rst) begin
         if (rst) PC <= 32'h0;
         else if (write_pc) PC <= PC + 32'h4;
@@ -56,8 +58,8 @@ module fetch_instruction(
     assign W_IR_valid = cond & write_ir;
     
     fetch_instruction_ROM ROM1(
-      .clk(clk),    // input wire clka
+      .clka(clk),    // input wire clka
       .addra(PC[7:2]),  // input wire [5 : 0] addra
-      .data(IR_buf)  // output wire [31 : 0] douta
+      .douta(IR_buf)  // output wire [31 : 0] douta
     );
 endmodule

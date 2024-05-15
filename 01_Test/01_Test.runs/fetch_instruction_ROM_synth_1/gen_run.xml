@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="fetch_instruction_ROM_synth_1" LaunchPart="xc7a100tfgg484-2L" LaunchTime="1715751592">
+  <File Type="VDS-TIMING-PB" Name="fetch_instruction_ROM_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="fetch_instruction_ROM_timing_summary_synth.rpt"/>
+  <File Type="RDS-RDS" Name="fetch_instruction_ROM.vds"/>
+  <File Type="REPORTS-TCL" Name="fetch_instruction_ROM_reports.tcl"/>
+  <File Type="PA-TCL" Name="fetch_instruction_ROM.tcl"/>
+  <File Type="RDS-DCP" Name="fetch_instruction_ROM.dcp"/>
+  <File Type="RDS-PROPCONSTRS" Name="fetch_instruction_ROM_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="fetch_instruction_ROM_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="fetch_instruction_ROM_utilization_synth.pb"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/fetch_instruction_ROM" RelGenDir="$PGENDIR/fetch_instruction_ROM">
+    <File Path="$PSRCDIR/sources_1/ip/fetch_instruction_ROM/fetch_instruction_ROM.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="fetch_instruction_ROM"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/fetch_instruction_ROM" RelGenDir="$PGENDIR/fetch_instruction_ROM">
+    <File Path="$PSRCDIR/sources_1/ip/fetch_instruction_ROM/fetch_instruction_ROM.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="fetch_instruction_ROM"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

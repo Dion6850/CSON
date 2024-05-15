@@ -1,8 +1,8 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
+"../../../../01_Test.gen/sources_1/ip/fetch_instruction_ROM/sim/fetch_instruction_ROM.v" \
 "../../../../Display.v" \
-"../../../../01_Test.srcs/sources_1/new/debounce.v" \
-"../../../../../../../CSON/src/registers.v" \
+"../../../../../src/fetch_instruction.v" \
 "../../../../Board.v" \
 
 # compile glbl module

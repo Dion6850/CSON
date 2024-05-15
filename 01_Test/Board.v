@@ -122,104 +122,151 @@ module Board(sw, swb, led, clk, which, seg, enable);
 //    always @(posedge toggle) enable <= ~enable;
 
 //register
-    reg [3:0]r_addr_a;
-    reg [3:0]r_addr_b;
-    reg [3:0]r_addr_c;
-    reg [3:0]w_addr;
-    reg [31:0]w_data;
-    reg write_reg;
-    reg write_pc;
-    reg [31:0]pc_data;
-    reg [4:0]M;
-    wire rst;
+    // reg [3:0]r_addr_a;
+    // reg [3:0]r_addr_b;
+    // reg [3:0]r_addr_c;
+    // reg [3:0]w_addr;
+    // reg [31:0]w_data;
+    // reg write_reg;
+    // reg write_pc;
+    // reg [31:0]pc_data;
+    // reg [4:0]M;
+    // wire rst;
+    // reg clk_reg;
+    // wire [31:0]r_data_a;
+    // wire [31:0]r_data_b;
+    // wire [31:0]r_data_c;
+    // reg [1:0]swb1_c;
+    // reg [3:0]swb6_c;
+    // reg [31:0] datatube;
+
+    // assign led[1:2] = swb1_c;
+    // assign led[30:32] = swb6_c;
+    // assign led[9] = clk_reg;
+    // assign led[10] = swb[3];
+    // assign rst = swb[3];
+
+    // always@(posedge swb[1])begin
+    //     swb1_c <= swb1_c+1;
+    // end
+    // always@(posedge swb[6])begin
+    //     if(swb6_c<5)begin
+    //         swb6_c <= swb6_c+1;        
+    //     end
+    //     else begin
+    //         swb6_c<=0;
+    //     end
+    // end
+    // always @(*) begin
+    //     if(swb[2]==1)begin
+    //         case(swb1_c)
+    //             2'b01:begin
+    //                 r_addr_a<=sw[1:4];
+    //                 r_addr_b<=sw[5:8];
+    //                 r_addr_c<=sw[9:12];
+    //                 M[4:0]<=sw[13:17];
+    //                 w_addr<=sw[21:24];
+    //                 write_reg<=sw[31];
+    //                 write_pc<=sw[32];
+    //             end
+    //             2'b10:w_data<=sw[1:32];
+    //             2'b11:pc_data<=sw[1:32];
+    //         endcase
+    //     end
+    //     if(swb[6]==1)begin
+    //         case(swb6_c)
+    //             3'b001:datatube[31:0]<=r_data_a[31:0];
+    //             3'b010:datatube[31:0]<=r_data_b[31:0];
+    //             3'b011:datatube[31:0]<=r_data_c[31:0];
+    //             3'b100:datatube[31:0]<=pc_data[31:0];
+    //             3'b101:datatube[31:0]<='h8888_8888;
+    //         endcase
+    //     end
+    //     if(swb[5]==1)begin   //show data of swb[2] set
+    //        case(swb1_c)
+    //             2'b01:datatube[31:0]<={r_addr_a,r_addr_b,r_addr_c,3'b000,M,w_addr,6'b000000,write_reg,write_pc};
+    //             2'b10:datatube[31:0]<=w_data;
+    //             2'b11:datatube[31:0]<=pc_data;
+    //        endcase 
+    //     end
+    //     if(rst==1)begin
+    //         r_addr_a<=0;
+    //         r_addr_b<=0;
+    //         r_addr_c<=0;
+    //         M[4:0]<=0;
+    //         w_addr<=0;
+    //         write_reg<=0;
+    //         write_pc<=0;
+    //     end
+    // end
+    // always @(posedge swb[4]) begin
+    //     clk_reg<=~clk_reg;
+    // end
+
+    // registers Regs(
+    //     .r_addr_a(r_addr_a),
+    //     .r_addr_b(r_addr_b),
+    //     .r_addr_c(r_addr_c),
+    //     .w_addr(w_addr),
+    //     .w_data(w_data),
+    //     .write_reg(write_reg),
+    //     .write_pc(write_pc),
+    //     .pc_data(pc_data),
+    //     .M(M),
+    //     .clk(clk_reg),
+    //     .rst(rst),
+
+    //     .r_data_a(r_data_a),
+    //     .r_data_b(r_data_b),
+    //     .r_data_c(r_data_c)
+    // );
+    // Display Display_Instance(.clk(clk), .data(datatube),
+    //     .which(which), .seg(seg));
+
+
+
+    // Parameters
+  
+    //Ports
+    wire  rst;
+    wire  write_ir;
+    wire  write_pc;
+    reg [3:0] NZCV;
+    wire [31:0] IR;
+    wire  W_IR_valid;
     reg clk_reg;
-    wire [31:0]r_data_a;
-    wire [31:0]r_data_b;
-    wire [31:0]r_data_c;
-    reg [1:0]swb1_c;
-    reg [3:0]swb6_c;
-    reg [31:0] datatube;
 
-    assign led[1:2] = swb1_c;
-    assign led[30:32] = swb6_c;
-    assign led[9] = clk_reg;
-    assign led[10] = swb[3];
+    
+    assign write_pc = sw[31];
+    assign write_ir = sw[32];
     assign rst = swb[3];
-
-    always@(posedge swb[1])begin
-        swb1_c <= swb1_c+1;
-    end
-    always@(posedge swb[6])begin
-        if(swb6_c<5)begin
-            swb6_c <= swb6_c+1;        
-        end
-        else begin
-            swb6_c<=0;
-        end
-    end
-    always @(*) begin
-        if(swb[2]==1)begin
-            case(swb1_c)
-                2'b01:begin
-                    r_addr_a<=sw[1:4];
-                    r_addr_b<=sw[5:8];
-                    r_addr_c<=sw[9:12];
-                    M[4:0]<=sw[13:17];
-                    w_addr<=sw[21:24];
-                    write_reg<=sw[31];
-                    write_pc<=sw[32];
-                end
-                2'b10:w_data<=sw[1:32];
-                2'b11:pc_data<=sw[1:32];
-            endcase
-        end
-        if(swb[6]==1)begin
-            case(swb6_c)
-                3'b001:datatube[31:0]<=r_data_a[31:0];
-                3'b010:datatube[31:0]<=r_data_b[31:0];
-                3'b011:datatube[31:0]<=r_data_c[31:0];
-                3'b100:datatube[31:0]<=pc_data[31:0];
-                3'b101:datatube[31:0]<='h8888_8888;
-            endcase
-        end
-        if(swb[5]==1)begin   //show data of swb[2] set
-           case(swb1_c)
-                2'b01:datatube[31:0]<={r_addr_a,r_addr_b,r_addr_c,3'b000,M,w_addr,6'b000000,write_reg,write_pc};
-                2'b10:datatube[31:0]<=w_data;
-                2'b11:datatube[31:0]<=pc_data;
-           endcase 
-        end
-        if(rst==1)begin
-            r_addr_a<=0;
-            r_addr_b<=0;
-            r_addr_c<=0;
-            M[4:0]<=0;
-            w_addr<=0;
-            write_reg<=0;
-            write_pc<=0;
-        end
-    end
     always @(posedge swb[4]) begin
         clk_reg<=~clk_reg;
     end
-
-    registers Regs(
-        .r_addr_a(r_addr_a),
-        .r_addr_b(r_addr_b),
-        .r_addr_c(r_addr_c),
-        .w_addr(w_addr),
-        .w_data(w_data),
-        .write_reg(write_reg),
-        .write_pc(write_pc),
-        .pc_data(pc_data),
-        .M(M),
-        .clk(clk_reg),
-        .rst(rst),
-
-        .r_data_a(r_data_a),
-        .r_data_b(r_data_b),
-        .r_data_c(r_data_c)
+    always @(swb[5]) begin
+        NZCV<=sw[1:4];
+    end
+    assign led[1:4] = NZCV;
+    assign led[6] = clk_reg;
+    assign led[9] = W_IR_valid;
+    assign led[17] = write_pc;
+    assign led[18] = write_ir;
+ 
+    fetch_instruction  fetch_instruction_inst (
+      .clk(clk_reg),
+      .rst(rst),
+      .write_ir(write_ir),
+      .write_pc(write_pc),
+      .NZCV(NZCV),
+      .IR(IR),
+      .W_IR_valid(W_IR_valid)
     );
-    Display Display_Instance(.clk(clk), .data(datatube),
-        .which(which), .seg(seg));
+    
+    Display Display_Instance(
+        .clk(clk), 
+        .data(IR),
+        .which(which),
+        .seg(seg));
+
+    always #5 clk_reg = ~clk_reg;
 endmodule //

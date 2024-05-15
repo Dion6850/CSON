@@ -1,45 +1,15 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="294586" HostCore="16" HostMemory="14147744">
+    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="68730" HostCore="16" HostMemory="14147736">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="315987" HostCore="16" HostMemory="14147744">
+    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="75404" HostCore="16" HostMemory="14147736">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="336183" HostCore="16" HostMemory="14147744">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="355771" HostCore="16" HostMemory="14147744">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="378181" HostCore="16" HostMemory="14147744">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="399073" HostCore="16" HostMemory="14147744">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="420109" HostCore="16" HostMemory="14147744">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="440324" HostCore="16" HostMemory="14147744">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="471114" HostCore="16" HostMemory="14147744">
+    <Process Command="vivado" Owner="zhywyt" Host="zhywyt.hwdomain.io" Pid="85131" HostCore="16" HostMemory="14147736">
     </Process>
 </ProcessHandle>

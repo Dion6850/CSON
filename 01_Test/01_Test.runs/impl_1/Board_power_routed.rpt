@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date             : Wed May  8 21:55:03 2024
+| Date             : Wed May 15 13:54:18 2024
 | Host             : zhywyt.hwdomain.io running 64-bit Ubuntu 22.04.4 LTS
 | Command          : report_power -file Board_power_routed.rpt -pb Board_power_summary_routed.pb -rpx Board_power_routed.rpx
 | Design           : Board
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 22.156       |
+| Total On-Chip Power (W)  | 8.280        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 21.894       |
-| Device Static (W)        | 0.261        |
+| Dynamic (W)              | 8.164        |
+| Device Static (W)        | 0.116        |
 | Effective TJA (C/W)      | 2.7          |
-| Max Ambient (C)          | 40.7         |
-| Junction Temperature (C) | 84.3         |
+| Max Ambient (C)          | 77.8         |
+| Junction Temperature (C) | 47.2         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,17 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     4.130 |     2797 |       --- |             --- |
-|   LUT as Logic |     3.921 |     1268 |     63400 |            2.00 |
-|   BUFG         |     0.140 |       12 |        32 |           37.50 |
-|   F7/F8 Muxes  |     0.038 |       99 |     63400 |            0.16 |
-|   Register     |     0.022 |     1338 |    126800 |            1.06 |
-|   CARRY4       |     0.009 |        4 |     15850 |            0.03 |
+| Slice Logic    |     0.228 |      108 |       --- |             --- |
+|   LUT as Logic |     0.129 |       25 |     63400 |            0.04 |
+|   BUFG         |     0.058 |        3 |        32 |            9.38 |
+|   Register     |     0.023 |       57 |    126800 |            0.04 |
+|   CARRY4       |     0.017 |        6 |     15850 |            0.04 |
+|   F7/F8 Muxes  |     0.001 |        4 |     63400 |           <0.01 |
 |   Others       |     0.000 |        9 |       --- |             --- |
-| Signals        |     7.060 |     2609 |       --- |             --- |
-| I/O            |    10.705 |       83 |       285 |           29.12 |
-| Static Power   |     0.261 |          |           |                 |
-| Total          |    22.156 |          |           |                 |
+| Signals        |     0.595 |      124 |       --- |             --- |
+| Block RAM      |     1.074 |      0.5 |       135 |            0.37 |
+| I/O            |     6.267 |       53 |       285 |           18.60 |
+| Static Power   |     0.116 |          |           |                 |
+| Total          |     8.280 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,16 +73,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |    11.488 |      11.338 |      0.150 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.900 |       0.864 |      0.036 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     1.887 |       1.851 |      0.035 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.531 |       0.511 |      0.020 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18    |       1.800 |     5.004 |       5.000 |      0.004 |       NA    | Unspecified | NA         |
+| Vcco18    |       1.800 |     2.959 |       2.955 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.004 |       0.000 |      0.004 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.074 |       0.073 |      0.001 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -136,12 +137,14 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+--------------------+-----------+
-| Name               | Power (W) |
-+--------------------+-----------+
-| Board              |    21.894 |
-|   Display_Instance |     0.226 |
-|   Regs             |     5.986 |
-+--------------------+-----------+
++--------------------------+-----------+
+| Name                     | Power (W) |
++--------------------------+-----------+
+| Board                    |     8.164 |
+|   Display_Instance       |     0.070 |
+|   fetch_instruction_inst |     1.651 |
+|     ROM1                 |     1.299 |
+|       U0                 |     1.299 |
++--------------------------+-----------+
 
 
