@@ -10,19 +10,14 @@ module fetch_instruction(
 );
     
     reg [31:0] PC;
-    wire [7:0]IR_addr;
-    wire [3:0]CondBits;
+    wire [31:0] IR_buf;
+    reg cond;
 
     always @(negedge clk or posedge rst) begin
         if (rst) PC <= 32'h0;
         else if (write_pc) PC <= PC + 32'h4;
     end
     
-    wire [31:0] IR_buf;
-    assign IR_addr = PC[7:0];
-    
-    reg cond;
-    assign CondBits = IR_buf[31:28];
     localparam EQ = 4'h0 , NE = 4'h1 , CS = 4'h2 , CC = 4'h3;
     localparam MI = 4'h4 , PL = 4'h5 , VS = 4'h6 , VC = 4'h7;
     localparam HI = 4'h8 , LS = 4'h9 , GE = 4'hA , LT = 4'hB;
@@ -30,7 +25,7 @@ module fetch_instruction(
     localparam Nb = 3 , Zb = 2 , Cb = 1 , Vb = 0;
     
     always @(*) begin
-        case(CondBits)
+        case(IR_buf[31:28])
             EQ : cond <= NZCV[Zb];
             NE : cond <= ~NZCV[Zb];
             CS : cond <= NZCV[Cb];
@@ -49,13 +44,13 @@ module fetch_instruction(
             default : cond <= 1'b1;
         endcase
     end
-    
+
+    assign W_IR_valid = cond & write_ir;
+
     always @(negedge clk or posedge rst) begin
         if (rst) IR <= 32'h0;
         else if (W_IR_valid) IR <= IR_buf;
     end
-    
-    assign W_IR_valid = cond & write_ir;
     
     fetch_instruction_ROM ROM1(
       .clka(clk),    // input wire clka
