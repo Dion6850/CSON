@@ -11,12 +11,15 @@ module fetch_instruction_ROM(
     32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,
     32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0};
 
+    reg [31:0] inner;
     always @(negedge clka) begin
         if (addra < 12) begin
-            douta <= rom[addra];
+            inner <= rom[addra];
         end
         else begin
-            douta <= 32'b0;
+            inner <= 32'b0;
         end
     end
+
+    assign douta = inner;
 endmodule
