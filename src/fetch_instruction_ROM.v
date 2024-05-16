@@ -12,7 +12,7 @@ module fetch_instruction_ROM(
     32'b0,32'b0,32'b0,32'b0,32'b0,32'b0,32'b0};
 
     reg [31:0] inner;
-    always @(negedge clka) begin
+    always @(posedge clka) begin
         if (addra < 12) begin
             inner <= rom[addra];
         end
