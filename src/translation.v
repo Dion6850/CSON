@@ -1,35 +1,37 @@
 `timescale 1ns / 1ps
 
-module controller(input [31:0]I,
-                  output [3:0]rd,
-                  output [3:0]rn,
-                  output [3:0]rm,
-                  output [3:0]rs,
-                  output reg Und_Ins,
-                  output rm_imm_s,        //shift_barrel
-                  output [1:0]rs_imm_s,
-                  output [2:0]Shift_OP,
-                  output reg [3:0]ALU_OP,
-                  output S,
-                  output TTCC,
-                  output [4:0]imm5,
-                  output [11:0]imm12,
-                  output [23:0]imm24);
+module translation(
+    input [31:0]I,
+    output [3:0]rd,
+    output [3:0]rn,
+    output [3:0]rm,
+    output [3:0]rs,
+    output reg Und_Ins,
+    output rm_imm_s,        //shift_barrel
+    output [1:0]rs_imm_s,
+    output [2:0]SHIFT_OP,
+    output reg [3:0]ALU_OP,
+    output S,
+    output TTCC,
+    output [4:0]imm5,
+    output [11:0]imm12,
+    output [23:0]imm24);
 //assign isCondSatisfy = Und_Ins;
+
 wire [3:0]cond;
-wire [3:0] OP;
-wire [3:0] OP1;
-wire [1:0]type;
+wire [3:0]OP;
+wire [2:0]OP1;
+wire [1:0]v_type;
 
 assign cond  = I[31:28]; //指令条件码
-assign OP1   = I[27:15];
+assign OP1   = I[27:25];
 assign OP    = I[24:21];
 assign S     = I[20];
 assign rn    = I[19:16];
 assign rd    = I[15:12];
 assign rs    = I[11:8];
 assign imm5  = I[11:7];
-assign type  = I[6:5];
+assign v_type  = I[6:5];
 assign rm    = I[3:0];
 assign imm12 = I[11:0];
 assign imm24 = I[23:0];
@@ -84,11 +86,11 @@ always @(*) begin
         default :ALU_OP <= OP;
     endcase
 end
-//type存在于DP0，DP1中，控制移位方式
-assign Shift_OP = (DPx[2])?3'b111:{type,DPx[1]};
+//v_type存在于DP0，DP1中，控制移位方式
+assign SHIFT_OP = (DPx[2])?3'b111:{v_type,DPx[1]};
 assign rm_imm_s = DPx[2];
 
-assign rs_imm_s = DPx>>1; //equal to the following code
+assign rs_imm_s = {DPx>>1}[2:1]; //equal to the following code
 
 // always@(*) begin
 //     case(DPx)
@@ -97,8 +99,7 @@ assign rs_imm_s = DPx>>1; //equal to the following code
 //         3'b100: rs_imm_s <= 2'd2;
 //         default: rs_imm_s <= 2'd0;
 //     endcase
-//     end
+// end
 
 assign TTCC = (OP == TST||OP == TEQ||OP == CMP||OP == CMN)?1'b1:1'b0; //弹出指令
-
 endmodule

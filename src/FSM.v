@@ -1,17 +1,17 @@
 `timescale 1ns / 1ps
 
 module FSM(input clk,
-           input Rst,
-           input isCondSatisfy,
+           input rst,
+           input W_IR_valid,
            input rm_imm_s,                //shift_barrel
            input [1:0]rs_imm_s,
-           input [2:0]Shift_OP,
+           input [2:0]SHIFT_OP,
            input [3:0]ALU_OP,
            input S,
            input TTCC,
-           output reg W_PC_EN,
-           output reg W_IR_EN,
-           output reg W_Reg,
+           output reg write_pc,
+           output reg write_ir,
+           output reg write_reg,
            output reg LA,
            output reg LB,
            output reg LC,
@@ -19,10 +19,11 @@ module FSM(input clk,
            output reg S_ctrl,
            output reg rm_imm_s_ctrl,
            output reg [1:0]rs_imm_s_ctrl,
-           output reg [2:0]shift_OP_ctrl,
-           output reg [3:0]ALU_OP_ctrl,
-           output reg Write_CPSR,
-           output reg Write_SPSR);
+           output reg [2:0]Shift_OP_ctrl,
+           output reg [3:0]ALU_OP_ctrl
+        //    output reg Write_CPSR,
+        //    output reg Write_SPSR);
+            );
     
     reg [5:0]ST,Next_ST;
     localparam Idle = 6'b0;
@@ -35,8 +36,9 @@ module FSM(input clk,
     localparam S9   = 6'd10;
     localparam S10  = 6'd11;
     localparam S11  = 6'd12;
-    always @(posedge clk or posedge Rst) begin
-        if (Rst)
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
             ST <= Idle;
         else
             ST <= Next_ST;
@@ -45,7 +47,7 @@ module FSM(input clk,
     always @(*) begin
         case (ST)
             Idle:Next_ST     = S0;
-            S0:Next_ST       = isCondSatisfy?S1:S0;//等待正确指令读入
+            S0:Next_ST       = W_IR_valid?S1:S0;//等待正确指令读入
             S1:Next_ST       = S2;
             S2:Next_ST       = TTCC?S0:S3;
             S3:Next_ST       = S0;
@@ -59,19 +61,19 @@ module FSM(input clk,
     end
     
     //自动机设计模式
-    always @(posedge clk or posedge Rst) begin
-        W_PC_EN <= 1'b0;
-        W_IR_EN <= 1'b0;
-        W_Reg   <= 1'b0;
+    always @(posedge clk or posedge rst) begin
+        write_pc <= 1'b0;
+        write_ir <= 1'b0;
+        write_reg   <= 1'b0;
         LA      <= 1'b0;
         LB      <= 1'b0;
         LC      <= 1'b0;
         LF      <= 1'b0;
         S_ctrl  <= 1'b0;
-        if (Rst)begin
-            W_PC_EN <= 1'b0;
-            W_IR_EN <= 1'b0;
-            W_Reg   <= 1'b0;
+        if (rst)begin
+            write_pc <= 1'b0;
+            write_ir <= 1'b0;
+            write_reg   <= 1'b0;
             LA      <= 1'b0;
             LB      <= 1'b0;
             LC      <= 1'b0;
@@ -81,8 +83,8 @@ module FSM(input clk,
         else begin
             case (Next_ST)
                 S0:begin
-                    W_PC_EN <= 1'b1;
-                    W_IR_EN <= isCondSatisfy; //为W_IR_valid所传值表示当前状态可以写指令/
+                    write_pc <= 1'b1;
+                    write_ir <= W_IR_valid; //为W_IR_valid所传值表示当前状态可以写指令/
                 end
                 S1:begin
                     LA <= 1'b1;
@@ -93,12 +95,12 @@ module FSM(input clk,
                     LF            <= 1'b1;
                     rm_imm_s_ctrl <= rm_imm_s;
                     rs_imm_s_ctrl <= rs_imm_s;
-                    shift_OP_ctrl <= Shift_OP;
+                    Shift_OP_ctrl <= SHIFT_OP;
                     ALU_OP_ctrl   <= ALU_OP;
                     S_ctrl        <= S;
                 end
                 S3:begin
-                    W_Reg <= 1'b1;
+                    write_reg <= 1'b1;
                 end
                 
             endcase

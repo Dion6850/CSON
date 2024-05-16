@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module CPU(input clk,
+module CPU_bak(input clk,
            input rst,
            input swb,
            
@@ -27,16 +27,6 @@ module CPU(input clk,
     
     fectch_instruction ins_pc_ir(clk,Rst,Write_PC,Write_IR,NZCV,IR,W_IR_valid);
 
-    fetch_instruction  fetch_instruction_inst (
-    .clk(clk),
-    .rst(rst),
-    .write_ir(write_ir),
-    .write_pc(write_pc),
-    .NZCV(NZCV),
-    .IR(IR),
-    .W_IR_valid(W_IR_valid)
-  );
-    
     controller con(IR,rd,rn,rm,rs,Und_Ins,rm_imm_s,rs_imm_s,
     Shift_OP,ALU_OP,S,TTCC,imm5,imm12);
     
