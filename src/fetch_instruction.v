@@ -35,10 +35,10 @@ module fetch_instruction(
             VS : cond <= NZCV[Vb];
             VC : cond <= ~NZCV[Vb];
             HI : cond <= (NZCV[Cb] && (~NZCV[Zb]));
-            LS : cond <= ((~NZCV[Cb]) && NZCV[Zb]);
+            LS : cond <= ((~NZCV[Cb]) || NZCV[Zb]);
             GE : cond <= (~(NZCV[Nb] ^ NZCV[Vb]));
             LT : cond <= (NZCV[Nb] ^ NZCV[Vb]);
-            GT : cond <= (~(NZCV[Zb] || (NZCV[Nb] ^ NZCV[Vb])));
+            GT : cond <= (~(NZCV[Zb] && ~(NZCV[Nb] ^ NZCV[Vb])));
             LE : cond <= (NZCV[Zb] || (NZCV[Nb] ^ NZCV[Vb]));
             AL : cond <= 1'b1;
             default : cond <= 1'b1;

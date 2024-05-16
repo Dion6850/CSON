@@ -1,8 +1,6 @@
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/CSON/01_Test/01_Test.gen/sources_1/ip/fetch_instruction_ROM/sim/fetch_instruction_ROM.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module fetch_instruction_ROM
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/CSON/01_Test/Display.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Display
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/CSON/src/fetch_instruction.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module fetch_instruction
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/CSON/01_Test/Board.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Board
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/zhywyt/CSON/src/fetch_instruction_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fetch_instruction_wrapper

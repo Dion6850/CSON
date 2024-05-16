@@ -2,10 +2,10 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-// Date        : Wed May 15 13:40:35 2024
+// Date        : Wed May 15 13:40:34 2024
 // Host        : zhywyt.hwdomain.io running 64-bit Ubuntu 22.04.4 LTS
-// Command     : write_verilog -force -mode synth_stub
-//               /home/zhywyt/CSON/01_Test/01_Test.gen/sources_1/ip/fetch_instruction_ROM/fetch_instruction_ROM_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top fetch_instruction_ROM -prefix
+//               fetch_instruction_ROM_ fetch_instruction_ROM_stub.v
 // Design      : fetch_instruction_ROM
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tfgg484-2L
