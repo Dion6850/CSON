@@ -62,7 +62,7 @@ assign DPx[0] = (I[27:25] == 3'b000)&&(I[4] == 1'b1)&& (~isf);
 assign DPx[1] = (I[27:25] == 3'b000)&&(I[4] == 1'b0)&&(I[7] == 1'b0)&& (~isf);
 assign DPx[2] = (~isf)&&(I[27:25] == 3'b001);
 
-always @(*) begin
+always @(OP or rd or rn or S) begin
     if (OP[3:2] == 2'b10&&S) //4条S=1的指令
         Und_Ins <= 1'b0;
     //异常返回
@@ -77,7 +77,7 @@ end
 
 //由指令的OP获得ALU_OP
 
-always @(*) begin
+always @(OP) begin
     case (OP)
         TST:ALU_OP      <= 4'h0;
         TEQ:ALU_OP      <= 4'h1;

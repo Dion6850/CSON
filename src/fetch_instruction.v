@@ -24,7 +24,7 @@ module fetch_instruction(
     localparam GT = 4'hC , LE = 4'hD , AL = 4'hE;
     localparam Nb = 3 , Zb = 2 , Cb = 1 , Vb = 0;
     
-    always @(*) begin
+    always @(NZCV or IR_buf[31:28]) begin
         case(IR_buf[31:28])
             EQ : cond <= NZCV[Zb];
             NE : cond <= ~NZCV[Zb];
@@ -45,11 +45,11 @@ module fetch_instruction(
         endcase
     end
 
-    assign W_IR_valid = cond & write_ir;
+    assign W_IR_valid = cond;
 
     always @(negedge clk or posedge rst) begin
         if (rst) IR <= 32'h0;
-        else if (W_IR_valid) IR <= IR_buf;
+        else if (W_IR_valid & write_ir) IR <= IR_buf;
     end
     
     fetch_instruction_ROM ROM1(

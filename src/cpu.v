@@ -30,6 +30,9 @@ module cpu(input clk,
     wire [1:0]rs_imm_s_ctrl; //controller-AM output
 
     wire [31:0]r_data_a,r_data_b,r_data_c; //registers
+
+    reg [4:0] M = 5'b10000;
+    wire [31:0] pc_data;
     
     fetch_instruction  fetch_instruction_inst (
     .clk(clk),
@@ -111,11 +114,16 @@ module cpu(input clk,
         .NZCV(NZCVout)
       );
 
-    always @(posedge clk) begin
+    always @(negedge clk) begin
         if (LA) A <= r_data_a;
         if (LB) B <= r_data_b;
         if (LC) C <= r_data_c;
         if (LF) F <= Fout;
         if (S_ctrl) NZCV <= NZCVout;
     end
+
+initial begin
+    $dumpfile("../vcd/async_cpu.vcd");
+    $dumpvars();
+end
 endmodule

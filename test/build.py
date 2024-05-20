@@ -18,6 +18,6 @@ def test_barrelshifter32():
             includes = list(src_dir),
             verilog_sources = getAbspath(FindFile.getDirFiles(src_dir,"*.v")),
             waves = True,
-            toplevel = "registers_wrapper",
+            toplevel = "cpu",
             module = "async_test_tb",
             )

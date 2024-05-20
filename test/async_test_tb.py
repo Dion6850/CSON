@@ -14,9 +14,10 @@ import source
 
 @cocotb.test()
 async def run_test(dut):
-    test_tb = source.register_test(dut)
+    test_tb = source.cpu_test(dut)
+    await test_tb.test()
     # await test_tb.scale_test()
-    for i in range(0,1000000):
+    for i in range(0,200):
         # print(i)
-        await test_tb.scale_test()
+        # await test_tb.scale_test()
         await RisingEdge(test_tb.dut.clk)

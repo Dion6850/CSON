@@ -102,6 +102,8 @@ module FSM(input clk,
                 S3:begin
                     write_reg <= 1'b1;
                 end
+                default: begin
+                end
                 
             endcase
         end

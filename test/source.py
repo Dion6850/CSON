@@ -325,4 +325,17 @@ class register_test:
 
         await self.test(rand_r_addr_a,rand_r_addr_b,rand_r_addr_c,rand_w_addr,rand_w_data,rand_write_reg,rand_write_pc,rand_pc_data,rand_M,ans_a,ans_b,ans_c,r_base)
         
+class cpu_test:
+    def __init__(self,dut):
+        self.py_register = cregister()
+        self.dut=dut
+        self.log=logging.getLogger("cocotb.tb")
+        self.log.setLevel(logging.INFO)
+        self.log.info("Starting asynchronous add test...")
+        cocotb.start_soon(Clock(dut.clk,6,units="ns").start())
+        self.dut.rst.setimmediatevalue(1)
+        
+    async def test(self):
+        await FallingEdge(self.dut.clk)
+        self.dut.rst.setimmediatevalue(0)
         
