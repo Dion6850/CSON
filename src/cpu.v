@@ -69,15 +69,15 @@ module cpu(input clk,
     );
     
     registers  registers_inst (
-    .r_addr_a(r_addr_a),
-    .r_addr_b(r_addr_b),
-    .r_addr_c(r_addr_c),
-    .w_addr(w_addr),
-    .w_data(w_data),
+    .r_addr_a(rn),
+    .r_addr_b(rm),
+    .r_addr_c(rs),
+    .w_addr(rd),
+    .w_data(F),
     .write_reg(write_reg),
     .write_pc(write_pc),
     .pc_data(pc_data),
-    .M(M),
+    .M(M), // fix ? which mode to use
     .clk(clk),
     .rst(rst),
     .r_data_a(r_data_a),
