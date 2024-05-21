@@ -2,8 +2,8 @@
 2020.2
 Oct 13 2023
 20:21:30
-/home/zhywyt/CSON/01_Test/01_Test.gen/sources_1/ip/fetch_instruction_ROM/sim/fetch_instruction_ROM.v,1715825205,verilog,,/home/zhywyt/CSON/src/fetch_instruction.v,,fetch_instruction_ROM,,,,,,,,
-/home/zhywyt/CSON/01_Test/01_Test.sim/sim_1/behav/xsim/glbl.v,1715756551,verilog,,,,glbl,,,,,,,,
+/home/zhywyt/CSON/01_Test/01_Test.gen/sources_1/ip/fetch_instruction_ROM/sim/fetch_instruction_ROM.v,1716270745,verilog,,/home/zhywyt/CSON/src/fetch_instruction.v,,fetch_instruction_ROM,,,,,,,,
+/home/zhywyt/CSON/01_Test/01_Test.sim/sim_1/behav/xsim/glbl.v,1716269795,verilog,,,,glbl,,,,,,,,
 /home/zhywyt/CSON/01_Test/Board.v,1715751575,verilog,,,,Board,,,,,,,,
 /home/zhywyt/CSON/01_Test/Display.v,1715646375,verilog,,/home/zhywyt/CSON/src/fetch_instruction.v,,Display,,,,,,,,
 /home/zhywyt/CSON/src/fetch_instruction.v,1715756551,verilog,,/home/zhywyt/CSON/src/fetch_instruction_wrapper.v,,fetch_instruction,,,,,,,,
