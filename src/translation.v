@@ -58,9 +58,9 @@ wire [2:0]DPx;
 wire isf;
 //判断指令格式
 assign isf    = rd == 4'hf;
-assign DPx[0] = (I[27:25] == 3'b000)&&(I[4] == 1'b1)&& (~isf);
-assign DPx[1] = (I[27:25] == 3'b000)&&(I[4] == 1'b0)&&(I[7] == 1'b0)&& (~isf);
-assign DPx[2] = (~isf)&&(I[27:25] == 3'b001);
+assign DPx[0] = (I[27:25] == 3'b000)&&(I[4] == 1'b0)&& (~isf);
+assign DPx[1] = (I[27:25] == 3'b000)&&(I[4] == 1'b1)&&(I[7] == 1'b0)&& (~isf);
+assign DPx[2] = (I[27:25] == 3'b001)&&(~isf);
 
 always @(OP or rd or rn or S) begin
     if (OP[3:2] == 2'b10&&S) //4条S=1的指令

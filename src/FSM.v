@@ -43,7 +43,7 @@ module FSM(input clk,
     wire isB,isBL,isBX;
     assign isB = IR[27:24] == 4'b1010;
     assign isBL = IR[27:24] == 4'b1011;
-    assign isBX = IR[27:4] == 24'b0010_0010_1111_1111_1111_0001;
+    assign isBX = IR[27:4] == 24'b0001_0010_1111_1111_1111_0001;
 
     always @(posedge clk or posedge rst) begin
         if (rst)
@@ -97,15 +97,15 @@ module FSM(input clk,
                 S0:begin
                     write_pc <= 1'b1;
                     write_ir <= 1'b1; //为W_IR_valid所传值表示当前状态可以写指令/
-                    pc_s <= 2'b0;
+                    pc_s <= 2'b0; // 取指令,PC自增
                 end
                 S1:begin
-                    LA <= 1'b1;
+                    LA <= 1'b1; //写入ABC暂存器
                     LB <= 1'b1;
                     LC <= 1'b1;
                 end
                 S2:begin
-                    LF            <= 1'b1;
+                    LF            <= 1'b1; //运算周期
                     rm_imm_s_ctrl <= rm_imm_s;
                     rs_imm_s_ctrl <= rs_imm_s;
                     Shift_OP_ctrl <= SHIFT_OP;
@@ -113,36 +113,39 @@ module FSM(input clk,
                     S_ctrl        <= S;
                 end
                 S3:begin
-                    write_reg <= 1'b1;
+                    write_reg <= 1'b1; // 结果写回
                 end
                 S7:begin
-                    write_pc <= 1'b1;
+                    write_pc <= 1'b1; //用B向PC写入，用于BX指令
                     pc_s <= 2'b01;
                 end
-                S8:begin
+                S8:begin // 用于B指令，PC+ext(imm24)->PC 先写入F中
                     ALU_A_s <= 1'b1;
                     ALU_B_s <= 1'b1;
                     ALU_OP_ctrl <= 4'b0100;
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
                 end
-                S9:begin
+                S9:begin //从F向PC写入，继承自状态S8 需要考虑将S8中的ALU_A_s,ALU_B_s修改回默认状态,防止无法重置
                     write_pc <= 1'b1;
                     pc_s <= 2'b10;
+                    ALU_A_s <= 1'b0; // 回到默认运算状态
+                    ALU_B_s <= 1'b0;
+                    rd_s <= 1'b0;
                 end
-                S10:begin
+                S10:begin // BF 指令，从PC向F写入
                     ALU_A_s <= 1'b1;
                     ALU_OP_ctrl <= 4'b1000;
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
                 end
-                S11:begin
+                S11:begin // 子程序跳转 F->R14, PC+ext(imm24) -> F,下接S9向PC写入 
                     ALU_A_s <= 1'b1;
                     ALU_B_s <= 1'b1;
                     ALU_OP_ctrl <= 4'b0100;
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
-                    rd_s <= 1'b1;
+                    rd_s <= 1'b1; // 需要在下接中返回默认模式
                     write_reg <= 1'b1; 
                 end
                 default: begin

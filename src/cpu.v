@@ -82,11 +82,14 @@ module cpu(input clk,
     .ALU_OP_ctrl(ALU_OP_ctrl)
     );
     
+    wire [3:0]registers_write_addr;
+    assign registers_write_addr = rd_s?4'd14:rd;
+
     registers  registers_inst (
     .r_addr_a(rn),
     .r_addr_b(rm),
     .r_addr_c(rs),
-    .w_addr(rd),
+    .w_addr(registers_write_addr),
     .w_data(F),
     .write_reg(write_reg),
     .write_pc(write_pc),
@@ -117,7 +120,7 @@ module cpu(input clk,
     wire [31:0]Binput;
 
     assign Ainput = ALU_A_s?PC:A;
-    assign Binput = ALU_B_s?{{6{imm24[23]}},{imm24<<2},{2'b0}}:Shift_out;
+    assign Binput = ALU_B_s?{{6{imm24[23]}},{imm24},{2'b0}}:Shift_out;
     // assign Binput = ALU_B_s?{6'b0,{imm24<<2},{2'b0}}:Shift_out;
 
     ALU  ALU_inst (
