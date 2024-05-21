@@ -16,6 +16,7 @@ module cpu(input clk,
     wire S_ctrl; // ALU
     
     wire W_IR_valid;
+    wire [31:0]PC;
     wire [31:0]IR; // fetch_instruction
 
     wire [4:0]imm5;
@@ -25,6 +26,8 @@ module cpu(input clk,
     wire [3:0]rd,rn,rm,rs; // controller-translate output
 
     wire LA,LB,LC,LF;
+    wire [1:0] pc_s;
+    wire ALU_A_s,ALU_B_s,rd_s;
     wire write_pc,write_ir,write_reg;
     wire rm_imm_s_ctrl;
     wire [1:0]rs_imm_s_ctrl; //controller-AM output
@@ -39,6 +42,10 @@ module cpu(input clk,
     .rst(rst),
     .write_ir(write_ir),
     .write_pc(write_pc),
+    .pc_s(pc_s),
+    .pc_f_out(F),
+    .pc_b_out(B),
+    .PC(PC),
     .NZCV(NZCV),
     .IR(IR),
     .W_IR_valid(W_IR_valid)
@@ -64,6 +71,10 @@ module cpu(input clk,
     .LB(LB),
     .LC(LC),
     .LF(LF),
+    .pc_s(pc_s),
+    .ALU_A_s(ALU_A_s),
+    .ALU_B_s(ALU_B_s),
+    .rd_s(rd_s),
     .S_ctrl(S_ctrl),
     .rm_imm_s_ctrl(rm_imm_s_ctrl),
     .rs_imm_s_ctrl(rs_imm_s_ctrl),
@@ -101,10 +112,17 @@ module cpu(input clk,
         .Shift_out(Shift_out),
         .Shift_carry_out(Shift_carry_out)
       );
-    
-      ALU  ALU_inst (
-        .A(A),
-        .B(Shift_out),
+
+    wire [31:0]Ainput;
+    wire [31:0]Binput;
+
+    assign Ainput = ALU_A_s?PC:A;
+    assign Binput = ALU_B_s?{{6{imm24[23]}},{imm24<<2},{2'b0}}:Shift_out;
+    // assign Binput = ALU_B_s?{6'b0,{imm24<<2},{2'b0}}:Shift_out;
+
+    ALU  ALU_inst (
+        .A(Ainput),
+        .B(Binput),
         .ALU_OP(ALU_OP_ctrl),
         .shiftCout(Shift_carry_out),
         .S(S_ctrl),

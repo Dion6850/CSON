@@ -22,6 +22,10 @@ module controller (
     output reg LB,
     output reg LC,
     output reg LF,
+    output reg [1:0] pc_s, //add
+    output reg ALU_A_s, // add
+    output reg ALU_B_s, // add
+    output reg rd_s, // add
     output reg S_ctrl,
     output reg rm_imm_s_ctrl,
     output reg [1:0]rs_imm_s_ctrl,
@@ -57,6 +61,7 @@ module controller (
     FSM  FSM_inst (
     .clk(clk),
     .rst(rst),
+    .IR(I),
     .W_IR_valid(W_IR_valid),
     .rm_imm_s(rm_imm_s),
     .rs_imm_s(rs_imm_s),
@@ -71,6 +76,10 @@ module controller (
     .LB(LB),
     .LC(LC),
     .LF(LF),
+    .pc_s(pc_s),
+    .ALU_A_s(ALU_A_s),
+    .ALU_B_s(ALU_B_s),
+    .rd_s(rd_s),
     .S_ctrl(S_ctrl),
     .rm_imm_s_ctrl(rm_imm_s_ctrl),
     .rs_imm_s_ctrl(rs_imm_s_ctrl),
