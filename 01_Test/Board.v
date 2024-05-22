@@ -274,20 +274,20 @@ module Board(sw, swb, led, clk, which, seg, enable);
     //Ports
     reg  clk_reg;
     wire  rst;
-    wire  IR;
+    wire  [31:0] IR;
     wire  write_pc;
     wire  write_ir;
     wire  write_reg;
-    wire  A;
-    wire  B;
-    wire  C;
-    wire  F;
-    wire  PC;
-    wire  NZCV;
+    wire  [31:0] A;
+    wire  [31:0] B;
+    wire  [31:0] C;
+    wire  [31:0] F;
+    wire  [31:0] PC;
+    wire  [3:0] NZCV;
     wire  rm_imm_s_ctrl;
-    wire  rs_imm_s_ctrl;
-    wire  ALU_OP_ctrl;
-    wire  Shift_OP_ctrl;
+    wire  [1:0] rs_imm_s_ctrl;
+    wire  [3:0] ALU_OP_ctrl;
+    wire  [2:0] Shift_OP_ctrl;
 
     reg [3:0]swb6_c;
     reg [31:0] datatube;
@@ -295,7 +295,7 @@ module Board(sw, swb, led, clk, which, seg, enable);
     assign led[1:3] = swb6_c;
     assign led[4] = rst;
     assign led[5] = clk_reg;
-    assign led[17:24] = PC;
+    assign led[17:24] = PC[7:0];
     assign led[25:32] = {NZCV,ALU_OP_ctrl};
 
 

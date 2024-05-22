@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Wed May 22 20:43:48 2024
+# Process ID: 18860
+# Current directory: E:/ComputerOrganize/verilog/CSON/project_2/project_2.runs/impl_1
+# Command line: vivado.exe -log Board.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Board.tcl -notrace
+# Log file: E:/ComputerOrganize/verilog/CSON/project_2/project_2.runs/impl_1/Board.vdi
+# Journal file: E:/ComputerOrganize/verilog/CSON/project_2/project_2.runs/impl_1\vivado.jou
+# Running On: LAPTOP-8VTJ1KHT, OS: Windows, CPU Frequency: 2688 MHz, CPU Physical cores: 14, Host memory: 16962 MB
+#-----------------------------------------------------------
+source Board.tcl -notrace

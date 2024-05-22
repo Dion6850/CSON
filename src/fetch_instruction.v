@@ -17,6 +17,7 @@ module fetch_instruction(
     always @(negedge clk or posedge rst) begin
         if (rst) PC <= 32'h0;
         else if (write_pc) PC <= PC + 32'h4;
+ 
     end
     
     localparam EQ = 4'h0 , NE = 4'h1 , CS = 4'h2 , CC = 4'h3;

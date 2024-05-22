@@ -60,7 +60,7 @@ module FSM(input clk,
         endcase
     end
     
-    //自动机设计模式
+    //自动机设计模�?
     always @(posedge clk or posedge rst) begin
         write_pc <= 1'b0;
         write_ir <= 1'b0;
@@ -74,6 +74,7 @@ module FSM(input clk,
             write_pc <= 1'b0;
             write_ir <= 1'b0;
             write_reg   <= 1'b0;
+            ALU_OP_ctrl <= 0;
             LA      <= 1'b0;
             LB      <= 1'b0;
             LC      <= 1'b0;
@@ -84,7 +85,7 @@ module FSM(input clk,
             case (Next_ST)
                 S0:begin
                     write_pc <= 1'b1;
-                    write_ir <= W_IR_valid; //为W_IR_valid所传值表示当前状态可以写指令/
+                    write_ir <= W_IR_valid; //为W_IR_valid�?传�?�表示当前状态可以写指令/
                 end
                 S1:begin
                     LA <= 1'b1;

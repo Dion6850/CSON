@@ -1,0 +1,23 @@
+
+*** Running vivado
+    with args -log fetch_instruction_ROM.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source fetch_instruction_ROM.tcl
+
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source fetch_instruction_ROM.tcl -notrace
+create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 1305.469 ; gain = 0.027 ; free physical = 1423 ; free virtual = 5427
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: fetch_instruction_ROM
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry 6dcb4236378f6742 to dir: /home/zhywyt/CSON/01_Test/01_Test.runs/fetch_instruction_ROM_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/zhywyt/CSON/01_Test/01_Test.cache/ip/2023.2/6/d/6dcb4236378f6742/fetch_instruction_ROM.dcp to /home/zhywyt/CSON/01_Test/01_Test.runs/fetch_instruction_ROM_synth_1/fetch_instruction_ROM.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/zhywyt/CSON/01_Test/01_Test.cache/ip/2023.2/6/d/6dcb4236378f6742/fetch_instruction_ROM_sim_netlist.v to /home/zhywyt/CSON/01_Test/01_Test.runs/fetch_instruction_ROM_synth_1/fetch_instruction_ROM_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/zhywyt/CSON/01_Test/01_Test.cache/ip/2023.2/6/d/6dcb4236378f6742/fetch_instruction_ROM_sim_netlist.vhdl to /home/zhywyt/CSON/01_Test/01_Test.runs/fetch_instruction_ROM_synth_1/fetch_instruction_ROM_sim_netlist.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/zhywyt/CSON/01_Test/01_Test.cache/ip/2023.2/6/d/6dcb4236378f6742/fetch_instruction_ROM_stub.v to /home/zhywyt/CSON/01_Test/01_Test.runs/fetch_instruction_ROM_synth_1/fetch_instruction_ROM_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/zhywyt/CSON/01_Test/01_Test.cache/ip/2023.2/6/d/6dcb4236378f6742/fetch_instruction_ROM_stub.vhdl to /home/zhywyt/CSON/01_Test/01_Test.runs/fetch_instruction_ROM_synth_1/fetch_instruction_ROM_stub.vhdl.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP fetch_instruction_ROM, cache-ID = 6dcb4236378f6742.
+INFO: [Common 17-206] Exiting Vivado at Tue May 21 13:54:06 2024...
