@@ -15,18 +15,18 @@ module controller (
     output [11:0]imm12,
     output [23:0]imm24,
 
-    output reg write_pc,
-    output reg write_ir,
-    output reg write_reg,
-    output reg LA,
-    output reg LB,
-    output reg LC,
-    output reg LF,
-    output reg S_ctrl,
-    output reg rm_imm_s_ctrl,
-    output reg [1:0]rs_imm_s_ctrl,
-    output reg [2:0]Shift_OP_ctrl,
-    output reg [3:0]ALU_OP_ctrl
+    output write_pc,
+    output write_ir,
+    output write_reg,
+    output  LA,
+    output  LB,
+    output  LC,
+    output  LF,
+    output  S_ctrl,
+    output  rm_imm_s_ctrl,
+    output  [1:0]rs_imm_s_ctrl,
+    output  [2:0]Shift_OP_ctrl,
+    output  [3:0]ALU_OP_ctrl
     );
 
     translation translation_inst (

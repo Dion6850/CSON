@@ -6,10 +6,11 @@ module fetch_instruction(
     input write_pc,
     input [3:0] NZCV,
     output reg [31:0] IR,
-    output W_IR_valid
+    output W_IR_valid,
+    output reg [31:0] PC
 );
     
-    reg [31:0] PC;
+    
     wire [31:0] IR_buf;
     reg cond;
 
@@ -51,10 +52,14 @@ module fetch_instruction(
         if (rst) IR <= 32'h0;
         else if (W_IR_valid & write_ir) IR <= IR_buf;
     end
-    
-    fetch_instruction_ROM ROM1(
-      .clka(clk),    // input wire clka
-      .addra(PC[7:2]),  // input wire [5 : 0] addra
-      .douta(IR_buf)  // output wire [31 : 0] douta
+    ROMc ROM1 (
+        .clka(clk),    // input wire clka
+        .addra(PC[7:2]),  // input wire [5 : 0] addra
+        .douta(IR_buf)  // output wire [31 : 0] douta
     );
+    // fetch_instruction_ROM ROM1(
+    //   .clka(clk),    // input wire clka
+    //   .addra(PC[7:2]),  // input wire [5 : 0] addra
+    //   .douta(IR_buf)  // output wire [31 : 0] douta
+    // );
 endmodule

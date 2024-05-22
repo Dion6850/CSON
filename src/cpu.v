@@ -1,7 +1,22 @@
 `timescale 1ns / 1ps
 // verilator lint_off WIDTHTRUNC
 module cpu(input clk,
-           input rst);
+           input rst,
+           output IR,         //指令码
+           output write_pc,
+           output write_ir,
+           output write_reg,
+           output A,
+           output B,
+           output C,
+           output F,
+           output PC,
+           output NZCV,
+           output rm_imm_s_ctrl,
+           output rs_imm_s_ctrl,
+           output ALU_OP_ctrl,
+           output Shift_OP_ctrl
+           );
     
     wire [31:0]Shift_out,Shift_Data;
     wire [7:0]Shift_Num;
@@ -17,6 +32,7 @@ module cpu(input clk,
     
     wire W_IR_valid;
     wire [31:0]IR; // fetch_instruction
+    wire PC;
 
     wire [4:0]imm5;
     wire [11:0]imm12;
@@ -40,6 +56,7 @@ module cpu(input clk,
     .write_ir(write_ir),
     .write_pc(write_pc),
     .NZCV(NZCV),
+    .PC(PC),
     .IR(IR),
     .W_IR_valid(W_IR_valid)
     );
@@ -91,7 +108,7 @@ module cpu(input clk,
     wire [7:0]gen1;
     assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12为32位
     assign gen1       = (rs_imm_s_ctrl[0])? C[7:0] : {{3{1'b0}},imm5}; // 01 10
-    assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}[4:0]} : gen1; //拓展imm5 
+    assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}} : gen1; //拓展imm5 
     
     barrelshifter32  barrelshifter32_inst (
         .Shift_Data(Shift_Data),

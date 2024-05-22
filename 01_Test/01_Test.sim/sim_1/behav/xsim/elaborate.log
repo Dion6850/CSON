@@ -5,7 +5,6 @@ Running: /media/zhywyt/backup/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab --incr -
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-5021] port 'wea' is not connected on this instance [/home/zhywyt/CSON/src/fetch_instruction.v:55]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -14,7 +13,7 @@ Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_output_stage(...
 Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_softecc_outpu...
 Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_mem_module(C_...
 Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7(C_FAMILY="art...
-Compiling module xil_defaultlib.fetch_instruction_ROM
+Compiling module xil_defaultlib.ROMc
 Compiling module xil_defaultlib.fetch_instruction
 Compiling module xil_defaultlib.fetch_instruction_wrapper
 Compiling module xil_defaultlib.glbl

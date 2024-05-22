@@ -90,7 +90,7 @@ end
 assign SHIFT_OP = (DPx[2])?3'b111:{v_type,DPx[1]};
 assign rm_imm_s = DPx[2];
 
-assign rs_imm_s = {DPx>>1}[1:0]; //equal to the following code
+assign rs_imm_s = DPx[2:1]; //equal to the following code
 
 // always@(*) begin
 //     case(DPx)
