@@ -1,5 +1,5 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "E:/ComputerOrganize/verilog/CSON/project_2/project_2.gen/sources_1/ip/ROMc/sim/ROMc.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module ROMc
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/ComputerOrganize/verilog/CSON/project_2/project_2.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module blk_mem_gen_0
 INFO: [VRFC 10-2263] Analyzing Verilog file "E:/ComputerOrganize/verilog/CSON/src/ALU.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ALU
 INFO: [VRFC 10-2263] Analyzing Verilog file "E:/ComputerOrganize/verilog/CSON/01_Test/Display.v" into library xil_defaultlib
@@ -27,3 +27,5 @@ INFO: [VRFC 10-311] analyzing module translation
 INFO: [VRFC 10-2263] Analyzing Verilog file "E:/ComputerOrganize/verilog/CSON/01_Test/Board.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module Board
 WARNING: [VRFC 10-8864] concatenation with an unsized literal will be treated as 32 bits [E:/ComputerOrganize/verilog/CSON/01_Test/Board.v:322]
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/ComputerOrganize/verilog/CSON/project_2/project_2.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

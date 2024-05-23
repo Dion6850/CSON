@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 5
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tfgg484-2L
 
@@ -100,8 +99,8 @@ read_verilog -library xil_defaultlib {
   E:/ComputerOrganize/verilog/CSON/src/translation.v
   E:/ComputerOrganize/verilog/CSON/01_Test/Board.v
 }
-read_ip -quiet E:/ComputerOrganize/verilog/CSON/project_2/project_2.srcs/sources_1/ip/ROMc/ROMc.xci
-set_property used_in_implementation false [get_files -all e:/ComputerOrganize/verilog/CSON/project_2/project_2.gen/sources_1/ip/ROMc/ROMc_ooc.xdc]
+read_ip -quiet e:/ComputerOrganize/verilog/CSON/project_2/project_2.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+set_property used_in_implementation false [get_files -all e:/ComputerOrganize/verilog/CSON/project_2/project_2.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

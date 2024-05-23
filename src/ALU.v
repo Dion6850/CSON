@@ -33,8 +33,7 @@ module ALU (
     end
     
 
-    always @(S or F or Cout or shiftCout or V or A or B) begin
-        if(S==1)begin
+    always @(F or Cout or shiftCout or V or A or B) begin
             case(ALU_OP)
                 4'h0,4'h1,4'hC,4'hE,4'hF,4'h8,4'hD:
                 begin
@@ -53,6 +52,5 @@ module ALU (
             endcase
         NZCV[fN] <= F[31];
         NZCV[fZ] <= (F == 32'h0)? 1'b1:1'b0;
-        end
     end
 endmodule

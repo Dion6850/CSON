@@ -138,7 +138,7 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet E:/ComputerOrganize/verilog/CSON/project_2/project_2.runs/synth_1/Board.dcp
-  read_ip -quiet E:/ComputerOrganize/verilog/CSON/project_2/project_2.srcs/sources_1/ip/ROMc/ROMc.xci
+  read_ip -quiet e:/ComputerOrganize/verilog/CSON/project_2/project_2.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc E:/ComputerOrganize/verilog/CSON/01_Test/Board.xdc
 OPTRACE "read constraints: implementation" END { }

@@ -500,4 +500,3 @@ axi_ethernet_buffer_v2_0_24=$RDI_DATADIR/xsim/ip/axi_ethernet_buffer_v2_0_24
 v_vid_in_axi4s_v5_0_2=$RDI_DATADIR/xsim/ip/v_vid_in_axi4s_v5_0_2
 dcmac_v2_2_0=$RDI_DATADIR/xsim/ip/dcmac_v2_2_0
 fir_compiler_v5_2_6=$RDI_DATADIR/xsim/ip/fir_compiler_v5_2_6
-blk_mem_gen_v8_4_7=xsim.dir/blk_mem_gen_v8_4_7

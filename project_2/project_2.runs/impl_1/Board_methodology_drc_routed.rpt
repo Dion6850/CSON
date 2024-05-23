@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed May 22 20:59:34 2024
+| Date         : Thu May 23 12:02:16 2024
 | Host         : LAPTOP-8VTJ1KHT running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Board_methodology_drc_routed.rpt -pb Board_methodology_drc_routed.pb -rpx Board_methodology_drc_routed.rpx
 | Design       : Board
@@ -23,12 +23,12 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 740
+             Violations found: 736
 +-----------+------------------+--------------------------------+------------+
 | Rule      | Severity         | Description                    | Violations |
 +-----------+------------------+--------------------------------+------------+
 | TIMING-17 | Critical Warning | Non-clocked sequential cell    | 701        |
-| TIMING-20 | Warning          | Non-clocked latch              | 38         |
+| TIMING-20 | Warning          | Non-clocked latch              | 34         |
 | LATCH-1   | Advisory         | Existing latches in the design | 1          |
 +-----------+------------------+--------------------------------+------------+
 
@@ -3546,192 +3546,172 @@ Related violations: <none>
 
 TIMING-20#2 Warning
 Non-clocked latch  
-The latch cpu_inst/ALU_inst/NZCV_reg[0] cannot be properly analyzed as its control pin cpu_inst/ALU_inst/NZCV_reg[0]/G is not reached by a timing clock
+The latch cpu_inst/barrelshifter32_inst/Shift_carry_out_reg cannot be properly analyzed as its control pin cpu_inst/barrelshifter32_inst/Shift_carry_out_reg/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#3 Warning
 Non-clocked latch  
-The latch cpu_inst/ALU_inst/NZCV_reg[1] cannot be properly analyzed as its control pin cpu_inst/ALU_inst/NZCV_reg[1]/G is not reached by a timing clock
+The latch datatube_reg[0] cannot be properly analyzed as its control pin datatube_reg[0]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#4 Warning
 Non-clocked latch  
-The latch cpu_inst/ALU_inst/NZCV_reg[2] cannot be properly analyzed as its control pin cpu_inst/ALU_inst/NZCV_reg[2]/G is not reached by a timing clock
+The latch datatube_reg[10] cannot be properly analyzed as its control pin datatube_reg[10]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#5 Warning
 Non-clocked latch  
-The latch cpu_inst/ALU_inst/NZCV_reg[3] cannot be properly analyzed as its control pin cpu_inst/ALU_inst/NZCV_reg[3]/G is not reached by a timing clock
+The latch datatube_reg[11] cannot be properly analyzed as its control pin datatube_reg[11]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#6 Warning
 Non-clocked latch  
-The latch cpu_inst/barrelshifter32_inst/Shift_carry_out_reg cannot be properly analyzed as its control pin cpu_inst/barrelshifter32_inst/Shift_carry_out_reg/G is not reached by a timing clock
+The latch datatube_reg[12] cannot be properly analyzed as its control pin datatube_reg[12]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#7 Warning
 Non-clocked latch  
-The latch datatube_reg[0] cannot be properly analyzed as its control pin datatube_reg[0]/G is not reached by a timing clock
+The latch datatube_reg[13] cannot be properly analyzed as its control pin datatube_reg[13]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#8 Warning
 Non-clocked latch  
-The latch datatube_reg[10] cannot be properly analyzed as its control pin datatube_reg[10]/G is not reached by a timing clock
+The latch datatube_reg[14] cannot be properly analyzed as its control pin datatube_reg[14]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#9 Warning
 Non-clocked latch  
-The latch datatube_reg[11] cannot be properly analyzed as its control pin datatube_reg[11]/G is not reached by a timing clock
+The latch datatube_reg[15] cannot be properly analyzed as its control pin datatube_reg[15]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#10 Warning
 Non-clocked latch  
-The latch datatube_reg[12] cannot be properly analyzed as its control pin datatube_reg[12]/G is not reached by a timing clock
+The latch datatube_reg[16] cannot be properly analyzed as its control pin datatube_reg[16]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#11 Warning
 Non-clocked latch  
-The latch datatube_reg[13] cannot be properly analyzed as its control pin datatube_reg[13]/G is not reached by a timing clock
+The latch datatube_reg[17] cannot be properly analyzed as its control pin datatube_reg[17]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#12 Warning
 Non-clocked latch  
-The latch datatube_reg[14] cannot be properly analyzed as its control pin datatube_reg[14]/G is not reached by a timing clock
+The latch datatube_reg[18] cannot be properly analyzed as its control pin datatube_reg[18]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#13 Warning
 Non-clocked latch  
-The latch datatube_reg[15] cannot be properly analyzed as its control pin datatube_reg[15]/G is not reached by a timing clock
+The latch datatube_reg[19] cannot be properly analyzed as its control pin datatube_reg[19]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#14 Warning
 Non-clocked latch  
-The latch datatube_reg[16] cannot be properly analyzed as its control pin datatube_reg[16]/G is not reached by a timing clock
+The latch datatube_reg[1] cannot be properly analyzed as its control pin datatube_reg[1]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#15 Warning
 Non-clocked latch  
-The latch datatube_reg[17] cannot be properly analyzed as its control pin datatube_reg[17]/G is not reached by a timing clock
+The latch datatube_reg[20] cannot be properly analyzed as its control pin datatube_reg[20]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#16 Warning
 Non-clocked latch  
-The latch datatube_reg[18] cannot be properly analyzed as its control pin datatube_reg[18]/G is not reached by a timing clock
+The latch datatube_reg[21] cannot be properly analyzed as its control pin datatube_reg[21]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#17 Warning
 Non-clocked latch  
-The latch datatube_reg[19] cannot be properly analyzed as its control pin datatube_reg[19]/G is not reached by a timing clock
+The latch datatube_reg[22] cannot be properly analyzed as its control pin datatube_reg[22]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#18 Warning
 Non-clocked latch  
-The latch datatube_reg[1] cannot be properly analyzed as its control pin datatube_reg[1]/G is not reached by a timing clock
+The latch datatube_reg[23] cannot be properly analyzed as its control pin datatube_reg[23]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#19 Warning
 Non-clocked latch  
-The latch datatube_reg[20] cannot be properly analyzed as its control pin datatube_reg[20]/G is not reached by a timing clock
+The latch datatube_reg[24] cannot be properly analyzed as its control pin datatube_reg[24]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#20 Warning
 Non-clocked latch  
-The latch datatube_reg[21] cannot be properly analyzed as its control pin datatube_reg[21]/G is not reached by a timing clock
+The latch datatube_reg[25] cannot be properly analyzed as its control pin datatube_reg[25]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#21 Warning
 Non-clocked latch  
-The latch datatube_reg[22] cannot be properly analyzed as its control pin datatube_reg[22]/G is not reached by a timing clock
+The latch datatube_reg[26] cannot be properly analyzed as its control pin datatube_reg[26]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#22 Warning
 Non-clocked latch  
-The latch datatube_reg[23] cannot be properly analyzed as its control pin datatube_reg[23]/G is not reached by a timing clock
+The latch datatube_reg[27] cannot be properly analyzed as its control pin datatube_reg[27]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#23 Warning
 Non-clocked latch  
-The latch datatube_reg[24] cannot be properly analyzed as its control pin datatube_reg[24]/G is not reached by a timing clock
+The latch datatube_reg[28] cannot be properly analyzed as its control pin datatube_reg[28]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#24 Warning
 Non-clocked latch  
-The latch datatube_reg[25] cannot be properly analyzed as its control pin datatube_reg[25]/G is not reached by a timing clock
+The latch datatube_reg[29] cannot be properly analyzed as its control pin datatube_reg[29]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#25 Warning
 Non-clocked latch  
-The latch datatube_reg[26] cannot be properly analyzed as its control pin datatube_reg[26]/G is not reached by a timing clock
+The latch datatube_reg[2] cannot be properly analyzed as its control pin datatube_reg[2]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#26 Warning
 Non-clocked latch  
-The latch datatube_reg[27] cannot be properly analyzed as its control pin datatube_reg[27]/G is not reached by a timing clock
+The latch datatube_reg[30] cannot be properly analyzed as its control pin datatube_reg[30]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#27 Warning
 Non-clocked latch  
-The latch datatube_reg[28] cannot be properly analyzed as its control pin datatube_reg[28]/G is not reached by a timing clock
+The latch datatube_reg[31] cannot be properly analyzed as its control pin datatube_reg[31]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#28 Warning
 Non-clocked latch  
-The latch datatube_reg[29] cannot be properly analyzed as its control pin datatube_reg[29]/G is not reached by a timing clock
+The latch datatube_reg[3] cannot be properly analyzed as its control pin datatube_reg[3]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#29 Warning
 Non-clocked latch  
-The latch datatube_reg[2] cannot be properly analyzed as its control pin datatube_reg[2]/G is not reached by a timing clock
+The latch datatube_reg[4] cannot be properly analyzed as its control pin datatube_reg[4]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#30 Warning
 Non-clocked latch  
-The latch datatube_reg[30] cannot be properly analyzed as its control pin datatube_reg[30]/G is not reached by a timing clock
+The latch datatube_reg[5] cannot be properly analyzed as its control pin datatube_reg[5]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#31 Warning
 Non-clocked latch  
-The latch datatube_reg[31] cannot be properly analyzed as its control pin datatube_reg[31]/G is not reached by a timing clock
+The latch datatube_reg[6] cannot be properly analyzed as its control pin datatube_reg[6]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#32 Warning
 Non-clocked latch  
-The latch datatube_reg[3] cannot be properly analyzed as its control pin datatube_reg[3]/G is not reached by a timing clock
+The latch datatube_reg[7] cannot be properly analyzed as its control pin datatube_reg[7]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#33 Warning
 Non-clocked latch  
-The latch datatube_reg[4] cannot be properly analyzed as its control pin datatube_reg[4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#34 Warning
-Non-clocked latch  
-The latch datatube_reg[5] cannot be properly analyzed as its control pin datatube_reg[5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#35 Warning
-Non-clocked latch  
-The latch datatube_reg[6] cannot be properly analyzed as its control pin datatube_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#36 Warning
-Non-clocked latch  
-The latch datatube_reg[7] cannot be properly analyzed as its control pin datatube_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#37 Warning
-Non-clocked latch  
 The latch datatube_reg[8] cannot be properly analyzed as its control pin datatube_reg[8]/G is not reached by a timing clock
 Related violations: <none>
 
-TIMING-20#38 Warning
+TIMING-20#34 Warning
 Non-clocked latch  
 The latch datatube_reg[9] cannot be properly analyzed as its control pin datatube_reg[9]/G is not reached by a timing clock
 Related violations: <none>
 
 LATCH-1#1 Advisory
 Existing latches in the design  
-There are 38 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
+There are 34 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
 Related violations: <none>
 
 

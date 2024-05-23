@@ -61,7 +61,7 @@ module FSM(input clk,
     end
     
     //自动机设计模�?
-    always @(posedge clk or posedge rst) begin
+    always @(negedge clk or posedge rst) begin
         write_pc <= 1'b0;
         write_ir <= 1'b0;
         write_reg   <= 1'b0;

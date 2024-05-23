@@ -53,7 +53,7 @@ module fetch_instruction(
         if (rst) IR <= 32'h0;
         else if (W_IR_valid & write_ir) IR <= IR_buf;
     end
-    ROMc ROM1 (
+    blk_mem_gen_0 ROM1 (
         .clka(clk),    // input wire clka
         .addra(PC[7:2]),  // input wire [5 : 0] addra
         .douta(IR_buf)  // output wire [31 : 0] douta

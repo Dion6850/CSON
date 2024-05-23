@@ -1,7 +1,0 @@
-Running: xsim.dir/fetch_instruction_wrapper_behav/xsimk.exe -maxdeltaid 100000 -simmode gui -wdb fetch_instruction_wrapper_behav.wdb -simrunnum 0 -socket 60555
-Design successfully loaded
-Design Loading Memory Usage: 9224 KB (Peak: 9224 KB)
-Design Loading CPU Usage: 30 ms
-Simulation completed
-Simulation Memory Usage: 11356 KB (Peak: 11356 KB)
-Simulation CPU Usage: 30 ms

@@ -1,9 +1,6 @@
 # compile verilog/system verilog design source files
-verilog blk_mem_gen_v8_4_7  \
-"../../../../project_2.ip_user_files/ipstatic/simulation/blk_mem_gen_v8_4.v" \
-
 verilog xil_defaultlib  \
-"../../../../project_2.gen/sources_1/ip/ROMc/sim/ROMc.v" \
+"../../../../project_2.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" \
 "../../../../../src/ALU.v" \
 "../../../../../01_Test/Display.v" \
 "../../../../../src/FSM.v" \
