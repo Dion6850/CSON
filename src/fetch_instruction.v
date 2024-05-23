@@ -10,7 +10,7 @@ module fetch_instruction(
     input [3:0] NZCV,
     output reg [31:0] PC,
     output reg [31:0] IR,
-    output W_IR_valid
+    output W_IR_valid,
 );
 
     wire [31:0] IR_buf;
@@ -67,4 +67,10 @@ module fetch_instruction(
       .addra(PC[7:2]),  // input wire [5 : 0] addra
       .douta(IR_buf)  // output wire [31 : 0] douta
     );
+    
+    // ROMc ROM1 (
+    //     .clka(clk),    // input wire clka
+    //     .addra(PC[7:2]),  // input wire [5 : 0] addra
+    //     .douta(IR_buf)  // output wire [31 : 0] douta
+    // ); // vivado
 endmodule

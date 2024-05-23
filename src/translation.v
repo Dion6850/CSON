@@ -2,6 +2,7 @@
 
 module translation(
     input [31:0]I,
+    input rst,
     output [3:0]rd,
     output [3:0]rn,
     output [3:0]rm,
@@ -77,20 +78,24 @@ end
 
 //由指令的OP获得ALU_OP
 
-always @(OP) begin
-    case (OP)
-        TST:ALU_OP      <= 4'h0;
-        TEQ:ALU_OP      <= 4'h1;
-        CMP:ALU_OP      <= 4'h2;
-        CMN:ALU_OP      <= 4'h4;
-        default :ALU_OP <= OP;
-    endcase
+always @(OP or rst) begin
+    if(rst)
+        ALU_OP <= 0;
+    else begin
+        case (OP)
+            TST:ALU_OP      <= 4'h0;
+            TEQ:ALU_OP      <= 4'h1;
+            CMP:ALU_OP      <= 4'h2;
+            CMN:ALU_OP      <= 4'h4;
+            default :ALU_OP <= OP;
+        endcase
+    end
 end
 //v_type存在于DP0，DP1中，控制移位方式
 assign SHIFT_OP = (DPx[2])?3'b111:{v_type,DPx[1]};
 assign rm_imm_s = DPx[2];
 
-assign rs_imm_s = {DPx>>1}[1:0]; //equal to the following code
+assign rs_imm_s = DPx[2:1]; //equal to the following code
 
 // always@(*) begin
 //     case(DPx)

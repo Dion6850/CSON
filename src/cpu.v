@@ -1,23 +1,32 @@
 `timescale 1ns / 1ps
 // verilator lint_off WIDTHTRUNC
 module cpu(input clk,
-           input rst);
+           input rst,
+           output [31:0]IR,         //指令码
+           output write_pc,
+           output write_ir,
+           output write_reg,
+           output reg [31:0] A,
+           output reg [31:0] B,
+           output reg [31:0] C,
+           output reg [31:0] F,
+           output [31:0] PC,
+           output reg [3:0] NZCV,
+           output rm_imm_s_ctrl,
+           output [1:0] rs_imm_s_ctrl,
+           output [3:0] ALU_OP_ctrl,
+           output [2:0] Shift_OP_ctrl
+           );
     
     wire [31:0]Shift_out,Shift_Data;
     wire [7:0]Shift_Num;
-    wire [2:0]Shift_OP_ctrl;
     wire Shift_carry_out; // shifter
 
-    reg [31:0]A,B,C,F;
-    reg [3:0]NZCV;
     wire [31:0]Fout;
     wire [3:0]NZCVout;
-    wire [3:0]ALU_OP_ctrl;
     wire S_ctrl; // ALU
     
     wire W_IR_valid;
-    wire [31:0]PC;
-    wire [31:0]IR; // fetch_instruction
 
     wire [4:0]imm5;
     wire [11:0]imm12;
@@ -28,9 +37,6 @@ module cpu(input clk,
     wire LA,LB,LC,LF;
     wire [1:0] pc_s;
     wire ALU_A_s,ALU_B_s,rd_s;
-    wire write_pc,write_ir,write_reg;
-    wire rm_imm_s_ctrl;
-    wire [1:0]rs_imm_s_ctrl; //controller-AM output
 
     wire [31:0]r_data_a,r_data_b,r_data_c; //registers
 
@@ -105,8 +111,9 @@ module cpu(input clk,
     wire [7:0]gen1;
     assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12为32位
     assign gen1       = (rs_imm_s_ctrl[0])? C[7:0] : {{3{1'b0}},imm5}; // 01 10
-    assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}[4:0]} : gen1; //拓展imm5 
-    
+    assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}[4:0]} : gen1; //拓展imm5 varilator 
+    // assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}} : gen1; //拓展imm5 //vivado
+
     barrelshifter32  barrelshifter32_inst (
         .Shift_Data(Shift_Data),
         .Shift_Num(Shift_Num),
@@ -135,12 +142,21 @@ module cpu(input clk,
         .NZCV(NZCVout)
       );
 
-    always @(negedge clk) begin
+    always @(negedge clk or posedge rst) begin
+      if(rst)begin
+        A <= 0;
+        B <= 0;
+        C <= 0;
+        F <= 0;
+        NZCV <= 0;
+        end
+      else begin
         if (LA) A <= r_data_a;
         if (LB) B <= r_data_b;
         if (LC) C <= r_data_c;
         if (LF) F <= Fout;
         if (S_ctrl) NZCV <= NZCVout;
+      end
     end
 
 initial begin
