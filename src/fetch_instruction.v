@@ -10,8 +10,8 @@ module fetch_instruction(
     input [3:0] NZCV,
     output reg [31:0] PC,
     output reg [31:0] IR,
-    output W_IR_valid,
-);
+    output W_IR_valid   
+    );
 
     wire [31:0] IR_buf;
     reg cond;
