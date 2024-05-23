@@ -33,26 +33,24 @@ module ALU (
     end
     
 
-    always @(S or F or Cout or shiftCout or V or A or B) begin
-        if(S==1)begin
-            case(ALU_OP)
-                4'h0,4'h1,4'hC,4'hE,4'hF,4'h8,4'hD:
-                begin
-                    NZCV[fC] <= shiftCout;
-                    NZCV[fV] <= V;
-                end
-                4'h2,4'h3,4'h4,4'h5,4'h6,4'h7,4'hA:
-                begin
-                    NZCV[fC] <= Cout;
-                    NZCV[fV] <= A[31]^B[31]^F[31]^Cout;
-                end
-                default: begin
-                    NZCV[fC] <= 0;
-                    NZCV[fV] <= 0;
-                end
-            endcase
-        NZCV[fN] <= F[31];
-        NZCV[fZ] <= (F == 32'h0)? 1'b1:1'b0;
-        end
+    always @(F or Cout or shiftCout or V or A or B) begin
+        case(ALU_OP)
+            4'h0,4'h1,4'hC,4'hE,4'hF,4'h8,4'hD:
+            begin
+                NZCV[fC] <= shiftCout;
+                NZCV[fV] <= V;
+            end
+            4'h2,4'h3,4'h4,4'h5,4'h6,4'h7,4'hA:
+            begin
+                NZCV[fC] <= Cout;
+                NZCV[fV] <= A[31]^B[31]^F[31]^Cout;
+            end
+            default: begin
+                NZCV[fC] <= 0;
+                NZCV[fV] <= 0;
+            end
+        endcase
+    NZCV[fN] <= F[31];
+    NZCV[fZ] <= (F == 32'h0)? 1'b1:1'b0;
     end
 endmodule
