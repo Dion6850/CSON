@@ -36,20 +36,30 @@ module cpu(input clk,
 
     wire LA,LB,LC,LF;
     wire [1:0] pc_s;
-    wire ALU_A_s,ALU_B_s,rd_s;
+    wire ALU_A_s;
+    wire [1:0]ALU_B_s;
+    wire [1:0]rd_s;
+    wire reg_c_s,mem_w_s,mem_write;
+    wire [1:0]w_rdata_s;
 
     wire [31:0]r_data_a,r_data_b,r_data_c; //registers
 
     reg [4:0] M = 5'b10000;
     wire [31:0] pc_data;
     
+    wire [31:0]m_w_data;
+    wire [31:0]m_r_data;
+
+    wire [31:0]pc_f_out;
+    assign pc_f_out = w_rdata_s[1]?m_r_data:F;
+
     fetch_instruction  fetch_instruction_inst (
     .clk(clk),
     .rst(rst),
     .write_ir(write_ir),
     .write_pc(write_pc),
     .pc_s(pc_s),
-    .pc_f_out(F),
+    .pc_f_out(pc_f_out), //mem related -> reference memory
     .pc_b_out(B),
     .PC(PC),
     .NZCV(NZCV),
@@ -81,6 +91,10 @@ module cpu(input clk,
     .ALU_A_s(ALU_A_s),
     .ALU_B_s(ALU_B_s),
     .rd_s(rd_s),
+    .reg_c_s(reg_c_s),
+    .mem_w_s(mem_w_s),
+    .mem_write(mem_write),
+    .w_rdata_s(w_rdata_s),
     .S_ctrl(S_ctrl),
     .rm_imm_s_ctrl(rm_imm_s_ctrl),
     .rs_imm_s_ctrl(rs_imm_s_ctrl),
@@ -89,12 +103,14 @@ module cpu(input clk,
     );
     
     wire [3:0]registers_write_addr;
-    assign registers_write_addr = rd_s?4'd14:rd;
+    wire [3:0]registers_readaddr_c;
+    assign registers_write_addr = rd_s[0]?4'd14:(rd_s[1]?rn:rd);
+    assign registers_readaddr_c = reg_c_s?rd:rs;
 
     registers  registers_inst (
     .r_addr_a(rn),
     .r_addr_b(rm),
-    .r_addr_c(rs),
+    .r_addr_c(registers_readaddr_c),
     .w_addr(registers_write_addr),
     .w_data(F),
     .write_reg(write_reg),
@@ -127,7 +143,7 @@ module cpu(input clk,
     wire [31:0]Binput;
 
     assign Ainput = ALU_A_s?PC:A;
-    assign Binput = ALU_B_s?{{6{imm24[23]}},{imm24},{2'b0}}:Shift_out;
+    assign Binput = ALU_B_s[0]?{{6{imm24[23]}},{imm24},{2'b0}}:(ALU_B_s[1]?{20'b0,imm12}:Shift_out);
     // assign Binput = ALU_B_s?{6'b0,{imm24<<2},{2'b0}}:Shift_out;
 
     ALU  ALU_inst (
@@ -140,6 +156,15 @@ module cpu(input clk,
         .V(NZCV[0]),
         .F(Fout),
         .NZCV(NZCVout)
+      );
+
+    assign m_w_data = mem_w_s?C:B;
+    memory  memory_inst (
+        .clk(clk),
+        .mem_write(mem_write),
+        .m_addr(F),
+        .m_w_data(m_w_data),
+        .m_r_data(m_r_data)
       );
 
     always @(negedge clk or posedge rst) begin
