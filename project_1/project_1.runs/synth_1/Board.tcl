@@ -70,8 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 5
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tfgg484-2L
 
@@ -89,7 +87,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 add_files E:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/Test_Men.coe
-add_files e:/VivadoProject/CSON/project_1/project_1.srcs/test10_new.coe
+add_files E:/VivadoProject/CSON/project_1/project_1.srcs/test10_new.coe
 read_verilog -library xil_defaultlib {
   E:/VivadoProject/CSON/src/ALU.v
   E:/VivadoProject/CSON/01_Test/Display.v
@@ -102,7 +100,7 @@ read_verilog -library xil_defaultlib {
   E:/VivadoProject/CSON/src/translation.v
   E:/VivadoProject/CSON/01_Test/Board.v
 }
-read_ip -quiet e:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+read_ip -quiet E:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
 set_property used_in_implementation false [get_files -all e:/VivadoProject/CSON/project_1/project_1.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }

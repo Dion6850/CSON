@@ -2,7 +2,7 @@
 module controller (
     input clk,
     input rst,
-    input [31:0]I,
+    input [31:0] I,
     input W_IR_valid,
 
     output [3:0]rd,

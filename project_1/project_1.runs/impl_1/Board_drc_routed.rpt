@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed May 29 15:34:54 2024
+| Date         : Wed May 29 21:34:23 2024
 | Host         : LAPTOP-8VTJ1KHT running 64-bit major release  (build 9200)
 | Command      : report_drc -file Board_drc_routed.rpt -pb Board_drc_routed.pb -rpx Board_drc_routed.rpx
 | Design       : Board
@@ -52,12 +52,12 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net cpu_inst/controller_inst/FSM_inst/ALU_OP_ctrl_reg[0]_0 is a gated clock net sourced by a combinational pin cpu_inst/controller_inst/FSM_inst/Cout_reg_i_2/O, cell cpu_inst/controller_inst/FSM_inst/Cout_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net cpu_inst/controller_inst/FSM_inst/ALU_OP_ctrl_reg[1]_0 is a gated clock net sourced by a combinational pin cpu_inst/controller_inst/FSM_inst/Cout_reg_i_2/O, cell cpu_inst/controller_inst/FSM_inst/Cout_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net cpu_inst/controller_inst/FSM_inst/Shift_OP_ctrl_reg[2]_0 is a gated clock net sourced by a combinational pin cpu_inst/controller_inst/FSM_inst/Shift_carry_out_reg_i_2/O, cell cpu_inst/controller_inst/FSM_inst/Shift_carry_out_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net cpu_inst/controller_inst/FSM_inst/Shift_OP_ctrl_reg[2]_1 is a gated clock net sourced by a combinational pin cpu_inst/controller_inst/FSM_inst/Shift_carry_out_reg_i_2/O, cell cpu_inst/controller_inst/FSM_inst/Shift_carry_out_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLCK-12#1 Warning

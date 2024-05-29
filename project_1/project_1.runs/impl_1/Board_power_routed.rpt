@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Wed May 29 15:34:56 2024
+| Date             : Wed May 29 21:34:25 2024
 | Host             : LAPTOP-8VTJ1KHT running 64-bit major release  (build 9200)
 | Command          : report_power -file Board_power_routed.rpt -pb Board_power_summary_routed.pb -rpx Board_power_routed.rpx
 | Design           : Board
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 21.917       |
+| Total On-Chip Power (W)  | 26.787       |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 21.660       |
-| Device Static (W)        | 0.257        |
+| Dynamic (W)              | 26.421       |
+| Device Static (W)        | 0.366        |
 | Effective TJA (C/W)      | 2.7          |
-| Max Ambient (C)          | 41.4         |
-| Junction Temperature (C) | 83.6         |
+| Max Ambient (C)          | 28.3         |
+| Junction Temperature (C) | 96.7         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,18 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     4.721 |     2330 |       --- |             --- |
-|   LUT as Logic |     4.147 |     1054 |     63400 |            1.66 |
-|   CARRY4       |     0.418 |       75 |     15850 |            0.47 |
+| Slice Logic    |     6.891 |     3049 |       --- |             --- |
+|   LUT as Logic |     6.226 |     1622 |     63400 |            2.56 |
+|   CARRY4       |     0.415 |       75 |     15850 |            0.47 |
+|   F7/F8 Muxes  |     0.131 |      344 |     63400 |            0.54 |
 |   BUFG         |     0.064 |        4 |        32 |           12.50 |
-|   Register     |     0.048 |      740 |    126800 |            0.58 |
-|   F7/F8 Muxes  |     0.044 |      288 |     63400 |            0.45 |
+|   Register     |     0.056 |      742 |    126800 |            0.59 |
 |   Others       |     0.000 |       16 |       --- |             --- |
-| Signals        |     6.474 |     1577 |       --- |             --- |
+| Signals        |     8.607 |     2162 |       --- |             --- |
 | Block RAM      |     1.022 |      0.5 |       135 |            0.37 |
-| I/O            |     9.443 |       48 |       285 |           16.84 |
-| Static Power   |     0.257 |          |           |                 |
-| Total          |    21.917 |          |           |                 |
+| I/O            |     9.901 |       48 |       285 |           16.84 |
+| Static Power   |     0.366 |          |           |                 |
+| Total          |    26.787 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,16 +73,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |    12.299 |      12.152 |      0.147 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.807 |       0.772 |      0.035 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |    16.687 |      16.455 |      0.232 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.856 |       0.810 |      0.047 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18    |       1.800 |     4.471 |       4.467 |      0.004 |       NA    | Unspecified | NA         |
+| Vcco18    |       1.800 |     4.688 |       4.684 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.081 |       0.077 |      0.004 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.084 |       0.077 |      0.007 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -140,15 +140,15 @@ Table of Contents
 +----------------------------+-----------+
 | Name                       | Power (W) |
 +----------------------------+-----------+
-| Board                      |    21.660 |
-|   Display_Instance         |     0.074 |
-|   cpu_inst                 |    10.890 |
-|     ALU_inst               |     1.735 |
-|     controller_inst        |     4.530 |
-|       FSM_inst             |     4.530 |
-|     fetch_instruction_inst |     3.939 |
-|       ROM1                 |     1.251 |
-|     registers_inst         |     0.419 |
+| Board                      |    26.421 |
+|   Display_Instance         |     0.085 |
+|   cpu_inst                 |    15.259 |
+|     ALU_inst               |     1.981 |
+|     controller_inst        |     6.082 |
+|       FSM_inst             |     6.082 |
+|     fetch_instruction_inst |     6.154 |
+|       ROM1                 |     1.221 |
+|     registers_inst         |     0.604 |
 +----------------------------+-----------+
 
 

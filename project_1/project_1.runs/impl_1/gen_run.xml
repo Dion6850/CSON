@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tfgg484-2L" LaunchTime="1716967941">
+<GenRun Id="impl_1" LaunchPart="xc7a100tfgg484-2L" LaunchTime="1716989557">
   <File Type="ROUTE-PWR" Name="Board_power_routed.rpt"/>
   <File Type="PA-TCL" Name="Board.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="Board_power_summary_routed.pb"/>
@@ -207,9 +207,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
-      <Desc>Default settings for Implementation.</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
     <Step Id="init_design"/>
     <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>

@@ -4,8 +4,8 @@
 // Tool Version: Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
 // Date        : Wed May 29 15:12:00 2024
 // Host        : LAPTOP-8VTJ1KHT running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               e:/VivadoProject/CSON/project_1/project_1.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top blk_mem_gen_0 -prefix
+//               blk_mem_gen_0_ blk_mem_gen_0_stub.v
 // Design      : blk_mem_gen_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tfgg484-2L

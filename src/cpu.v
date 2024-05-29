@@ -2,7 +2,7 @@
 // verilator lint_off WIDTHTRUNC
 module cpu(input clk,
            input rst,
-           output [31:0]IR,         //指令码
+           output [31:0]IR,         //指令�?
            output write_pc,
            output write_ir,
            output write_reg,
@@ -25,7 +25,7 @@ module cpu(input clk,
            output ALU_B_s
            );
     
-    wire Shift_Data;
+    wire [31:0] Shift_Data;
     wire [7:0]Shift_Num;
     wire Shift_carry_out; // shifter
 
@@ -115,7 +115,7 @@ module cpu(input clk,
     );
 
     wire [7:0]gen1;
-    assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12�?32�?
+    assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12�??32�??
     assign gen1       = (rs_imm_s_ctrl[0])? C[7:0] : {{3{1'b0}},imm5}; // 01 10
     // assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}[4:0]} : gen1; //拓展imm5 varilator 
     assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}} : gen1; //拓展imm5 //vivado
@@ -148,7 +148,7 @@ module cpu(input clk,
         .NZCV(NZCVout)
       );
 
-    always @(negedge clk or posedge rst) begin
+    always @(posedge clk or posedge rst) begin
       if(rst)begin
         A <= 0;
         B <= 0;
