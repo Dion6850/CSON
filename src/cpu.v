@@ -168,7 +168,7 @@ module cpu(input clk,
         .m_r_data(m_r_data)
       );
 
-    always @(negedge clk or posedge rst) begin
+    always @(posedge clk or posedge rst) begin
       if(rst)begin
         A <= 0;
         B <= 0;
