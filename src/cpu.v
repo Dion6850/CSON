@@ -60,7 +60,6 @@ module cpu(input clk,
     .pc_b_out(B),
     .PC(PC),
     .NZCV(NZCV),
-    .PC(PC),
     .IR(IR),
     .W_IR_valid(W_IR_valid)
     );
@@ -118,8 +117,8 @@ module cpu(input clk,
     wire [7:0]gen1;
     assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12�?32�?
     assign gen1       = (rs_imm_s_ctrl[0])? C[7:0] : {{3{1'b0}},imm5}; // 01 10
-    assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}[4:0]} : gen1; //拓展imm5 varilator 
-    // assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}} : gen1; //拓展imm5 //vivado
+    // assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}[4:0]} : gen1; //拓展imm5 varilator 
+    assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}} : gen1; //拓展imm5 //vivado
 
     barrelshifter32  barrelshifter32_inst (
         .Shift_Data(Shift_Data),
@@ -156,6 +155,7 @@ module cpu(input clk,
         C <= 0;
         F <= 0;
         NZCV <= 0;
+        
         end
       else begin
         if (LA) A <= r_data_a;

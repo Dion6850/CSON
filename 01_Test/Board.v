@@ -410,7 +410,7 @@ module Board(sw, swb, led, clk, which, seg, enable);
             3'b011:datatube[31:0]<=B;
             3'b100:datatube[31:0]<=C;
             3'b101:datatube[31:0]<=F;
-            3'b110:datatube[31:0]<=Shift_Out;
+            3'b110:datatube[31:0]<=Shift_out;
             3'b111:datatube[31:0]<=W_data;
             3'b000:datatube[31:0]<=32'b10001000100010001000100010001000;
         endcase
@@ -437,7 +437,7 @@ module Board(sw, swb, led, clk, which, seg, enable);
         .registers_write_addr(registers_write_addr),
         .pc_s(pc_s),
         .rd_s(rd_s),
-        .ALUL_A_s(ALU_A_s),
+        .ALU_A_s(ALU_A_s),
         .ALU_B_s(ALU_B_s)
     );
 

@@ -3,7 +3,6 @@
 module translation(
     input [31:0]I,
     input rst,
-    input rst,
     output [3:0]rd,
     output [3:0]rn,
     output [3:0]rm,

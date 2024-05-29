@@ -1,0 +1,16 @@
+0.7
+2020.2
+May  7 2023
+15:24:31
+E:/VivadoProject/CSON/01_Test/Board.v,1716964328,verilog,,,,Board,,,,,,,,
+E:/VivadoProject/CSON/01_Test/Display.v,1716959893,verilog,,E:/VivadoProject/CSON/src/FSM.v,,Display,,,,,,,,
+E:/VivadoProject/CSON/project_1/project_1.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v,1716963545,verilog,,E:/VivadoProject/CSON/src/ALU.v,,blk_mem_gen_0,,,,,,,,
+E:/VivadoProject/CSON/project_1/project_1.sim/sim_1/behav/xsim/glbl.v,1716959893,verilog,,,,glbl,,,,,,,,
+E:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/new/barrelshifter.v,1716959893,verilog,,E:/VivadoProject/CSON/src/controller.v,,barrelshifter32,,,,,,,,
+E:/VivadoProject/CSON/src/ALU.v,1716959914,verilog,,E:/VivadoProject/CSON/01_Test/Display.v,,ALU,,,,,,,,
+E:/VivadoProject/CSON/src/FSM.v,1716962915,verilog,,E:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/new/barrelshifter.v,,FSM,,,,,,,,
+E:/VivadoProject/CSON/src/controller.v,1716964183,verilog,,E:/VivadoProject/CSON/src/cpu.v,,controller,,,,,,,,
+E:/VivadoProject/CSON/src/cpu.v,1716964048,verilog,,E:/VivadoProject/CSON/src/fetch_instruction.v,,cpu,,,,,,,,
+E:/VivadoProject/CSON/src/fetch_instruction.v,1716963824,verilog,,E:/VivadoProject/CSON/src/registers.v,,fetch_instruction,,,,,,,,
+E:/VivadoProject/CSON/src/registers.v,1716959895,verilog,,E:/VivadoProject/CSON/src/translation.v,,registers,,,,,,,,
+E:/VivadoProject/CSON/src/translation.v,1716963901,verilog,,E:/VivadoProject/CSON/01_Test/Board.v,,translation,,,,,,,,

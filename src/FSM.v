@@ -93,6 +93,10 @@ module FSM(input clk,
             rs_imm_s_ctrl <= 2'b0;
             Shift_OP_ctrl <= 3'b0;
             ALU_OP_ctrl <= 4'b0;
+            pc_s<=0;        // add
+            ALU_A_s<=0;     // add
+            ALU_B_s<=0;     // add
+            rd_s<=0;        // add
         end
         else begin
             case (Next_ST)
