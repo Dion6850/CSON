@@ -90,12 +90,19 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 add_files /home/zhywyt/CSON/01_Test/01_Test.srcs/sources_1/Test_Men.coe
 read_verilog -library xil_defaultlib {
+  /home/zhywyt/CSON/src/ALU.v
   /home/zhywyt/CSON/01_Test/Display.v
+  /home/zhywyt/CSON/src/FSM.v
+  /home/zhywyt/CSON/01_Test/01_Test.srcs/sources_1/new/barrelshifter.v
+  /home/zhywyt/CSON/src/controller.v
+  /home/zhywyt/CSON/src/cpu.v
   /home/zhywyt/CSON/src/fetch_instruction.v
+  /home/zhywyt/CSON/src/registers.v
+  /home/zhywyt/CSON/src/translation.v
   /home/zhywyt/CSON/01_Test/Board.v
 }
-read_ip -quiet /home/zhywyt/CSON/01_Test/01_Test.srcs/sources_1/ip/fetch_instruction_ROM/fetch_instruction_ROM.xci
-set_property used_in_implementation false [get_files -all /home/zhywyt/CSON/01_Test/01_Test.gen/sources_1/ip/fetch_instruction_ROM/fetch_instruction_ROM_ooc.xdc]
+read_ip -quiet /home/zhywyt/CSON/01_Test/01_Test.srcs/sources_1/ip/ROMc/ROMc.xci
+set_property used_in_implementation false [get_files -all /home/zhywyt/CSON/01_Test/01_Test.gen/sources_1/ip/ROMc/ROMc_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

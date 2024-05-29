@@ -15,10 +15,17 @@ module cpu(input clk,
            output rm_imm_s_ctrl,
            output [1:0] rs_imm_s_ctrl,
            output [3:0] ALU_OP_ctrl,
-           output [2:0] Shift_OP_ctrl
+           output [2:0] Shift_OP_ctrl,
+           output [31:0]Shift_out,
+           output [31:0]W_data,
+           output [3:0]registers_write_addr,
+           output [1:0] pc_s,
+           output rd_s,
+           output ALU_A_s,
+           output ALU_B_s
            );
     
-    wire [31:0]Shift_out,Shift_Data;
+    wire Shift_Data;
     wire [7:0]Shift_Num;
     wire Shift_carry_out; // shifter
 
@@ -35,8 +42,8 @@ module cpu(input clk,
     wire [3:0]rd,rn,rm,rs; // controller-translate output
 
     wire LA,LB,LC,LF;
-    wire [1:0] pc_s;
-    wire ALU_A_s,ALU_B_s,rd_s;
+
+   
 
     wire [31:0]r_data_a,r_data_b,r_data_c; //registers
 
@@ -53,6 +60,7 @@ module cpu(input clk,
     .pc_b_out(B),
     .PC(PC),
     .NZCV(NZCV),
+    .PC(PC),
     .IR(IR),
     .W_IR_valid(W_IR_valid)
     );
@@ -88,9 +96,8 @@ module cpu(input clk,
     .ALU_OP_ctrl(ALU_OP_ctrl)
     );
     
-    wire [3:0]registers_write_addr;
     assign registers_write_addr = rd_s?4'd14:rd;
-
+    assign W_data = F;
     registers  registers_inst (
     .r_addr_a(rn),
     .r_addr_b(rm),
@@ -109,7 +116,7 @@ module cpu(input clk,
     );
 
     wire [7:0]gen1;
-    assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12为32位
+    assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12�?32�?
     assign gen1       = (rs_imm_s_ctrl[0])? C[7:0] : {{3{1'b0}},imm5}; // 01 10
     assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}[4:0]} : gen1; //拓展imm5 varilator 
     // assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}} : gen1; //拓展imm5 //vivado

@@ -83,6 +83,7 @@ module FSM(input clk,
             write_pc <= 1'b0;
             write_ir <= 1'b0;
             write_reg   <= 1'b0;
+            ALU_OP_ctrl <= 0;
             LA      <= 1'b0;
             LB      <= 1'b0;
             LC      <= 1'b0;

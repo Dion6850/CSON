@@ -36,6 +36,7 @@ module controller (
     translation translation_inst (
         .I(I),
         .rst(rst),
+        .rst(rst),
         .rd(rd),
         .rn(rn),
         .rm(rm),

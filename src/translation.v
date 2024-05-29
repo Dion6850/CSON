@@ -3,6 +3,7 @@
 module translation(
     input [31:0]I,
     input rst,
+    input rst,
     output [3:0]rd,
     output [3:0]rn,
     output [3:0]rm,
@@ -24,7 +25,7 @@ wire [3:0]OP;
 wire [2:0]OP1;
 wire [1:0]v_type;
 
-assign cond  = I[31:28]; //指令条件码
+assign cond  = I[31:28]; //指令条件�?
 assign OP1   = I[27:25];
 assign OP    = I[24:21];
 assign S     = I[20];
@@ -57,14 +58,19 @@ localparam MVN = 4'hF;
 
 wire [2:0]DPx;
 wire isf;
+
+
 //判断指令格式
 assign isf    = rd == 4'hf;
 assign DPx[0] = (I[27:25] == 3'b000)&&(I[4] == 1'b0)&& (~isf);
 assign DPx[1] = (I[27:25] == 3'b000)&&(I[4] == 1'b1)&&(I[7] == 1'b0)&& (~isf);
 assign DPx[2] = (I[27:25] == 3'b001)&&(~isf);
+assign DPx[0] = (I[27:25] == 3'b000)&&(I[4] == 1'b0)&& (~isf);
+assign DPx[1] = (I[27:25] == 3'b000)&&(I[4] == 1'b1)&&(I[7] == 1'b0)&& (~isf);
+assign DPx[2] = (I[27:25] == 3'b001)&&(~isf);
 
 always @(OP or rd or rn or S) begin
-    if (OP[3:2] == 2'b10&&S) //4条S=1的指令
+    if (OP[3:2] == 2'b10&&S) //4条S=1的指�?
         Und_Ins <= 1'b0;
     //异常返回
     else if (rd == 4'hf&&rn == 4'hE&&S == 1'b1&&(OP == MOV||OP == SUB))
@@ -95,6 +101,7 @@ end
 assign SHIFT_OP = (DPx[2])?3'b111:{v_type,DPx[1]};
 assign rm_imm_s = DPx[2];
 
+assign rs_imm_s = DPx[2:1]; //equal to the following code
 assign rs_imm_s = DPx[2:1]; //equal to the following code
 
 // always@(*) begin

@@ -1,6 +1,6 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../01_Test.gen/sources_1/ip/fetch_instruction_ROM/sim/fetch_instruction_ROM.v" \
+"../../../../01_Test.gen/sources_1/ip/ROMc/sim/ROMc.v" \
 "../../../../../src/fetch_instruction.v" \
 "../../../../../src/fetch_instruction_wrapper.v" \
 

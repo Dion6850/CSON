@@ -43,79 +43,79 @@ module Board(sw, swb, led, clk, which, seg, enable);
 //        .which(which), .seg(seg));
 
 //    ALU    
-    // wire [3:0] ALU_NZCV;
-    // reg [3:0] NZCV;
-    // wire [31:0] F;
-    // wire N,Z,C,V,S;
-    // wire Shift_carry_out;
-    // reg [31:0] A;
-    // reg [31:0] Shift_Data;
-    // reg [7:0] Shift_Num;
-    // reg Carry_flag;
-    // reg [2:0] SHIFT_OP;
-    // reg [3:0] ALU_OP;
-    // wire [31:0] Shift_out; 
-    // reg [31:0] datatube;
-    // assign S = swb[4];
-    // assign  led[1:4] = NZCV[3:0];
+//     wire [3:0] ALU_NZCV;
+//     reg [3:0] NZCV;
+//     wire [31:0] F;
+//     wire N,Z,C,V,S;
+//     wire Shift_carry_out;
+//     reg [31:0] A;
+//     reg [31:0] Shift_Data;
+//     reg [7:0] Shift_Num;
+//     reg Carry_flag;
+//     reg [2:0] SHIFT_OP;
+//     reg [3:0] ALU_OP;
+//     wire [31:0] Shift_out; 
+//     reg [31:0] datatube;
+//     assign S = swb[4];
+//     assign  led[1:4] = NZCV[3:0];
     
-    // always@(S or swb[5])begin
-    //     if(S == 0)begin
-    //        NZCV <= ALU_NZCV; 
-    //     end
-    //     if(swb[5] == 1)begin
-    //        NZCV <= {sw[8],sw[16],sw[24],sw[32]};
-    //     end
-    // end
+//     always@(S or swb[5])begin
+//         if(S == 0)begin
+//            NZCV <= ALU_NZCV; 
+//         end
+//         if(swb[5] == 1)begin
+//            NZCV <= {sw[8],sw[16],sw[24],sw[32]};
+//         end
+//     end
     
-    // always@(*)begin
-    //     if(swb[1] == 1'b1 && swb[6] == 1'b0)begin
-    //         datatube[31:0] <= A[31:0];
-    //     end
-    //     else if(swb[2] == 1'b1 && swb[6] == 1'b0)begin
-    //         datatube[31:0] <= Shift_Data;
-    //     end
-    //     else if(swb[3] == 1'b1 && swb[6] == 1'b0)begin
-    //         datatube[31:0] <= {ALU_OP,1'b0,SHIFT_OP,Shift_Num,3'b0,N,3'b0,Z,3'b0,C,3'b0,V};
-    //     end
-    //     else if(swb[1] == 1'b1 && swb[6] == 1'b1)begin
-    //         A[31:0] <= sw[1:32]; 
-    //     end
-    //     else if(swb[2] == 1'b1 && swb[6] == 1'b1)begin
-    //         Shift_Data <= sw[1:32];        
-    //     end
-    //     else if(swb[3] == 1'b1 && swb[6] == 1'b1)begin
-    //         ALU_OP[3:0] <= sw[1:4];
-    //         SHIFT_OP[2:0] <= sw[6:8];
-    //         Shift_Num[7:0] <= sw[9:16]; 
-    //     end
-    //     else if(swb[6] == 1'b1)begin
-    //         datatube <= F;        
-    //     end
-    // end
+//     always@(*)begin
+//         if(swb[1] == 1'b1 && swb[6] == 1'b0)begin
+//             datatube[31:0] <= A[31:0];
+//         end
+//         else if(swb[2] == 1'b1 && swb[6] == 1'b0)begin
+//             datatube[31:0] <= Shift_Data;
+//         end
+//         else if(swb[3] == 1'b1 && swb[6] == 1'b0)begin
+//             datatube[31:0] <= {ALU_OP,1'b0,SHIFT_OP,Shift_Num,3'b0,N,3'b0,Z,3'b0,C,3'b0,V};
+//         end
+//         else if(swb[1] == 1'b1 && swb[6] == 1'b1)begin
+//             A[31:0] <= sw[1:32]; 
+//         end
+//         else if(swb[2] == 1'b1 && swb[6] == 1'b1)begin
+//             Shift_Data <= sw[1:32];        
+//         end
+//         else if(swb[3] == 1'b1 && swb[6] == 1'b1)begin
+//             ALU_OP[3:0] <= sw[1:4];
+//             SHIFT_OP[2:0] <= sw[6:8];
+//             Shift_Num[7:0] <= sw[9:16]; 
+//         end
+//         else if(swb[6] == 1'b1)begin
+//             datatube <= F;        
+//         end
+//     end
     
-    // barrelshifter32 BB2(
-    //     .Shift_Data(Shift_Data),
-    //     .Shift_Num(Shift_Num),
-    //     .Carry_flag(NZCV[1]),
-    //     .SHIFT_OP(SHIFT_OP),
-    //     .Shift_out(Shift_out),
-    //     .Shift_carry_out(Shift_carry_out)
-    // );
+//     barrelshifter32 BB2(
+//         .Shift_Data(Shift_Data),
+//         .Shift_Num(Shift_Num),
+//         .Carry_flag(NZCV[1]),
+//         .SHIFT_OP(SHIFT_OP),
+//         .Shift_out(Shift_out),
+//         .Shift_carry_out(Shift_carry_out)
+//     );
     
-    // ALU A2(
-    //     .A(A),
-    //     .B(Shift_out),
-    //     .ALU_OP(ALU_OP),
-    //     .shiftCout(Shift_carry_out),
-    //     .C(NZCV[1]),
-    //     .V(NZCV[0]),
-    //     .F(F),
-    //     .NZCV(ALU_NZCV)
-    // );
+//     ALU A2(
+//         .A(A),
+//         .B(Shift_out),
+//         .ALU_OP(ALU_OP),
+//         .shiftCout(Shift_carry_out),
+//         .C(NZCV[1]),
+//         .V(NZCV[0]),
+//         .F(F),
+//         .NZCV(ALU_NZCV)
+//     );
         
-    // Display Display_Instance(.clk(clk), .data(datatube),
-    //     .which(which), .seg(seg));
+//     Display Display_Instance(.clk(clk), .data(datatube),
+//         .which(which), .seg(seg));
 
     
 //    assign toggle = |swb; //?
@@ -227,46 +227,224 @@ module Board(sw, swb, led, clk, which, seg, enable);
 
     // Parameters
   
-    //Ports
-    wire  rst;
-    wire  write_ir;
-    wire  write_pc;
-    reg [3:0] NZCV;
-    wire [31:0] IR;
-    wire  W_IR_valid;
-    reg clk_reg;
+    // //Ports
+    // wire  rst;
+    // wire  write_ir;
+    // wire  write_pc;
+    // reg [3:0] NZCV;
+    // wire [31:0] IR;
+    // wire  W_IR_valid;
+    // reg clk_reg;
 
     
-    assign write_pc = sw[31];
-    assign write_ir = sw[32];
-    assign rst = swb[3];
-    always @(posedge swb[4]) begin
-        clk_reg<=~clk_reg;
-    end
-    always @(swb[5]) begin
-        NZCV<=sw[1:4];
-    end
-    assign led[1:4] = NZCV;
-    assign led[6] = clk_reg;
-    assign led[9] = W_IR_valid;
-    assign led[17] = write_pc;
-    assign led[18] = write_ir;
+    // assign write_pc = sw[31];
+    // assign write_ir = sw[32];
+    // assign rst = swb[3];
+    // always @(posedge swb[4]) begin
+    //     clk_reg<=~clk_reg;
+    // end
+    // always @(swb[5]) begin
+    //     NZCV<=sw[1:4];
+    // end
+    // assign led[1:4] = NZCV;
+    // assign led[6] = clk_reg;
+    // assign led[9] = W_IR_valid;
+    // assign led[17] = write_pc;
+    // assign led[18] = write_ir;
  
-    fetch_instruction  fetch_instruction_inst (
-      .clk(clk_reg),
-      .rst(rst),
-      .write_ir(write_ir),
-      .write_pc(write_pc),
-      .NZCV(NZCV),
-      .IR(IR),
-      .W_IR_valid(W_IR_valid)
-    );
+    // fetch_instruction  fetch_instruction_inst (
+    //   .clk(clk_reg),
+    //   .rst(rst),
+    //   .write_ir(write_ir),
+    //   .write_pc(write_pc),
+    //   .NZCV(NZCV),
+    //   .IR(IR),
+    //   .W_IR_valid(W_IR_valid)
+    // );
     
-    Display Display_Instance(
-        .clk(clk), 
-        .data(IR),
-        .which(which),
-        .seg(seg));
+    // Display Display_Instance(
+    //     .clk(clk), 
+    //     .data(IR),
+    //     .which(which),
+    //     .seg(seg));
 
-    always #5 clk_reg = ~clk_reg;
-endmodule //
+    // always #5 clk_reg = ~clk_reg;
+
+//cpu1
+    //Ports
+    // reg  clk_reg;
+    // wire  rst;
+    // wire  [31:0] IR;
+    // wire  write_pc;
+    // wire  write_ir;
+    // wire  write_reg;
+    // wire  [31:0] A;
+    // wire  [31:0] B;
+    // wire  [31:0] C;
+    // wire  [31:0] F;
+    // wire  [31:0] PC;
+    // wire  [3:0] NZCV;
+    // wire  rm_imm_s_ctrl;
+    // wire  [1:0] rs_imm_s_ctrl;
+    // wire  [3:0] ALU_OP_ctrl;
+    // wire  [2:0] Shift_OP_ctrl;
+
+    // reg [3:0]swb6_c;
+    // reg [31:0] datatube;
+    // //led
+    // assign led[1:3] = swb6_c;
+    // assign led[4] = rst;
+    // assign led[5] = clk_reg;
+    // assign led[17:24] = PC[7:0];
+    // assign led[25:32] = {NZCV,ALU_OP_ctrl};
+
+
+    // assign rst = swb[1];
+    // always @(posedge swb[2]) begin
+    //     clk_reg = ~clk_reg;
+    // end
+    
+    // always@(posedge swb[6])begin
+    //     if(swb6_c < 6)begin
+    //         swb6_c <= swb6_c+1;        
+    //     end
+    //     else begin
+    //         swb6_c<=0;
+    //     end
+    // end
+    // always @(*) begin
+    //     case(swb6_c)
+    //         3'b001:datatube[31:0]<=IR;
+    //         3'b010:datatube[31:0]<=A;
+    //         3'b011:datatube[31:0]<=B;
+    //         3'b100:datatube[31:0]<=C;
+    //         3'b101:datatube[31:0]<=F;
+    //         3'b110:datatube[31:0]<={3'b000,write_pc,3'b000,write_ir,3'b000,write_reg,3'b000,rm_imm_s_ctrl,2'b00,rs_imm_s_ctrl,1'b0,Shift_OP_ctrl,0};
+    //         3'b000:datatube[31:0]<=32'b10001000100010001000100010001000;
+    //     endcase
+    // end
+    // cpu  cpu_inst (
+    //   .clk(clk_reg),
+    //   .rst(rst),
+    //   .IR(IR),
+    //   .write_pc(write_pc),
+    //   .write_ir(write_ir),
+    //   .write_reg(write_reg),
+    //   .A(A),
+    //   .B(B),
+    //   .C(C),
+    //   .F(F),
+    //   .PC(PC),
+    //   .NZCV(NZCV),
+    //   .rm_imm_s_ctrl(rm_imm_s_ctrl),
+    //   .rs_imm_s_ctrl(rs_imm_s_ctrl),
+    //   .ALU_OP_ctrl(ALU_OP_ctrl),
+    //   .Shift_OP_ctrl(Shift_OP_ctrl)
+    // );
+
+    // Display Display_Instance(
+    // .clk(clk), 
+    // .data(datatube),
+    // .which(which),
+    // .seg(seg));
+
+
+    //cpu2
+
+    reg  clk_reg;
+    wire  rst;
+    wire  [31:0] IR;
+    wire  write_pc;
+    wire  write_ir;
+    wire  write_reg;
+    wire  [31:0] A;
+    wire  [31:0] B;
+    wire  [31:0] C;
+    wire  [31:0] F;
+    wire  [31:0] PC;
+    wire  [3:0] NZCV;
+    wire  rm_imm_s_ctrl;
+    wire  [1:0] rs_imm_s_ctrl;
+    wire  [3:0] ALU_OP_ctrl;
+    wire  [2:0] Shift_OP_ctrl;
+    wire  [31:0]Shift_out;
+    wire  [31:0]W_data;
+    wire [3:0]registers_write_addr;
+    wire [1:0] pc_s;
+    wire rd_s;
+    wire ALU_A_s,ALU_B_s;
+    reg [3:0]swb6_c;
+    reg [31:0] datatube;
+    //led
+    assign led[1:8] = PC[7:0];
+    assign led[10] = write_pc;
+    assign led[11] = write_ir;
+    assign led[12] = write_reg;
+    assign led[13] = registers_write_addr;
+    assign led[15:16] = pc_s;
+    assign led[18:21] = NZCV;
+    assign led[22] = rm_imm_s_ctrl;
+    assign led[23:24] = rs_imm_s_ctrl;
+    assign led[25:28] = ALU_OP_ctrl;
+    assign led[30] = rd_s;
+    assign led[31] = ALU_A_s;
+    assign led[32] = ALU_B_s;
+
+    assign rst = swb[1];
+    always @(posedge swb[2]) begin
+        clk_reg = ~clk_reg;
+    end
+    
+    always@(posedge swb[6])begin
+        if(swb6_c < 7)begin
+            swb6_c <= swb6_c+1;        
+        end
+        else begin
+            swb6_c<=0;
+        end
+    end
+    always @(*) begin
+        case(swb6_c)
+            3'b001:datatube[31:0]<=IR;
+            3'b010:datatube[31:0]<=A;
+            3'b011:datatube[31:0]<=B;
+            3'b100:datatube[31:0]<=C;
+            3'b101:datatube[31:0]<=F;
+            3'b110:datatube[31:0]<=Shift_Out;
+            3'b111:datatube[31:0]<=W_data;
+            3'b000:datatube[31:0]<=32'b10001000100010001000100010001000;
+        endcase
+    end
+    cpu  cpu_inst (
+        .clk(clk_reg),
+        .rst(rst),
+        .IR(IR),
+        .write_pc(write_pc),
+        .write_ir(write_ir),
+        .write_reg(write_reg),
+        .A(A),
+        .B(B),
+        .C(C),
+        .F(F),
+        .PC(PC),
+        .NZCV(NZCV),
+        .rm_imm_s_ctrl(rm_imm_s_ctrl),
+        .rs_imm_s_ctrl(rs_imm_s_ctrl),
+        .ALU_OP_ctrl(ALU_OP_ctrl),
+        .Shift_OP_ctrl(Shift_OP_ctrl),
+        .Shift_out(Shift_out),
+        .W_data(W_data),
+        .registers_write_addr(registers_write_addr),
+        .pc_s(pc_s),
+        .rd_s(rd_s),
+        .ALUL_A_s(ALU_A_s),
+        .ALU_B_s(ALU_B_s)
+    );
+
+    Display Display_Instance(
+    .clk(clk), 
+    .data(datatube),
+    .which(which),
+    .seg(seg));
+
+endmodule
