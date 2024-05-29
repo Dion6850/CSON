@@ -18,7 +18,8 @@ module cpu(input clk,
            output [2:0] Shift_OP_ctrl
            );
     
-    wire [31:0]Shift_out,Shift_Data;
+    wire [31:0]Shift_out;
+    wire [31:0]Shift_Data;
     wire [7:0]Shift_Num;
     wire Shift_carry_out; // shifter
 
