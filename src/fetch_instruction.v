@@ -10,10 +10,11 @@ module fetch_instruction(
     input [3:0] NZCV,
     output reg [31:0] PC,
     output reg [31:0] IR,
+    output [31:0] IR_buf,
     output W_IR_valid   
     );
 
-    wire [31:0] IR_buf;
+    // wire [31:0] IR_buf;
     reg cond;
 
     always @(negedge clk or posedge rst) begin

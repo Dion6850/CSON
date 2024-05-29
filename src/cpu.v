@@ -2,7 +2,7 @@
 // verilator lint_off WIDTHTRUNC
 module cpu(input clk,
            input rst,
-           output [31:0]IR,         //指令�?
+           output [31:0]IR,         //指令�?
            output write_pc,
            output write_ir,
            output write_reg,
@@ -50,6 +50,8 @@ module cpu(input clk,
     reg [4:0] M = 5'b10000;
     wire [31:0] pc_data;
     
+
+    wire [31:0] IR_buf;
     fetch_instruction  fetch_instruction_inst (
     .clk(clk),
     .rst(rst),
@@ -61,6 +63,7 @@ module cpu(input clk,
     .PC(PC),
     .NZCV(NZCV),
     .IR(IR),
+    .IR_buf(IR_buf),
     .W_IR_valid(W_IR_valid)
     );
     
@@ -68,6 +71,7 @@ module cpu(input clk,
     .clk(clk),
     .rst(rst),
     .I(IR),
+    .IR_buf(IR_buf),
     .W_IR_valid(W_IR_valid),
     .rd(rd),
     .rn(rn),
@@ -115,7 +119,7 @@ module cpu(input clk,
     );
 
     wire [7:0]gen1;
-    assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12�??32�??
+    assign Shift_Data = (rm_imm_s_ctrl) ? {{24{1'b0}},imm12[7:0]} : B; //将第二操作数imm12�??32�??
     assign gen1       = (rs_imm_s_ctrl[0])? C[7:0] : {{3{1'b0}},imm5}; // 01 10
     // assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}[4:0]} : gen1; //拓展imm5 varilator 
     assign Shift_Num  = (rs_imm_s_ctrl[1])? {{3{1'b0}},{imm12[11:7]<<1}} : gen1; //拓展imm5 //vivado

@@ -3,6 +3,7 @@ module controller (
     input clk,
     input rst,
     input [31:0] I,
+    input [31:0] IR_buf,
     input W_IR_valid,
 
     output [3:0]rd,
@@ -63,6 +64,7 @@ module controller (
     .clk(clk),
     .rst(rst),
     .IR(I),
+    .IR_buf(IR_buf),
     .W_IR_valid(W_IR_valid),
     .rm_imm_s(rm_imm_s),
     .rs_imm_s(rs_imm_s),
