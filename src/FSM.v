@@ -42,9 +42,9 @@ module FSM(input clk,
     localparam S11  = 6'd12;
 
     wire isB,isBL,isBX;
-    assign isB = IR_buf[27:24] == 4'b1010;
+    assign isB = IR[27:24] == 4'b1010;
     assign isBL = IR_buf[27:24] == 4'b1011;
-    assign isBX = IR_buf[27:4] == 24'b0001_0010_1111_1111_1111_0001;
+    assign isBX = IR[27:4] == 24'b0001_0010_1111_1111_1111_0001;
 
     always @(posedge clk or posedge rst) begin
         if (rst)
@@ -69,7 +69,7 @@ module FSM(input clk,
         endcase
     end
     
-    //自动机设计模�?
+    //自动机设计模�??
     always @(negedge clk or posedge rst) begin
         write_pc <= 1'b0;
         write_ir <= 1'b0;
@@ -103,11 +103,11 @@ module FSM(input clk,
             case (Next_ST)
                 S0:begin
                     write_pc <= 1'b1;
-                    write_ir <= 1'b1; //为W_IR_valid�?传�?�表示当前状态可以写指令/
-                    pc_s <= 2'b0; // 取指�?,PC自增
+                    write_ir <= 1'b1; //为W_IR_valid�??传�?�表示当前状态可以写指令/
+                    pc_s <= 2'b0; // 取指�??,PC自增
                 end
                 S1:begin
-                    LA <= 1'b1; //写入ABC暂存�?
+                    LA <= 1'b1; //写入ABC暂存�??
                     LB <= 1'b1;
                     LC <= 1'b1;
                 end
@@ -126,14 +126,14 @@ module FSM(input clk,
                     write_pc <= 1'b1; //用B向PC写入，用于BX指令
                     pc_s <= 2'b01;
                 end
-                S8:begin // 用于B指令，PC+ext(imm24)->PC 先写入F�?
+                S8:begin // 用于B指令，PC+ext(imm24)->PC 先写入F�??
                     ALU_A_s <= 1'b1;
                     ALU_B_s <= 1'b1;
                     ALU_OP_ctrl <= 4'b0100;
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
                 end
-                S9:begin //从F向PC写入，继承自状�?�S8 �?要�?�虑将S8中的ALU_A_s,ALU_B_s修改回默认状�?,防止无法重置
+                S9:begin //从F向PC写入，继承自状�?�S8 �??要�?�虑将S8中的ALU_A_s,ALU_B_s修改回默认状�??,防止无法重置
                     write_pc <= 1'b1;
                     pc_s <= 2'b10;
                     ALU_A_s <= 1'b0; // 回到默认运算状�??
@@ -146,13 +146,13 @@ module FSM(input clk,
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
                 end
-                S11:begin // 子程序跳�? F->R14, PC+ext(imm24) -> F,下接S9向PC写入 
+                S11:begin // 子程序跳�?? F->R14, PC+ext(imm24) -> F,下接S9向PC写入 
                     ALU_A_s <= 1'b1;
                     ALU_B_s <= 1'b1;
                     ALU_OP_ctrl <= 4'b0100;
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
-                    rd_s <= 1'b1; // �?要在下接中返回默认模�?
+                    rd_s <= 1'b1; // �??要在下接中返回默认模�??
                     write_reg <= 1'b1; 
                 end
                 default: begin

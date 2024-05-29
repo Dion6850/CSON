@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed May 29 21:34:00 2024
+| Date         : Wed May 29 23:17:03 2024
 | Host         : LAPTOP-8VTJ1KHT running 64-bit major release  (build 9200)
 | Command      : report_drc -file Board_drc_opted.rpt -pb Board_drc_opted.pb -rpx Board_drc_opted.rpx
 | Design       : Board
@@ -73,7 +73,7 @@ Related violations: <none>
 
 RBOR-1#1 Warning
 RAMB output registers  
-RAMB cpu_inst/fetch_instruction_inst/ROM1/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.WIDE_PRIM18.ram output DOA (16) DOB (12) is connected to asynchronous registers, if you use synchronous controls you will get better results both in area and delay (RAMB has synchronous registers built in).
+RAMB cpu_inst/fetch_instruction_inst/ROM1/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.WIDE_PRIM18.ram output DOA (16) DOB (8) is connected to asynchronous registers, if you use synchronous controls you will get better results both in area and delay (RAMB has synchronous registers built in).
 Related violations: <none>
 
 REQP-1840#1 Warning

@@ -26,7 +26,7 @@ module registers(
     reg clk_reg;
     
     integer i;
-    always @(negedge clk) begin //write
+    always @(posedge clk) begin //write
         if(rst == 1) begin
             for(i = 0;i <= 14;i = i + 1) begin
                 r_base[i] <= 32'b0;

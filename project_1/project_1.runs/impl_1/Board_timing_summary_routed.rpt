@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed May 29 21:34:25 2024
+| Date         : Wed May 29 23:17:28 2024
 | Host         : LAPTOP-8VTJ1KHT running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file Board_timing_summary_routed.rpt -pb Board_timing_summary_routed.pb -rpx Board_timing_summary_routed.rpx -warn_on_violation
 | Design       : Board
