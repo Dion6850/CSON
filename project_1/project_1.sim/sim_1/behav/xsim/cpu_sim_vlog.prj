@@ -2,7 +2,6 @@
 verilog xil_defaultlib  \
 "../../../../project_1.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" \
 "../../../../../src/ALU.v" \
-"../../../../../01_Test/Display.v" \
 "../../../../../src/FSM.v" \
 "../../../../project_1.srcs/sources_1/new/barrelshifter.v" \
 "../../../../../src/controller.v" \
@@ -10,7 +9,7 @@ verilog xil_defaultlib  \
 "../../../../../src/fetch_instruction.v" \
 "../../../../../src/registers.v" \
 "../../../../../src/translation.v" \
-"../../../../../01_Test/Board.v" \
+"../../../../project_1.srcs/sim_1/new/cpu_sim.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

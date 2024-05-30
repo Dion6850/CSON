@@ -1,7 +1,7 @@
 Vivado Simulator v2023.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: E:/FPGA/Vivado/2023.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L blk_mem_gen_v8_4_6 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot Board_behav xil_defaultlib.Board xil_defaultlib.glbl -log elaborate.log 
+Running: E:/FPGA/Vivado/2023.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L blk_mem_gen_v8_4_6 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot cpu_sim_behav xil_defaultlib.cpu_sim xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -22,7 +22,6 @@ Compiling module xil_defaultlib.registers
 Compiling module xil_defaultlib.barrelshifter32
 Compiling module xil_defaultlib.ALU
 Compiling module xil_defaultlib.cpu
-Compiling module xil_defaultlib.Display
-Compiling module xil_defaultlib.Board
+Compiling module xil_defaultlib.cpu_sim
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot Board_behav
+Built simulation snapshot cpu_sim_behav
