@@ -227,7 +227,7 @@ module FSM(input clk,
                         ALU_OP_ctrl <= 4'b1000;
                     end
                     else begin
-                        ALU_B_s <= 2'b10;
+                        ALU_B_s <= 2'b00;
                         ALU_OP_ctrl <= U?4'b0100:4'b0010;
                         if(command[LDR1] || command[STR1])begin
                             Shift_OP_ctrl <= {v_type,1'b0};
@@ -262,7 +262,7 @@ module FSM(input clk,
                     end
                 end
                 S14:begin
-                    if(W == 1 && P == 0)begin
+                    if(W == 1 || P == 0)begin
                         w_rdata_s <= 2'b00;
                         rd_s <= 2'b10;
                         write_reg <= 1'b1;
