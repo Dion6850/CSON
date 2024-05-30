@@ -17,7 +17,7 @@ module translation(
         output U,
         output W,
         output [1:0]v_type,
-        output command[0:63],
+        output [63:0] command,
         output TTCC,
         output [4:0]imm5,
         output [11:0]imm12,

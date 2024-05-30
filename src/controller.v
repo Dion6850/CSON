@@ -68,7 +68,7 @@ module controller (
     wire [1:0]v_type;
     wire rm_imm_s;
     wire TTCC;
-    wire command[0:63];
+    wire [63:0] command;
 
     FSM  FSM_inst (
       .clk(clk),
