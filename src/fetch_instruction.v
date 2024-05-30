@@ -16,7 +16,7 @@ module fetch_instruction(
     wire [31:0] IR_buf;
     reg cond;
 
-    always @(negedge clk or posedge rst) begin
+    always @(posedge clk or posedge rst) begin
         if (rst) PC <= 32'h0;
         else if (write_pc) begin
             case (pc_s)
@@ -57,7 +57,7 @@ module fetch_instruction(
 
     assign W_IR_valid = cond;
 
-    always @(negedge clk or posedge rst) begin
+    always @(posedge clk or posedge rst) begin
         if (rst) IR <= 32'h0;
         else if (W_IR_valid & write_ir) IR <= IR_buf;
     end

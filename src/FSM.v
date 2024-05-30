@@ -72,8 +72,8 @@ module FSM(input clk,
         else
             ST <= Next_ST;
     end
-    
-    always @(ST or W_IR_valid or command) begin
+
+    always @(ST or command) begin
         case (ST)
             Idle:Next_ST = S0;
             S0:begin
@@ -95,7 +95,9 @@ module FSM(input clk,
                     if(command[LDR0] || command[LDR1] || command[STR0] || command[STR1])
                         Next_ST = S12;
                     else
-                        Next_ST = S16;
+                        if(command[SWP])
+                            Next_ST = S16;
+                        else Next_ST = S2;
             end
             S2:begin
                 if(TTCC)
@@ -162,7 +164,7 @@ module FSM(input clk,
             ALU_OP_ctrl <= 4'b0;
         end
         else begin
-            case (ST)
+            case (Next_ST)
                 S0:begin
                     write_pc <= 1'b1;
                     write_ir <= 1'b1; //为W_IR_valid所传值表示当前状态可以写指令/
