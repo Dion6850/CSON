@@ -160,7 +160,7 @@ module cpu(input clk,
       );
 
     assign m_w_data = mem_w_s?C:B;
-    memory  memory_inst (
+    Memory  memory_inst (
         .clk(clk),
         .rst(rst),
         .mem_write(mem_write),

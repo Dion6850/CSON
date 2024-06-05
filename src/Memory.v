@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module memory(
+module Memory(
     input clk,
     input rst,
     input mem_write,
@@ -15,10 +15,10 @@ module memory(
 genvar i;
 generate
     for(i = 0 ;i < 32 ; i = i + 1)begin
-        assign mem0[i] = mem[i];
-        assign mem1[i] = mem[i+32];
-        assign mem2[i] = mem[i+64];
-        assign mem3[i] = mem[i+96]; 
+        assign mem0[i][31:0] = mem[i][31:0];
+        assign mem1[i][31:0] = mem[i+32][31:0];
+        assign mem2[i][31:0] = mem[i+64][31:0];
+        assign mem3[i][31:0] = mem[i+96][31:0]; 
     end
 endgenerate
     reg [31:0] inner;
