@@ -10,11 +10,10 @@ module fetch_instruction(
     input [3:0] NZCV,
     output reg [31:0] PC,
     output reg [31:0] IR,
-    output [31:0] IR_buf,
     output W_IR_valid   
     );
 
-    // wire [31:0] IR_buf;
+    wire [31:0] IR_buf;
     reg cond;
 
     always @(negedge clk or posedge rst) begin
@@ -62,15 +61,15 @@ module fetch_instruction(
         if (rst) IR <= 32'h0;
         else if (W_IR_valid & write_ir) IR <= IR_buf;
     end
-    blk_mem_gen_0 ROM1 (
-        .clka(clk),    // input wire clka
-        .addra(PC[7:2]),  // input wire [5 : 0] addra
-        .douta(IR_buf)  // output wire [31 : 0] douta
-    );
     
-    // ROMc ROM1 (
-    //     .clka(clk),    // input wire clka
-    //     .addra(PC[7:2]),  // input wire [5 : 0] addra
-    //     .douta(IR_buf)  // output wire [31 : 0] douta
-    // ); // vivado
+//    fetch_instruction_ROM ROM1(
+//      .clka(clk),    // input wire clka
+//      .addra(PC[7:2]),  // input wire [5 : 0] addra
+//      .douta(IR_buf)  // output wire [31 : 0] douta
+//    );
+     blk_mem_gen_2 ROM1 (
+         .clka(clk),    // input wire clka
+         .addra(PC[7:2]),  // input wire [5 : 0] addra
+         .douta(IR_buf)  // output wire [31 : 0] douta
+     ); // vivado
 endmodule

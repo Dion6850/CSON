@@ -71,7 +71,6 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 5
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tfgg484-2L
 
@@ -94,6 +93,7 @@ read_verilog -library xil_defaultlib {
   E:/VivadoProject/CSON/src/ALU.v
   E:/VivadoProject/CSON/01_Test/Display.v
   E:/VivadoProject/CSON/src/FSM.v
+  E:/VivadoProject/CSON/src/Memory.v
   E:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/new/barrelshifter.v
   E:/VivadoProject/CSON/src/controller.v
   E:/VivadoProject/CSON/src/cpu.v
@@ -102,8 +102,8 @@ read_verilog -library xil_defaultlib {
   E:/VivadoProject/CSON/src/translation.v
   E:/VivadoProject/CSON/01_Test/Board.v
 }
-read_ip -quiet E:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
-set_property used_in_implementation false [get_files -all e:/VivadoProject/CSON/project_1/project_1.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
+read_ip -quiet e:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2.xci
+set_property used_in_implementation false [get_files -all e:/VivadoProject/CSON/project_1/project_1.gen/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

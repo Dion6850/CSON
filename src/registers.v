@@ -23,7 +23,7 @@ module registers(
     reg [31:0]r13_irq;reg [31:0]r13_svc;reg [31:0]r13_mon;reg [31:0]r13_abt;reg [31:0]r13_hyp;reg [31:0]r13_und;
     reg [31:0]r14_irq;reg [31:0]r14_svc;reg [31:0]r14_mon;reg [31:0]r14_abt;reg [31:0]r14_und;
     reg [31:0]r_pc;
-    reg clk_reg;
+    reg clk_reg = 0;
     
     integer i;
     always @(posedge clk) begin //write
@@ -37,10 +37,8 @@ module registers(
             r13_irq <= 32'b0;r13_svc <= 32'b0;r13_mon <= 32'b0;r13_abt <= 32'b0;r13_hyp <= 32'b0;r13_und <= 32'b0;
             r14_irq <= 32'b0;r14_svc <= 32'b0;r14_mon <= 32'b0;r14_abt <= 32'b0;r14_und <= 32'b0;
             r_pc <= 32'b0;
-            clk_reg<=clk_reg+1;
         end
         else begin
-            clk_reg<=clk_reg+1;
             if(write_pc)
                 r_pc <= pc_data;
             if(M[4] == 0 || (write_reg && w_addr == 15))
@@ -123,6 +121,10 @@ module registers(
                 end
             end
         end
+    end
+    
+    always @(posedge clk)begin
+        clk_reg <= clk_reg + 1;
     end
 
     always @(r_addr_a or M or clk_reg)begin // read data a

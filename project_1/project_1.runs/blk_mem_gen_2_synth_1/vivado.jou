@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Wed Jun  5 22:42:52 2024
+# Process ID: 40660
+# Current directory: E:/VivadoProject/CSON/project_1/project_1.runs/blk_mem_gen_2_synth_1
+# Command line: vivado.exe -log blk_mem_gen_2.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_mem_gen_2.tcl
+# Log file: E:/VivadoProject/CSON/project_1/project_1.runs/blk_mem_gen_2_synth_1/blk_mem_gen_2.vds
+# Journal file: E:/VivadoProject/CSON/project_1/project_1.runs/blk_mem_gen_2_synth_1\vivado.jou
+# Running On: LAPTOP-8VTJ1KHT, OS: Windows, CPU Frequency: 2688 MHz, CPU Physical cores: 14, Host memory: 16962 MB
+#-----------------------------------------------------------
+source blk_mem_gen_2.tcl -notrace

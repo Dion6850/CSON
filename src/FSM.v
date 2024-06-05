@@ -2,14 +2,17 @@
 
 module FSM(input clk,
            input rst,
-           input [31:0]IR,
-           input [31:0]IR_buf,
            input W_IR_valid,
            input rm_imm_s,                //shift_barrel
            input [1:0]rs_imm_s,
            input [2:0]SHIFT_OP,
            input [3:0]ALU_OP,
            input S,
+           input P,
+           input U,
+           input W,
+           input [1:0]v_type,
+           input [63:0] command,
            input TTCC,
            output reg write_pc,
            output reg write_ir,
@@ -20,8 +23,12 @@ module FSM(input clk,
            output reg LF,
            output reg [1:0] pc_s, //add
            output reg ALU_A_s, // add
-           output reg ALU_B_s, // add
-           output reg rd_s, // add
+           output reg [1:0]ALU_B_s, // modify
+           output reg [1:0]rd_s, // modify
+           output reg reg_c_s, // add
+           output reg mem_w_s, // add
+           output reg mem_write,
+           output reg [1:0]w_rdata_s, // add
            output reg S_ctrl,
            output reg rm_imm_s_ctrl,
            output reg [1:0]rs_imm_s_ctrl,
@@ -40,11 +47,24 @@ module FSM(input clk,
     localparam S9   = 6'd10;
     localparam S10  = 6'd11;
     localparam S11  = 6'd12;
+    localparam S12  = 6'd13;
+    localparam S13  = 6'd14;
+    localparam S14  = 6'd15;
+    localparam S15  = 6'd16;
+    localparam S16 = 6'd17;
+    localparam S17 = 6'd18;
+    localparam S18 = 6'd19;
 
-    wire isB,isBL,isBX;
-    assign isB = IR[27:24] == 4'b1010;
-    assign isBL = IR_buf[27:24] == 4'b1011;
-    assign isBX = IR[27:4] == 24'b0001_0010_1111_1111_1111_0001;
+    //set 6 bit for commands
+    localparam DP   = 6'd0;
+    localparam BX   = 6'd1;
+    localparam B    = 6'd2;
+    localparam BL   = 6'd3;
+    localparam LDR0 = 6'd4;
+    localparam LDR1 = 6'd5;
+    localparam STR0 = 6'd6;
+    localparam STR1 = 6'd7;
+    localparam SWP  = 6'd8;
 
     always @(posedge clk or posedge rst) begin
         if (rst)
@@ -52,25 +72,65 @@ module FSM(input clk,
         else
             ST <= Next_ST;
     end
-    
-    always @(ST or W_IR_valid or isBX or TTCC or isB or isBL) begin
+
+//    always @(ST or command) begin
+    always @(clk or command) begin
         case (ST)
-            Idle:Next_ST     = S0;
-            S0:Next_ST       = W_IR_valid?(isB?S8:(isBL?S10:S1)):S0;//等待正确指令读入
-            S1:Next_ST       = isBX?S7:S2;
-            S2:Next_ST       = TTCC?S0:S3; // TTCC == 1 not write reg
-            S3:Next_ST       = S0;
-            S7:Next_ST       = S0;
-            S8:Next_ST       = S9;
-            S9:Next_ST       = S0;
-            S10:Next_ST      = S11;
-            S11:Next_ST      = S9;
-            default :Next_ST = S0;
+            Idle:Next_ST = S0;
+            S0:begin
+                if(W_IR_valid)
+                    if(command[B])
+                        Next_ST = S8;
+                    else
+                        if(command[BL])
+                            Next_ST = S10;
+                        else
+                            Next_ST = S1;
+                else
+                    Next_ST = S0; //等待正确指令读入
+            end
+            S1:begin
+                if(command[BX])
+                    Next_ST = S7;
+                else
+                    if(command[LDR0] || command[LDR1] || command[STR0] || command[STR1])
+                        Next_ST = S12;
+                    else
+                        if(command[SWP])
+                            Next_ST = S16;
+                        else Next_ST = S2;
+            end
+            S2:begin
+                if(TTCC)
+                    Next_ST = S0;
+                else
+                    Next_ST = S3; // TTCC == 1 not write reg
+            end
+            S3:Next_ST = S0;
+
+            S7:Next_ST = S0;
+            S8:Next_ST = S9;
+            S9:Next_ST = S0;
+            S10:Next_ST = S11;
+            S11:Next_ST = S9;
+            S12:begin
+                if(command[LDR0] || command[LDR1])
+                    Next_ST = S13;
+                else
+                    Next_ST = S15;
+            end
+            S13:Next_ST = S14;
+            S15:Next_ST = S14;
+            S14:Next_ST = S0;
+            S16:Next_ST = S17;
+            S17:Next_ST = S18;
+            S18:Next_ST = S0;
+            default:Next_ST = S0;
         endcase
     end
     
-    //自动机设计模�??
-    always @(negedge clk or posedge rst) begin
+    //自动机设计模�?
+    always @(posedge clk or posedge rst) begin
         write_pc <= 1'b0;
         write_ir <= 1'b0;
         write_reg   <= 1'b0;
@@ -80,11 +140,20 @@ module FSM(input clk,
         LC      <= 1'b0;
         LF      <= 1'b0;
         S_ctrl  <= 1'b0;
+        ALU_A_s       <= 0;
+        ALU_B_s       <= 0;
+        pc_s          <= 0;
+        rd_s          <= 0;
+        rm_imm_s_ctrl <= 0;
+        rs_imm_s_ctrl <= 0;
+        reg_c_s       <= 0;
+        mem_w_s       <= 0;
+        mem_write     <= 0;
+        w_rdata_s     <= 0;
         if (rst)begin
             write_pc <= 1'b0;
             write_ir <= 1'b0;
             write_reg   <= 1'b0;
-            ALU_OP_ctrl <= 0;
             LA      <= 1'b0;
             LB      <= 1'b0;
             LC      <= 1'b0;
@@ -94,22 +163,21 @@ module FSM(input clk,
             rs_imm_s_ctrl <= 2'b0;
             Shift_OP_ctrl <= 3'b0;
             ALU_OP_ctrl <= 4'b0;
-            pc_s<=0;        // add
-            ALU_A_s<=0;     // add
-            ALU_B_s<=0;     // add
-            rd_s<=0;        // add
         end
         else begin
             case (Next_ST)
                 S0:begin
                     write_pc <= 1'b1;
-                    write_ir <= 1'b1; //为W_IR_valid�??传�?�表示当前状态可以写指令/
-                    pc_s <= 2'b0; // 取指�??,PC自增
+                    write_ir <= 1'b1; //为W_IR_valid�?传�?�表示当前状态可以写指令/
+                    pc_s <= 2'b0; // 取指�?,PC自增
                 end
                 S1:begin
-                    LA <= 1'b1; //写入ABC暂存�??
+                    LA <= 1'b1; //写入ABC暂存�?
                     LB <= 1'b1;
                     LC <= 1'b1;
+                    if(command[STR0] || command[STR1])begin
+                        reg_c_s <= 1'b1;
+                    end
                 end
                 S2:begin
                     LF            <= 1'b1; //运算周期
@@ -126,19 +194,16 @@ module FSM(input clk,
                     write_pc <= 1'b1; //用B向PC写入，用于BX指令
                     pc_s <= 2'b01;
                 end
-                S8:begin // 用于B指令，PC+ext(imm24)->PC 先写入F�??
+                S8:begin // 用于B指令，PC+ext(imm24)->PC 先写入F�?
                     ALU_A_s <= 1'b1;
-                    ALU_B_s <= 1'b1;
+                    ALU_B_s <= 2'b01;
                     ALU_OP_ctrl <= 4'b0100;
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
                 end
-                S9:begin //从F向PC写入，继承自状�?�S8 �??要�?�虑将S8中的ALU_A_s,ALU_B_s修改回默认状�??,防止无法重置
+                S9:begin //从F向PC写入，继承自状�?�S8
                     write_pc <= 1'b1;
                     pc_s <= 2'b10;
-                    ALU_A_s <= 1'b0; // 回到默认运算状�??
-                    ALU_B_s <= 1'b0;
-                    rd_s <= 1'b0;
                 end
                 S10:begin // BF 指令，从PC向F写入
                     ALU_A_s <= 1'b1;
@@ -146,21 +211,108 @@ module FSM(input clk,
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
                 end
-                S11:begin // 子程序跳�?? F->R14, PC+ext(imm24) -> F,下接S9向PC写入 
+                S11:begin // 子程序跳�? F->R14, PC+ext(imm24) -> F,下接S9向PC写入 
                     ALU_A_s <= 1'b1;
-                    ALU_B_s <= 1'b1;
+                    ALU_B_s <= 2'b01;
                     ALU_OP_ctrl <= 4'b0100;
                     S_ctrl <= 1'b0;
                     LF <= 1'b1;
-                    rd_s <= 1'b1; // �??要在下接中返回默认模�??
+                    rd_s <= 2'b01; // �?要在下接中返回默认模�?
                     write_reg <= 1'b1; 
+                end
+                S12:begin // A -> F or A +- offset -> F
+                    ALU_A_s <= 0;
+                    S_ctrl <= 0;
+                    LF <= 1'b1;
+                    if(P == 0)begin
+                        ALU_OP_ctrl <= 4'b1000;
+                    end
+                    else begin
+                        ALU_B_s <= 2'b00;
+                        ALU_OP_ctrl <= U?4'b0100:4'b0010;
+                        if(command[LDR1] || command[STR1])begin
+                            Shift_OP_ctrl <= {v_type,1'b0};
+                            rm_imm_s_ctrl <= 0;
+                            rs_imm_s_ctrl <= 0;
+                        end
+                    end
+                end
+                S13:begin //LDR
+                    if(P == 0)begin
+                        ALU_A_s <= 0;
+                        ALU_OP_ctrl <= U?4'b0100:4'b0010;
+                        S_ctrl <= 0;
+                        LF <= 1'b1;
+                        w_rdata_s <= 2'b10;
+                        rd_s <= 2'b00;
+                        write_reg <= 1'b1;
+                        if(command[LDR0])begin
+                            ALU_B_s <= 2'b10;
+                        end
+                        else begin
+                            rm_imm_s_ctrl <= 0;
+                            rs_imm_s_ctrl <= 0;
+                            Shift_OP_ctrl <= {v_type,1'b0};
+                            ALU_B_s <= 2'b0;
+                        end
+                    end
+                    else begin
+                        w_rdata_s <= 2'b10;
+                        rd_s <= 2'b00;
+                        write_reg <= 1'b1;
+                    end
+                end
+                S14:begin
+                    if(W == 1 || P == 0)begin
+                        w_rdata_s <= 2'b00;
+                        rd_s <= 2'b10;
+                        write_reg <= 1'b1;
+                    end
+                end
+                S15:begin // STR
+                    if(P == 0)begin
+                        ALU_A_s <= 0;
+                        ALU_OP_ctrl <= 4'b0100;
+                        S_ctrl <= 0;
+                        LF <= 1;
+                        mem_w_s <= 1;
+                        mem_write <= 1;
+                        if(command[STR0])begin
+                            ALU_B_s <= 2'b10;
+                        end
+                        else begin
+                            ALU_B_s <= 2'b00;
+                            rm_imm_s_ctrl <= 0;
+                            rs_imm_s_ctrl <= 0;
+                            Shift_OP_ctrl <= {v_type,1'b0};
+                        end
+                    end
+                    else begin
+                        mem_w_s <= 1;
+                        mem_write <= 1;
+                    end
+                end
+                S16:begin // A -> F
+                    ALU_A_s <= 0;
+                    S_ctrl <= 0;
+                    LF <= 1'b1;
+                    ALU_OP_ctrl <= 4'b1000;
+                end
+                S17:begin //mem[F] -> Reg[rd]
+                    w_rdata_s <= 2'b10;
+                    rd_s <= 2'b00;
+                    write_reg <= 1'b1;
+                end
+                S18:begin // B -> mem[F]
+                    ALU_B_s <= 0;
+                    S_ctrl <= 0;
+                    LF <= 1;
+                    mem_w_s <= 0;
+                    mem_write <= 1;
                 end
                 default: begin
                 end
             endcase
         end
     end
-    
-    
-    
 endmodule

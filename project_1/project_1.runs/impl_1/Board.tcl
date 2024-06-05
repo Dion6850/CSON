@@ -123,7 +123,6 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 5
-  set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 10  }
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a100tfgg484-2L
@@ -139,7 +138,7 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet E:/VivadoProject/CSON/project_1/project_1.runs/synth_1/Board.dcp
-  read_ip -quiet E:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+  read_ip -quiet e:/VivadoProject/CSON/project_1/project_1.srcs/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc E:/VivadoProject/CSON/01_Test/Board.xdc
 OPTRACE "read constraints: implementation" END { }

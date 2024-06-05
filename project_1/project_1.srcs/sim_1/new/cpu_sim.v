@@ -61,20 +61,13 @@ cpu  cpu_inst (
         .rm_imm_s_ctrl(rm_imm_s_ctrl),
         .rs_imm_s_ctrl(rs_imm_s_ctrl),
         .ALU_OP_ctrl(ALU_OP_ctrl),
-        .Shift_OP_ctrl(Shift_OP_ctrl),
-        .Shift_out(Shift_out),
-        .W_data(W_data),
-        .registers_write_addr(registers_write_addr),
-        .pc_s(pc_s),
-        .rd_s(rd_s),
-        .ALU_A_s(ALU_A_s),
-        .ALU_B_s(ALU_B_s)
+        .Shift_OP_ctrl(Shift_OP_ctrl)
     );
     
     initial begin
         rst = 1;
         clk_reg = 0;
-        #10 rst = 0;
+        #20 rst = 0;
     end
     always#10 clk_reg = !clk_reg;
 

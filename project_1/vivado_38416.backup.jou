@@ -1,0 +1,44 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Wed Jun  5 21:19:24 2024
+# Process ID: 38416
+# Current directory: E:/VivadoProject/CSON/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent32092 E:\VivadoProject\CSON\project_1\project_1.xpr
+# Log file: E:/VivadoProject/CSON/project_1/vivado.log
+# Journal file: E:/VivadoProject/CSON/project_1\vivado.jou
+# Running On: LAPTOP-8VTJ1KHT, OS: Windows, CPU Frequency: 2688 MHz, CPU Physical cores: 14, Host memory: 16962 MB
+#-----------------------------------------------------------
+start_gui
+open_project E:/VivadoProject/CSON/project_1/project_1.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source cpu_sim.tcl
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/LA}} 
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/LB}} 
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/LC}} 
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/LF}} 
+relaunch_sim
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/controller_inst/FSM_inst/ST}} {{/cpu_sim/cpu_inst/controller_inst/FSM_inst/Next_ST}} 
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/registers_inst/r_base}} 
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/controller_inst/rd}} {{/cpu_sim/cpu_inst/controller_inst/rn}} {{/cpu_sim/cpu_inst/controller_inst/rm}} {{/cpu_sim/cpu_inst/controller_inst/rs}} 
+relaunch_sim
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/controller_inst/ALU_A_s}} {{/cpu_sim/cpu_inst/controller_inst/ALU_B_s}} 
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/Ainput}} {{/cpu_sim/cpu_inst/Binput}} 
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/registers_inst/r_data_a}} {{/cpu_sim/cpu_inst/registers_inst/r_data_b}} {{/cpu_sim/cpu_inst/registers_inst/r_data_c}} 
+relaunch_sim
+current_wave_config {Untitled 1}
+add_wave {{/cpu_sim/cpu_inst/registers_inst/r_addr_a}} {{/cpu_sim/cpu_inst/registers_inst/r_addr_b}} {{/cpu_sim/cpu_inst/registers_inst/r_addr_c}} 
+relaunch_sim

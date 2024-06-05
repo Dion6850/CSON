@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed May 29 23:17:28 2024
+| Date         : Wed Jun  5 23:29:58 2024
 | Host         : LAPTOP-8VTJ1KHT running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file Board_timing_summary_routed.rpt -pb Board_timing_summary_routed.pb -rpx Board_timing_summary_routed.rpx -warn_on_violation
 | Design       : Board
@@ -42,7 +42,7 @@ Timing Summary Report
 
 Rule       Severity          Description                     Violations  
 ---------  ----------------  ------------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell     742         
+TIMING-17  Critical Warning  Non-clocked sequential cell     1000        
 TIMING-20  Warning           Non-clocked latch               2           
 LATCH-1    Advisory          Existing latches in the design  1           
 
@@ -54,12 +54,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (765)
+1. checking no_clock (4933)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (2161)
+4. checking unconstrained_internal_endpoints (14567)
 5. checking no_input_delay (1)
-6. checking no_output_delay (38)
+6. checking no_output_delay (36)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -67,15 +67,15 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (765)
---------------------------
+1. checking no_clock (4933)
+---------------------------
  There are 18 register/latch pins with no clock driven by root clock pin: clk (HIGH)
 
  There is 1 register/latch pin with no clock driven by root clock pin: swb[2] (HIGH)
 
  There are 3 register/latch pins with no clock driven by root clock pin: swb[6] (HIGH)
 
- There are 720 register/latch pins with no clock driven by root clock pin: clk_reg_reg/Q (HIGH)
+ There are 4889 register/latch pins with no clock driven by root clock pin: clk_reg_reg/Q (HIGH)
 
  There is 1 register/latch pin with no clock driven by root clock pin: cpu_inst/C_reg[0]/Q (HIGH)
 
@@ -107,11 +107,9 @@ Table of Contents
 
  There is 1 register/latch pin with no clock driven by root clock pin: cpu_inst/controller_inst/FSM_inst/Shift_OP_ctrl_reg[2]/Q (HIGH)
 
- There is 1 register/latch pin with no clock driven by root clock pin: cpu_inst/controller_inst/FSM_inst/rm_imm_s_ctrl_reg_rep/Q (HIGH)
-
- There is 1 register/latch pin with no clock driven by root clock pin: cpu_inst/controller_inst/FSM_inst/rm_imm_s_ctrl_reg_rep__0/Q (HIGH)
-
  There is 1 register/latch pin with no clock driven by root clock pin: cpu_inst/controller_inst/FSM_inst/rs_imm_s_ctrl_reg[0]/Q (HIGH)
+
+ There is 1 register/latch pin with no clock driven by root clock pin: cpu_inst/controller_inst/FSM_inst/rs_imm_s_ctrl_reg[1]/Q (HIGH)
 
  There is 1 register/latch pin with no clock driven by root clock pin: cpu_inst/fetch_instruction_inst/IR_reg[10]/Q (HIGH)
 
@@ -134,9 +132,9 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (2161)
----------------------------------------------------
- There are 2161 pins that are not constrained for maximum delay. (HIGH)
+4. checking unconstrained_internal_endpoints (14567)
+----------------------------------------------------
+ There are 14567 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -148,9 +146,9 @@ Table of Contents
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (38)
+6. checking no_output_delay (36)
 --------------------------------
- There are 38 ports with no output delay specified. (HIGH)
+ There are 36 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 

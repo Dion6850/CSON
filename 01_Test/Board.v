@@ -362,17 +362,18 @@ module Board(sw, swb, led, clk, which, seg, enable);
     wire  [31:0] C;
     wire  [31:0] F;
     wire  [31:0] PC;
-    wire  [3:0] NZCV;
-    wire  rm_imm_s_ctrl;
-    wire  [1:0] rs_imm_s_ctrl;
-    wire  [3:0] ALU_OP_ctrl;
-    wire  [2:0] Shift_OP_ctrl;
-    wire  [31:0]Shift_out;
-    wire  [31:0]W_data;
-    wire [3:0]registers_write_addr;
+    wire  [1:0] rd_s;
+    wire Mem_Write;
+    wire Mem_W_s;
+    wire Reg_C_s;
+    wire  [3:0] ALU_OP;
+    wire ALU_A_s;
+    wire [1:0]ALU_B_s;
+
+    wire [31:0]M_R_Data;
+    wire [31:0]M_W_Data;
+    wire [2:0]W_RData_s;
     wire [1:0] pc_s;
-    wire rd_s;
-    wire ALU_A_s,ALU_B_s;
     reg [3:0]swb6_c;
     reg [31:0] datatube;
     //led
@@ -380,15 +381,15 @@ module Board(sw, swb, led, clk, which, seg, enable);
     assign led[10] = write_pc;
     assign led[11] = write_ir;
     assign led[12] = write_reg;
-    assign led[13] = registers_write_addr;
+    assign led[13:14] = W_RData_s;
     assign led[15:16] = pc_s;
-    assign led[18:21] = NZCV;
-    assign led[22] = rm_imm_s_ctrl;
-    assign led[23:24] = rs_imm_s_ctrl;
-    assign led[25:28] = ALU_OP_ctrl;
-    assign led[30] = rd_s;
-    assign led[31] = ALU_A_s;
-    assign led[32] = ALU_B_s;
+    assign led[18:19] = rd_s;
+    assign led[20] = Mem_Write;
+    assign led[21] = Mem_W_s;
+    assign led[22] = Reg_C_s;
+    assign led[25:28] = ALU_OP;
+    assign led[30] = ALU_A_s;
+    assign led[31:32] = ALU_B_s;
 
     assign rst = swb[1];
     always @(posedge swb[2]) begin
@@ -410,8 +411,8 @@ module Board(sw, swb, led, clk, which, seg, enable);
             3'b011:datatube[31:0]<=B;
             3'b100:datatube[31:0]<=C;
             3'b101:datatube[31:0]<=F;
-            3'b110:datatube[31:0]<=Shift_out;
-            3'b111:datatube[31:0]<=W_data;
+            3'b110:datatube[31:0]<=M_R_Data;
+            3'b111:datatube[31:0]<=M_R_Data;
             3'b000:datatube[31:0]<=32'b10001000100010001000100010001000;
         endcase
     end
@@ -426,19 +427,18 @@ module Board(sw, swb, led, clk, which, seg, enable);
         .B(B),
         .C(C),
         .F(F),
+        .w_rdata_s(W_RData_s),
         .PC(PC),
-        .NZCV(NZCV),
-        .rm_imm_s_ctrl(rm_imm_s_ctrl),
-        .rs_imm_s_ctrl(rs_imm_s_ctrl),
-        .ALU_OP_ctrl(ALU_OP_ctrl),
-        .Shift_OP_ctrl(Shift_OP_ctrl),
-        .Shift_out(Shift_out),
-        .W_data(W_data),
-        .registers_write_addr(registers_write_addr),
         .pc_s(pc_s),
         .rd_s(rd_s),
         .ALU_A_s(ALU_A_s),
-        .ALU_B_s(ALU_B_s)
+        .mem_write(Mem_Write),
+        .ALU_B_s(ALU_B_s),
+        .m_w_data(M_W_Data),
+        .m_r_data(M_R_Data),
+        .mem_w_s(Mem_W_s),
+        .reg_c_s(Reg_C_s),
+        .ALU_OP_ctrl(ALU_OP)
     );
 
     Display Display_Instance(
