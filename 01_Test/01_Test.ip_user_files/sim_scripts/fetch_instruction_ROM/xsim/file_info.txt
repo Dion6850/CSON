@@ -1,2 +1,0 @@
-fetch_instruction_ROM.v,verilog,xil_defaultlib,../../../../01_Test.gen/sources_1/ip/fetch_instruction_ROM/sim/fetch_instruction_ROM.v,
-glbl.v,Verilog,xil_defaultlib,glbl.v

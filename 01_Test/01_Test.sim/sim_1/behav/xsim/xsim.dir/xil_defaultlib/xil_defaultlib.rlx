@@ -1,8 +1,0 @@
-0.7
-2020.2
-Oct 13 2023
-20:21:30
-/home/zhywyt/CSON/01_Test/01_Test.gen/sources_1/ip/ROMc/sim/ROMc.v,1716366893,verilog,,/home/zhywyt/CSON/src/fetch_instruction.v,,ROMc,,,,,,,,
-/home/zhywyt/CSON/01_Test/01_Test.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,,,,,,,
-/home/zhywyt/CSON/src/fetch_instruction.v,1716366954,verilog,,/home/zhywyt/CSON/src/fetch_instruction_wrapper.v,,fetch_instruction,,,,,,,,
-/home/zhywyt/CSON/src/fetch_instruction_wrapper.v,1716298234,verilog,,,,fetch_instruction_wrapper,,,,,,,,

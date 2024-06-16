@@ -1,8 +1,0 @@
-# compile verilog/system verilog design source files
-verilog xil_defaultlib  \
-"fetch_instruction_wrapper_func_synth.v" \
-"../../../../../../src/fetch_instruction.v" \
-"../../../../../../src/fetch_instruction_wrapper.v" \
-
-# Do not sort compile order
-nosort
